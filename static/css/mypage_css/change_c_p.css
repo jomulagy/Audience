@@ -1,0 +1,193 @@
+h1 {
+    text-align: center;
+}
+
+input, button {
+    border: none;
+}
+
+.change_p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    margin-top: 3%;
+}
+
+.h3_pw {
+    margin: 0 20px 0 0;
+}
+
+.id {
+    margin-bottom: 5%;
+}
+
+.user_name,
+.user_age {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 460px;
+    height: 62px;
+    border-radius: 3px;
+    background: #ffe5e5;
+
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #4D4949;
+
+}
+
+.pw {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.user_pw{
+    margin-top: 4%;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.change_pw {
+    width: 144.296875px;
+    height: 31px;
+    border-radius: 3px;
+    background: #ffc3c3;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+#gender_man,
+#gender_woman,
+#gender_hide,
+#checkbox,
+.interest_button,
+.aca_button {
+    display: none;
+}
+
+.change_label {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3% 11% 0;
+    width: 4rem;
+    height: 2.5rem;
+    border-radius: 3px;
+    background: #ffe5e5;
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.user_gender {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+#old_gender_label_1,
+#old_gender_label_2,
+#old_gender_label_3 {
+    margin: 0 3% 0 0;
+}
+
+.interest_table {
+    display: unset;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: start;
+}
+
+.change_label:hover {
+    background: #ffbdbd;
+}
+
+.academic_table {
+    display: unset;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: start;
+}
+
+.input_file {
+    display: none;
+}
+
+.input_career {
+    width: 152px;
+    height: 32px;
+    border-radius: 3px;
+    background: #ffbdbd;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}
+
+
+
+
+.change_button_wrap {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+.change_button {
+    margin: 8% 0 3% 0;
+    width: 382px;
+    height: 50px;
+    border-radius: 3px;
+    background: #ffbdbd;
+
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+
+
+}
+
+.delete {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: red;  
+}

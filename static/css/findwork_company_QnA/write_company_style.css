@@ -1,0 +1,455 @@
+body{
+    position: relative;
+    width: 1440px;
+    height: 100%;
+    margin: auto;
+}
+
+
+.container {
+    min-height: 2000px;
+    background-color: #FFE5E5;
+    width: 1134.79px;
+    height: 100%;
+    margin-top: 163.46px;
+    margin-left: 158.81px;
+    margin-right: 146.4px;
+    background-size: cover;
+  }
+
+/*글제목*/
+
+#title {
+    position: absolute;
+    top: 69.54px; 
+    left: 223px;
+    width: 964px;
+    max-width: 1000px;
+    height: 28px;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+#certification_photo_text {
+    position: absolute;
+    top: 124.62px; 
+    left: 229.5px; 
+    width: 90px;
+    height: 24px; 
+    font-size: 20px; 
+}
+
+#certification_photo_space {
+    position: absolute;
+    top : 155.74px;
+    left: 223.5px;
+    width: 964px;
+    height: 600px;
+    background-color: white;
+}
+
+
+.upload-button {
+    display: inline-block;
+    position: absolute;
+    top: 124.62px; 
+    left: 1048px; 
+    width: 140.03px;
+    height: 23.37px; 
+    background-color:#FFBDBD;
+    color:black;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  #preview-container {
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  #preview-image {
+    position: absolute;
+    top: 456.77px;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    max-width: 944px;
+    max-height: 600px;
+  }
+
+#upload-input {
+    display: none;
+  }
+
+/*내용*/
+
+#content {
+    position: absolute;
+    top: 782.54px; 
+    left: 224.5px;
+    width: 964px;
+    height: 226px;
+    font-size: 20px; 
+    resize: none;
+}
+/*지원조건*/
+
+#job_condition_text {
+    position: absolute;
+    top: 1024.54px; 
+    left: 229.5px; 
+    width: 400px;
+    height: 24px; 
+    font-size: 20px; 
+}
+
+#intern_btn.active {
+    position: absolute;
+    top: 1064.54px; 
+    left: 223.5px; 
+    background-color:#FFBDBD;
+    color:black;
+    border:none;
+    width: 257px;
+    height: 40px;
+    font-size: 20px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#intern_btn {
+    position: absolute;
+    top: 1064.54px; 
+    left: 223.5px; 
+    background-color:white;
+    color:black;
+    border:none;
+    width: 257px;
+    height: 40px;
+    font-size: 20px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#permanent_btn.active {
+    position: absolute;
+    top: 1064.54px; 
+    left: 517.5px;
+    border:none; 
+    background-color:#FFBDBD;
+    color:black;
+    border:none;
+    width: 257px;
+    height: 40px; 
+    font-size: 20px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#permanent_btn {
+    position: absolute;
+    top: 1064.54px; 
+    left: 517.5px;
+    border:none; 
+    background-color:white;
+    color:black;
+    border:none;
+    width: 257px;
+    height: 40px; 
+    font-size: 20px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#temporary_btn.active {
+    position: absolute;
+    top: 1064.54px; 
+    left: 807.5px; 
+    border:none;  
+    background-color:#FFBDBD;
+    color:black;
+    border:none;
+    width: 257px;
+    height: 40px; 
+    font-size: 20px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#temporary_btn {
+    position: absolute;
+    top: 1064.54px; 
+    left: 807.5px; 
+    border:none;  
+    background-color:white;
+    color:black;
+    border:none;
+    width: 257px;
+    height: 40px; 
+    font-size: 20px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.job_btn{
+	text-align: center;
+}
+
+#career_text {
+    position: absolute;
+    top: 1132.54px; 
+    left: 229.5px; 
+    width: 400px;
+    height: 24px; 
+    font-size: 20px; 
+}
+
+#newcomer_btn.active {
+    position: absolute;
+    top: 1172.54px; 
+    left: 223.5px; 
+    background-color:#FFBDBD;
+    color:black;
+    border:none;
+    width: 257px;
+    height: 40px;
+    font-size: 20px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#newcomer_btn {
+    position: absolute;
+    top: 1172.54px; 
+    left: 223.5px; 
+    background-color:white;
+    color:black;
+    border:none;
+    width: 257px;
+    height: 40px;
+    font-size: 20px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#experienced_btn.active {
+    position: absolute;
+    top: 1172.54px; 
+    left: 517.5px;
+    border:none; 
+    background-color:#FFBDBD;
+    color:black;
+    border:none;
+    width: 257px;
+    height: 40px; 
+    font-size: 20px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#experienced_btn {
+    position: absolute;
+    top: 1172.54px; 
+    left: 517.5px;
+    border:none; 
+    background-color:white;
+    color:black;
+    border:none;
+    width: 257px;
+    height: 40px; 
+    font-size: 20px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.career_btn{
+	text-align: center;
+}
+
+#num_recruiters_text {
+    position: absolute;
+    top: 1240.54px; 
+    left: 229.5px; 
+    width: 400px;
+    height: 24px; 
+    font-size: 20px; 
+}
+
+#numeric-input {
+    position: absolute;
+    top: 1280.54px; 
+    left: 223px;
+    width: 257px;
+    height: 28px;
+    font-size: 20px;
+    box-sizing: border-box;
+    border: none;
+}
+
+#preferential_terms_text {
+    position: absolute;
+    top: 1336.54px; 
+    left: 229.5px; 
+    width: 400px;
+    height: 24px; 
+    font-size: 20px; 
+}
+
+#preferential_terms {
+    position: absolute;
+    top: 1376.54px; 
+    left: 224.5px;
+    width: 964px;
+    height: 44px;
+    font-size: 20px; 
+    resize: none;
+}
+
+#how_to_apply_text {
+    position: absolute;
+    top: 1434.54px; 
+    left: 229.5px; 
+    width: 400px;
+    height: 24px; 
+    font-size: 20px; 
+}
+
+#how_to_apply {
+    position: absolute;
+    top: 1468.54px; 
+    left: 224.5px;
+    width: 964px;
+    height: 44px;
+    font-size: 20px; 
+    resize: none;
+}
+
+#support_schedule_text {
+    position: absolute;
+    top: 1528.54px; 
+    left: 229.5px; 
+    width: 400px;
+    height: 24px; 
+    font-size: 20px; 
+}
+
+
+.calendar-1 {
+    display: inline-block;
+    position: absolute;
+    top: 1571.54px; 
+    left: 224.5px;
+    width: 357px;
+    height: 24px; 
+    resize: none;
+  }
+
+#start-date {
+    font-size: 20px; 
+    width: 257px;
+    border: none;
+}
+
+#swung_dash{
+    position: absolute;
+    top: 1571.54px; 
+    left: 499.5px;
+}
+  .calendar-2 {
+    display: inline-block;
+    position: absolute;
+    top: 1571.54px; 
+    left: 524.5px;
+    width: 357px;
+    height: 24px;
+    resize: none;
+  }
+
+  #end-date {
+    font-size: 20px; 
+    width: 257px;
+    border: none;
+}
+
+  .calendar input {
+    padding: 5px;
+  }
+
+  #hashtag_text {
+    position: absolute;
+    top: 1633.37px; 
+    left: 229.5px; 
+    width: 90px;
+    height: 24px; 
+    font-size: 20px;
+  }
+  
+  .tag-container {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap; 
+    max-width: 700px; 
+  }
+  
+  
+  .tag-input {
+    margin: 10px;
+    background-color: #FFBDBD;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: 1671.87px; 
+    left: 225.69px;
+    width: 134px;
+    height: 28px;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .input-container {
+    position: absolute;
+    top: 1683.87px; 
+    left: 225.69px;
+    width: 134px;
+    height: 28px; 
+  }
+  
+  #tag-input {
+    font-size: 20px;
+    width: 134px;
+    border: none;
+  }
+  
+
+#upload_btn {
+    position: absolute;
+    top: 1925.85px; 
+    left: 535.2px; 
+    background-color:#FFBDBD;
+    color:black;
+    border:none;
+    width: 382px;
+    height: 50px; 
+    font-size: 20px;
+    cursor: pointer;
+}

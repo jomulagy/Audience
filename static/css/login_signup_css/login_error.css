@@ -1,0 +1,85 @@
+h1 {
+    text-align: center;
+}
+
+input, button {
+    border: none;
+}
+
+.login_error {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; 
+    align-content: center;
+    margin: 8%;
+    /* 아이템이 넘쳐야 align-content로 정렬이 되는거같음
+    flex-wrap: nowrap이 때문에 로그인박스
+    이후 아이템들이 왼쪽정렬이 안됐었음*/
+
+}
+
+.login_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.id_password {
+    margin-right: 2%;
+}
+
+.id {
+    width: 461px;
+    height: 72px;
+    border-radius: 3px;
+    background-color: #FFEAEA;
+    margin-bottom: 3.4%;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.pw{
+    width: 461px;
+    height: 72px;
+    border-radius: 3px;
+    background-color: #FFEAEA;
+    margin-bottom: 0;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.login_button {
+    text-align: center;
+    width: 115px;
+    height: 171px;
+    border-radius: 3px;
+
+    background-color: #FF94948F;
+}
+
+.login_error_message {
+    
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    color: #ff0000;
+}
+
+a {
+    text-decoration-line: none;
+    color: black;
+}
+
+.error_message {
+    align-self: flex-start;
+}
