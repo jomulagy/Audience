@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <!-- JavaScript Bundle with Popper -->
+    <script src="../static/js/find_id_pw.js"></script>
+
+    <link rel="stylesheet" href="../static/css/login_signup_css/find_id_pw.css">
+
+    <title>아이디/비밀번호 찾기</title>
+</head>
+<body>
+    <h1 class="serviceName">청취자들</h1>
+
+    <div class="find_id_pw">
+        <div class="id_pw_button"><!--아이디/비번 찾기 버튼-->
+                <input type="button" class="find_id_button" id="find_id_button" value="아이디 찾기" onclick="show_form_id()"></input><!--아이디찾기 버튼-->
+            
+                <input type="button" class="find_pw_button" id="find_pw_button" value="비밀번호 찾기" onclick="show_form_pw()"></input><!--비번찾기 버튼-->
+        </div>
+        <form class="form_find_id" id="form_find_id">
+            <div class="find_for_id_pw"><!--유저가 입력할 폼-->
+                <div class="name">
+                    <input type="text" class="input_user" placeholder="이름">
+                </div>
+                <div class="nickname">
+                    <input type="text" class="input_user" placeholder="닉네임">
+                </div>
+            </div>
+            <div class="submit_find_id">
+                <input type="submit" class="submit_find" value="아이디찾기"><!--최종클릭 버튼-->
+            </div>  
+        </form>
+        <form action="" class="form_show_user" id="form_show_user"> <!--아이디 보여주기-->
+            <div class="show_box">
+                <p class="id">아이디:</p>
+            </div>
+            <div class="button_login">
+                <input type="submit" class="submit_button" value="로그인하기">
+            </div>
+        </form>
+
+        <form class="form_find_pw" id="form_find_pw">
+            <div class="find_for_id_pw"><!--유저가 입력할 폼-->
+                <input type="text" class="input_user" placeholder="아이디">
+            </div>
+            <div class="submit_find_pw">
+                <input type="submit" class="submit_find" value="비밀번호찾기"><!--최종클릭 버튼-->
+            </div>   
+        </form>
+        <form class="form_show_user" id="form_show_user"> <!--안내문구 보여주기-->
+            <div class="show_box">
+                <p class="pw">가입된 이메일로 메일을 보냈습니다.<br>메일을 통해 비밀번호를 변경해주십시오.</p>
+            </div>
+            <div class="button_login">
+                <input type="submit" class="submit_button" value="로그인하기">
+            </div>
+             
+        </form>
+    </div>
+    
+</body>
+</html>

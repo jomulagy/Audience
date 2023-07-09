@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="..\..\static\css\findwork_company_QnA\write_company_style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+</head>
+<body>
+    <form action="URL" method="POST">
+        <div class="container">
+            <input type="text" style="border:0 solid black" id="title" name="title" placeholder="제목을 입력해주세요">
+
+            <div class="certification_photo">
+                <b id="certification_photo_text">인증사진</b>
+
+                <div id="certification_photo_space">
+                </div>
+
+                <input type="file" id="upload-input" accept="image/*">
+                <label for="upload-input" class="upload-button">사진 불러오기</label>
+                <div id="preview-container"></div>
+            </div>
+
+            <textarea id="content" style="border:0 solid black" name="content" placeholder="내용을 입력해주세요"></textarea>
+            <b id="job_condition_text">고용형태(인턴/정규직/비정규직)</b>
+            <div class="job_btn">
+                <label class="intern_btn" id="intern_btn">인턴</label>
+                <label class="permanent_btn" id="permanent_btn">정규직</label>
+                <label class="temporary_btn" id="temporary_btn">비정규직</label>
+            </div>
+
+            <b id="career_text">경력</b>
+            <div class="career_btn">
+                <label class="newcomer_btn" id="newcomer_btn">신입</label>
+                <label class="experienced_btn" id="experienced_btn">경력</label>
+            </div>
+
+            <b id="num_recruiters_text">채용자수</b>
+            <input type="text" id="numeric-input" oninput="handleInput(event)" placeholder="숫자입력">
+
+            <b id="preferential_terms_text">우대조건</b>
+            <textarea id="preferential_terms" style="border:0 solid black" name="preferential_terms" placeholder="내용을 입력해주세요"></textarea>
+
+            <b id="how_to_apply_text">지원방법</b>
+            <textarea id="how_to_apply" style="border:0 solid black" name="how_to_apply" placeholder="내용을 입력해주세요"></textarea>
+
+            <b id="support_schedule_text">지원일정</b>
+            <div class="support_schedule">
+                <div class="calendar-1">
+                    <label for="start-date"></label>
+                    <input type="text" id="start-date" placeholder="지원시작 일자" readonly>
+                </div>
+                <b id="swung_dash">~</b>
+                <div class="calendar-2">
+                    <label for="end-date"></label>
+                    <input type="text" id="end-date" placeholder="지원마감 일자" readonly>
+                </div>
+            </div>
+            <b id="hashtag_text">해시태그</b>
+            <div id="input-container" class="input-container">
+                <input type="text" id="tag-input" value="#" maxlength="30">
+            </div>
+
+            <div id="tag-container" class="tag-container"></div>
+
+            <input type="submit" id="upload_btn" value="업로드하기">
+        </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="..\..\static\js\findwork_company_QnA\write_company_script.js"></script>
+</body>

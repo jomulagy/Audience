@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/login_signup_css/sign_up_error_c_p.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../static/js/signup_change.js"></script>
+
+    <title>구직자 회원가입</title>
+</head>
+<body>
+    <h1 class="serviceName">청취자들</h1>
+
+    <div class="signup_c_p">
+        <form class="form_signup">
+            <div class="id">
+                <h3 class="h3_id">아이디</h3>
+                <input type="text" class="input_id_nickname" placeholder="아이디를 입력해주세요">
+                <input type="button" class="check_button" value="중복확인">
+                <p class="error_message">이미 존재하는 아이디입니다.</p>
+            </div>
+            <div class="pw">
+                <h3 class="h3_pw">비밀번호</h3>
+                <input type="text" class="input_box" placeholder="비밀번호를 입력해주세요">
+                <p class="error_message">영문+숫자+특수문자를 포함한 8-20자리를 입력해주세요</p>
+            </div>
+            <div class="pw_check">
+                <h3 class="h3_pw_check">비밀번호 확인</h3>
+                <input type="text" class="input_box" placeholder="비밀번호를 입력해주세요">
+                <p class="error_message">비밀번호가 일치하지 않습니다.</p>
+            </div>
+            <div class="name">
+                <h3 class="h3_name">이름</h3>
+                <input type="text" class="input_box" placeholder="이름을 입력해주세요">
+            </div>
+            <div class="nickname">
+                <h3 class="h3_nickname">닉네임</h3>
+                <input type="text" class="input_id_nickname" placeholder="닉네임을 입력해주세요">
+                <input type="button" class="check_button" value="중복확인">
+                <p class="error_message">이미 존재하는 닉네임입니다.</p>
+            </div>
+            <div class="gender">
+                <h3 class="h3_gender">성별</h3>
+                <div class="user_gender">
+                    <input type="radio" id="gender_man" name="gender" value="남자"></input>
+                    <label for="gender_man" id="old_gender_label_1" class="change_label" onclick="button_1()"> <span class="change_span">남자</span> </label>
+                    <input type="radio" id="gender_woman" name="gender" value="여자"></input>
+                    <label for="gender_woman" id="old_gender_label_2" class="change_label" onclick="button_1()"><span class="change_span">여자</span></label>
+                    <input type="radio" id="gender_hide" name="gender" value="밝히지 않음"></input>
+                    <label for="gender_hide" id="old_gender_label_3" class="change_label" onclick="button_1()"><span class="change_span">밝히지않음</span></label>
+                </div>
+            </div>
+            <div class="age">
+                <h3 class="h3_age">나이</h3>
+                <input type="number" min="1" class="input_box" placeholder="나이를 입력해주세요(숫자)">
+            </div>
+            <div class="interesting">
+                <h3 class="h3_interest">관련분야</h3>
+                <div class="interest_table">
+                    <input type="checkbox" id="checkbox1" class="interest_button" name="interest" value="전기전자"></input><input
+                        type="checkbox" id="checkbox2" class="interest_button" name="interest" value="조선업"></input><input
+                        type="checkbox" id="checkbox3" class="interest_button" name="interest" value="IT"></input><input
+                        type="checkbox" id="checkbox4" class="interest_button" name="interest" value="의료"></input><input
+                        type="checkbox" id="checkbox5" class="interest_button" name="interest" value="디지털"></input><input
+                        type="checkbox" id="checkbox6" class="interest_button" name="interest" value="기획전략"></input><input
+                        type="checkbox" id="checkbox7" class="interest_button" name="interest" value="의류산업"></input><input
+                        type="checkbox" id="checkbox8" class="interest_button" name="interest" value="교육"></input><input
+                        type="checkbox" id="checkbox9" class="interest_button" name="interest" value="금융"></input><input
+                        type="checkbox" id="checkbox10" class="interest_button" name="interest" value="상품기획/MD"></input><input
+                        type="checkbox" id="checkbox11" class="interest_button" name="interest" value="물류"></input><input
+                        type="checkbox" id="checkbox12" class="interest_button" name="interest" value="회계/재무"></input><input
+                        type="checkbox" id="checkbox13" class="interest_button" name="interest" value="서비스"></input><input
+                        type="checkbox" id="checkbox14" class="interest_button" name="interest" value="공공복지"></input><input
+                        type="checkbox" id="checkbox15" class="interest_button" name="interest" value="미디어"></input><input
+                        type="checkbox" id="checkbox16" class="interest_button" name="interest" value="농림/어업"></input><input
+                        type="checkbox" id="checkbox17" class="interest_button" name="interest" value="건설/토목"></input><input
+                        type="checkbox" id="checkbox18" class="interest_button" name="interest" value="스포츠/레크레이션"></input>
+                    <label for="checkbox1" id="old_label_1" class="change_label" onclick="button_2()"><span class="change_span">전기전자</span></label><label
+                        for="checkbox2" id="old_label_2" class="change_label" onclick="button_2()"><span class="change_span">조선업</span></label><label
+                        for="checkbox3" id="old_label_3" class="change_label" onclick="button_2()"><span class="change_span">IT</span></label><label
+                        for="checkbox4" id="old_label_4" class="change_label" onclick="button_2()"><span class="change_span">의료</span></label><label
+                        for="checkbox5" id="old_label_5" class="change_label" onclick="button_2()"><span class="change_span">디지털</span></label><label
+                        for="checkbox6" id="old_label_6" class="change_label" onclick="button_2()"><span class="change_span">기획전략</span></label><label 
+                        for="checkbox7" id="old_label_7" class="change_label" onclick="button_2()"><span class="change_span">의류산업</span></label><label
+                        for="checkbox8" id="old_label_8" class="change_label" onclick="button_2()"><span class="change_span">교육</span></label><label
+                        for="checkbox9" id="old_label_9" class="change_label" onclick="button_2()"><span class="change_span">금융</span></label><label
+                        for="checkbox10" id="old_label_10" class="change_label" onclick="button_2()"><span class="change_span">상품기획/MD</span></label><label
+                        for="checkbox11" id="old_label_11" class="change_label" onclick="button_2()"><span class="change_span">물류</span></label><label
+                        for="checkbox12" id="old_label_12" class="change_label" onclick="button_2()"><span class="change_span">회계/재무</span></label><label 
+                        for="checkbox13" id="old_label_13" class="change_label" onclick="button_2()"><span class="change_span">서비스</span></label><label
+                        for="checkbox14" id="old_label_14" class="change_label" onclick="button_2()"><span class="change_span">공공복지</span></label><label
+                        for="checkbox15" id="old_label_15" class="change_label" onclick="button_2()"><span class="change_span">미디어</span></label><label
+                        for="checkbox16" id="old_label_16" class="change_label" onclick="button_2()"><span class="change_span">농림/어업</span></label><label
+                        for="checkbox17" id="old_label_17" class="change_label" onclick="button_2()"><span class="change_span">건설/토목</span></label><label
+                        for="checkbox18" id="old_label_18" class="change_label" onclick="button_2()"><span class="change_span">스포츠/레크레이션</span></label>
+                </div>
+            </div>
+            <div class="academic">
+                <h3 class="h3_academic">학력</h3>
+                <div class="academic_table">
+                    <input type="radio" id="aca_checkbox1" class="aca_button" name="school" value="중졸"></button><input
+                        type="radio" id="aca_checkbox2" class="aca_button" name="school" value="고졸"></button><input
+                        type="radio" id="aca_checkbox3" class="aca_button" name="school" value="대학교2,3년제"></button><input
+                        type="radio" id="aca_checkbox4" class="aca_button" name="school" value="대학교4년제"></button><input 
+                        type="radio" id="aca_checkbox5" class="aca_button" name="school" value="졸업예정자"></button><input
+                        type="radio" id="aca_checkbox6" class="aca_button" name="school" value="졸업자"></button>
+                    <label for="aca_checkbox1" id="old_aca_label_1" class="change_label" onclick="button_3()"><span class="change_span">중졸</span></label><label
+                        for="aca_checkbox2" id="old_aca_label_2" class="change_label" onclick="button_3()"><span class="change_span">고졸</span></label><label
+                        for="aca_checkbox3" id="old_aca_label_3" class="change_label" onclick="button_3()"><span class="change_span">대학교2,3년제</span></label><label
+                        for="aca_checkbox4" id="old_aca_label_4" class="change_label" onclick="button_3()"><span class="change_span">대학교4년제</span></label><label
+                        for="aca_checkbox5" id="old_aca_label_5" class="change_label" onclick="button_3()"><span class="change_span">졸업예정자</span></label><label
+                        for="aca_checkbox6" id="old_aca_label_6" class="change_label" onclick="button_3()"><span class="change_span">졸업자</span></label>
+                </div>
+                    
+            </div>
+
+            <div class="career">
+                <h3 class="h3_career">경력</h3>
+                <p class="p_career">(본인의 경력을 표현할 수 있는 포트폴리오를 첨부해주세요)</p>
+                <input type="file" id="input_file" class="input_file" onchange="display_filename(this)">
+                <p id="filename"></p>
+                <label for="input_file" class="input_career">파일첨부</label>
+            </div>
+            
+            <div class="signup_button_wrap">
+                <input type="submit" class="signup_button" value="회원가입하기">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

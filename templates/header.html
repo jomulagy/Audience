@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta name="code" charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes"/>
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+	<script src="/static/js/header.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/static/css/header_style.css"/>
+</head>
+<body>
+	<div class="vh-container">
+		<!-- header -->
+		<header class="vh-header">
+			<!-- main header -->
+			<div class="hd-main-wrap">
+				<a class="logo" href="" alt="홈으로">
+					<img src="/static/img/logo/logo-symbol.png" class="logo-symbol">
+					<img src="/static/img/logo/logo-text.png" class="logo-text">
+				</a>
+				<div class="search-wrap">
+					<div class="search-box">
+					  <input type="" name="" placeholder="검색">
+					  <button type="button" title="검색"></button>
+					</div>
+				  </div>
+				  
+				<div class="tool">
+					<a href="">로그인</a>
+					<a href="">회원가입</a>
+				</div>
+				<!-- <div class="tool">
+					<a href="">로그아웃</a>
+					<a href="">마이페이지</a>
+				</div> -->
+
+			</div>
+			<!-- scrolling header -->
+			<div class="hd-gnb-wrap scroll-head">
+				<!-- gnb -->
+				<div class="hd-gnb">
+					<div class="hd-gnb-trigger"></div>
+					<div class="hd-gnb-menu">
+						<ul>
+							<li>
+								<a href="" class="depth-title">채용정보</a>
+								<ul class="hd-gnb-depth">
+									<li><a href="">구인글</a></li>
+									<li><a href="">자유소통</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="" class="depth-title">청취자</a>
+								<ul class="hd-gnb-depth">
+									<li><a href="">구인자들(평점,후기)</a></li>
+									<li><a href="">자유소통</a></li>
+								</ul>
+							</li>
+							<li><a href="" class="depth-title">소개</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- gnb // -->
+				<!-- drop menu -->
+				<div class="he-gnb-drop">
+					<ul>
+						<li>
+							<a href="" class="depth-title">채용정보</a>
+							<ul class="hd-gnb-depth">
+								<li><a href="">구인글</a></li>
+								<li><a href="">자유소통</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="" class="depth-title">청취자</a>
+							<ul class="hd-gnb-depth">
+								<li><a href="">구인자들(평점,후기)</a></li>
+								<li><a href="">자유소통</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="" class="depth-title">소개</a>
+						</li>
+					</ul>
+				</div>
+				<!-- drop menu // -->
+			</div>
+		</header>
+		
+
+	<script type="text/javascript">
+		// header gnb trigger 
+		$('.hd-gnb-trigger').on('click', function(e){
+			$('.hd-gnb-wrap').toggleClass('open');
+		});
+	</script>
+</body>
+</html>
