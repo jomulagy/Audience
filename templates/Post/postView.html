@@ -1,0 +1,117 @@
+<!--게시글 리스트 페이지 & 게시글 확인 페이지-->
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <link type="text/css" rel="stylesheet" href="..\static\css\post\postView.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</script>
+
+    <title>게시글 확인 페이지</title>
+
+</head>
+
+<body>
+    <div class="backg"></div>
+
+    <div class="rectangleBar">
+        <h2><a class="rectText1" href="https://google.com">모집공고</a></h2>
+        <div class="rectMiddle"></div>
+        <h2><a class="rectText2" href="https://google.com">Q&A</a></h2>
+    </div>
+    
+
+    <div class="infoBox">
+        <h2 class="infoCondition">고용형태(인턴/정규직/비정규직)<br>[내용 입력]</h2>
+        <h2 class="infoEmployCount">채용자 수<br>[내용 입력]</h2>
+        <h2 class="infoEmployPrefer">우대조건<br>[내용 입력]</h2>
+    </div>
+
+    <div class="infoBox2">
+        <h2 class="infoApplyMethod">지원 방법<br>[내용 입력]</h2>
+        <h2 class="infoApplySchedule">지원 일정<br>[내용 입력]</h2>
+        <h2 class="infoHashtag">해시태그<br>[내용 입력]</h2>    
+    </div>
+
+
+    <div class="infoBoxLineUp"></div>
+    <div class="infoBoxLineDown"></div>
+    <div class="infoBoxLineMiddle"></div>
+
+    <h2 class="contentText">공고 내용</h2>
+    <div class="contentBox"></div>
+    <div class="contentBoxUp"></div>
+    <div class="contentBoxDown"></div>
+
+
+    <h2 class="companyText">기업 정보</h2>
+    <div class="companyBox">
+         <!--companyImageText-->
+         <button class="companyImage" type="button" value="Button">
+            <h2>image</h2>
+        </button>
+       
+        <h2 class="companyWriter">작성자:</h2>
+        <h2 class="companyDate">업로드 일자:</h2>
+        <h2 class="companyName">회사명:</h2>
+        <h2 class="companyType">회사업종:</h2>
+    </div>
+    <div class="companyBoxUp"></div>
+    <div class="companyBoxDown"></div>
+
+
+
+    <button class="goodButton" type="button" value="Button" onclick="toggleLike()">
+        <h2 class="goodText">00👍<br>좋아요</h2>
+    </button>
+    
+    <button class="badButton" type="button" value="Button" onclick="toggleNotLike()">
+        <h2 class="badText">00👎<br>싫어요</h2>
+    </button>
+
+        
+        <div class="reportMenu" style="display: none;">
+            <select id="reportReason">
+              <option value="">사유를 선택하세요</option>
+              <option value="사칭/사기">사칭/사기</option>
+              <option value="욕설/비하">욕설/비하</option>
+              <option value="상업적 광고 및 판매">상업적 광고 및 판매</option>
+              <option value="기타">기타</option>
+            </select>
+            <button id="report-submit">신고</button>
+          </div>
+
+
+    <h2 class="commentText">댓글</h2>
+
+    <div class="commentBox">
+        <div class="comment-input-container">
+            <textarea id="comment-input" placeholder="댓글을 작성하세요"></textarea>
+        <button id="comment-submit">SEND</button>
+    </div>
+
+    <div id="comment-list"></div>
+    </div>
+
+    <div class="commentBoxUp"></div>
+    <div class="commentBoxDown"></div>
+
+
+
+    <h2 class="nickname">기업이름</h2>
+    <h2 class="title">게시글 제목</h2>
+    <a href="h" class="modify">수정하기</a>
+    <a href="h" class="delete">삭제하기</a>
+    <h2 class="views">조회수 00회</h2>
+
+    <script src="..\static\js\post\postView.js"></script>
+</body>
+
+</html>
+
+
+<!--수정사항: 반응형 css + 게시글내용/댓글 부분 영역 증감 + 댓글 수정하기 기능-->
