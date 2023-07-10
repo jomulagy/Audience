@@ -1,0 +1,137 @@
+h1 {
+    text-align: center;
+}
+
+input, button {
+    border: none;
+}
+
+.form_find,
+.find_id_pw,
+.form_show_user
+ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.id_pw_button {
+    margin-top: 8%;
+}
+
+.find_id_button {
+    margin-right: 20px;
+    width: 144px;
+    height: 44px;
+    border-radius: 3px;
+    background-color: #ffbdbd;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: black;
+}
+
+.find_id_button:hover {
+    background: #FFBDBD;
+}
+
+.find_pw_button {
+    margin-left: 20px;
+    width: 144px;
+    height: 44px;
+    border-radius: 3px;
+    background-color: #ffeaea;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: black;
+}
+
+.find_pw_button:hover {
+    background: #FFBDBD;
+
+}
+
+.find_for_id_pw {
+    display: flex;
+    flex-direction: column;
+    margin: 3% 0 3% 0;
+}
+
+.input_user {
+    margin-bottom: 3%;
+    width: 461px;
+    height: 72px;
+    border-radius: 3px;
+    background-color: #ffeaea;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.submit_find_id,
+.submit_find_pw {
+    display: flex;
+    justify-content: center;
+}
+
+.submit_find,
+.submit_button { 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 382px;
+    height: 50px;
+    border-radius: 3px;
+    background-color: #ffbdbd;
+    justify-content: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+
+#form_find_pw,
+#form_show_user{
+    display: none;
+}
+
+.show_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 3% 0 3% 0;
+    width: 430px;
+    height: 162px;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    border: 1px solid #F38A8A
+}
+
+p.pw {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}

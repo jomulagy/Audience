@@ -1,0 +1,41 @@
+form.pop_up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div.pop_up {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 312.65234375px;
+    height: 166.25px;
+    border-radius: 3px;
+    border: 1px solid #DC4444;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    }
+
+.text {
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.complete {
+    border: none;
+    width: 176.20660400390625px;
+    height: 26.491804122924805px;
+    border-radius: 3px;
+    background: #ffbdbd;
+}

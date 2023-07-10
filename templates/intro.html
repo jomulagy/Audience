@@ -1,0 +1,51 @@
+{% extends 'header.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+	{% block static %}
+	<meta name="code" charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes" />
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+	<script src="/static/js/header.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="../static/css/intro_style.css" />
+	{% endblock %}
+
+</head>
+{% block content %}
+<body>
+	<!-- content  -->
+	<div class="vh-content">
+		<!-- main visual -->
+		<div class="main-visual-wrap">
+			<div class="main-visual-inner">
+				<div class="visual-img"><img src="/static/img/demo/p logo.png"></div>
+				<div class="text-img">
+					<div class="title-img"><img src="/static/img/demo/p txt1.png"></div>
+					<div class="sub-img"><img src="/static/img/demo/p txt2.png"></div>
+					<div class="content-img"><img src="/static/img/demo/p txt3.png"></div>
+					<a href="{% url 'main_view' %}" class="golink">홈으로 돌아가기</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- main visual // -->
+
+	</div>
+
+	<script type="text/javascript">
+		// header gnb trigger 
+		$('.hd-gnb-trigger').on('click', function (e) {
+			$('.hd-gnb-wrap').toggleClass('open');
+		});
+	</script>
+
+</body>
+{% endblock %}
+</html>

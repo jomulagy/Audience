@@ -1,0 +1,226 @@
+:root {
+  /* viewport */
+  --header-height: 200px;
+  --view-height: calc(var(--vh, 1vh) * 100);
+
+  --color-primary: #F38484;
+  --placeholder-color: #eee;
+}
+
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* input, select, textarea */
+input,
+select,
+textarea,
+button {
+  border: 1px solid currentColor;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--placeholder-color);
+}
+
+input:not([type="checkbox"]):focus,
+select:focus,
+textarea:focus,
+button:focus {}
+
+/* layout frame */
+body {
+  background-color: #fff;
+  min-width: 1200px;
+}
+
+.vh-container {
+  width: 100%;
+  height: var(--view-height);
+  max-width: 2560px;
+  margin: 0 auto;
+}
+
+.vh-header {
+  flex-shrink: 0;
+  min-width: 1440px;
+}
+
+.vh-content {
+  flex-grow: 1;
+}
+
+
+/* header */
+	
+
+/* main header */
+.hd-main-wrap {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: #fff;
+  height: 120px;
+  padding: 40px 13px 2.5px;
+  z-index: 10;
+}
+
+.hd-main-wrap .logo {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.hd-main-wrap .logo-text {
+  margin-left: -23px;
+}
+
+.hd-main-wrap .search-wrap {
+  flex-grow: 1;
+  margin: 0 22px;
+}
+
+.hd-main-wrap .tool {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 92px;
+  line-height: 22px;
+}
+
+.hd-main-wrap .tool a {
+  font-size: 15px;
+}
+
+.hd-main-wrap .tool a + a {
+  margin-left: 22px;
+  padding-left: 22px;
+  border-left: 1px solid currentColor;
+}
+
+
+	/* header gnb */
+	/* scrolling header */
+.hd-gnb-wrap {
+  position: relative;
+  height: 59px;
+  background: #fff;
+  z-index: 1;
+}
+
+.hd-gnb-trigger {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 65px;
+  cursor: pointer;
+}
+
+.hd-gnb-trigger:before {
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: url(../img/icon/icon-stroke-bugger.png) no-repeat center;
+}
+
+.hd-gnb {
+  position: relative;
+  height: 59px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: #fff;
+  padding: 0 45px;
+  border-bottom: 0.5px solid #FF5F5F;
+  box-shadow: 0px 4px 4px 0px #FFBDBD;
+  z-index: 10;
+}
+
+.hd-gnb-menu {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.hd-gnb-menu > ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  height: 100%;
+}
+
+.hd-gnb-menu > ul > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.hd-gnb-menu > ul > li + li {
+  margin-left: 65px;
+}
+
+.hd-gnb-menu .depth-title {
+  font-size: 20px;
+}
+
+.hd-gnb-menu .hd-gnb-depth {
+  position: absolute;
+  left: 0;
+  top: 58px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: #fff;
+  width: 100%;
+  padding-left: 143px;
+  font-size: 18px;
+  border-top: 0.5px solid #FF5F5F;
+  box-shadow: inset 0px 4px 4px 0px #FFBDBD;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 300ms;
+  -webkit-transition: all 300ms;
+}
+
+.hd-gnb-menu .hd-gnb-depth li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50px;
+}
+
+.hd-gnb-menu .hd-gnb-depth li + li {
+  margin-left: 47px;
+}
+
+.hd-gnb-menu li:hover .depth-title {
+  color: #FF2626;
+}
+
+.hd-gnb-menu li:hover .hd-gnb-depth {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+	
+
+	
+	/* main visual */
+	.main-visual-wrap { background: #FFEAEA; height: 725px; }
+	.main-visual-inner { width: 1440px; margin: 0 auto; padding-top: 44px; display: flex; justify-content: center; align-items: center; padding-right: 34px; height: 100%; background: #FFEAEA;}
+	.text-img { flex-shrink: 0; height: 100%; padding-top: 10px;}
+	
+	.text-img .golink { display: flex; justify-content: center; align-items: center; width: 230px; height: 44px; border-radius: 30px; background: #F38A8A; color: #fff;  font-size:  20px; font-weight: 500; float: right; margin-top: 20px;}
+	.visual-img { flex-grow: 1; margin-left: 38px; display: flex; align-items: flex-end; height: 100%; padding-bottom: 18px;}
+	.visual-img img {transform: rotate(270deg);}
+  .content-img {padding-top: 20px;}
+  .sub-img, .title-img {display: inline;}
+  .sub-img img {position: relative; top: 87px;}
+  .content-img img {width: 887px; height: 224px;}
+

@@ -1,0 +1,25 @@
+{% extends 'header.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/mypage_css/checkpw_error.css">
+    <title>비밀번호 확인하기</title>
+</head>
+<body>
+    <h1 class="serviceName">청취자들</h1>
+
+    <form class="check_pw">
+        
+        <h3 class="h3_check_pw">비밀번호 확인</h3>
+        <input type="text" class="input_check_pw" placeholder="비밀번호를 입력해주세요">
+        <p class="error_message">비밀번호가 일치하지 않습니다</p>
+    
+        <input type="submit" class="button_change_mypage" value="개인정보 수정하기">
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+a {
+    color: black;
+  }
+
+h2 {
+  font-size: 20px;
+  color: black;
+}
+
+h3 {
+  font-size: 17px;
+  margin-left: 50px;
+  color: black;
+}
+
+
+
+@media (max-width: 768px) {
+  .backg {
+    width: 80%;
+    height: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    position: relative;
+  }
+
+  .infoBox2 {
+    top: 50%;
+    left: 95%;
+    position: absolute;
+  }
+
+  .infoBoxLineMiddle {
+    top: 52.5%;
+    left: 95%;
+  }
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .backg {
+    width: 60%;
+    height: auto;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    position: relative;
+  }
+
+  .infoBox2 {
+    top: 50%;
+    left: 75.5%;
+    position: absolute;
+  }
+
+  .infoBoxLineMiddle {
+    top: 52.5%;
+    left: 75.5%;
+  }
+}
+
+
+@media (min-width: 1025px) {
+  .backg {
+    width: 50%;
+    height: auto;
+    margin-left: 270px;
+    margin-right: 270px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    position: relative;
+  }
+
+  .infoBox2 {
+    top: 50%;
+    left: 51%;
+    position: absolute;
+  }
+
+  .infoBoxLineMiddle {
+    top: 52.5%;
+    left: 51%;
+  }
+}
+
+/*-----------------------------------*/
+  
+  .backg {
+    width: 1000px;
+    height: 1100px;
+    background-color: rgb(247, 220, 225);
+    /*
+    margin-left: 270px;
+    margin-right: 270px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    */
+    position: relative;
+  }
+  
+  .qnaText {
+    font-weight: bold;
+    font-size: 23px;
+    position: absolute;
+    top: 94.5%;
+    left: 28.5%;
+  }
+  
+  .nickname {
+    font-size: 20px;
+    position: absolute;
+    top: 25%;
+    left: 30.5%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0);
+    text-align: center;
+  }
+  
+  
+  .title {
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    top: 33%;
+    left: 34.5%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0);
+    text-align: center;
+  }
+  
+ 
+  .modify {
+    background-color: transparent; 
+    border: none; 
+    padding: 0; 
+    font-size: 16px;
+    text-underline-offset: 2px;
+    color: rgb(27, 27, 27);
+    top: 25%;
+    left: 73%;
+    text-decoration: underline;
+    position: absolute;
+  }
+  
+  .delete {
+    background-color: transparent; 
+    border: none; 
+    padding: 0; 
+    font-size: 16px;
+    text-underline-offset: 2px;
+    color: rgb(248, 74, 74);
+    top: 29%;
+    left: 73%;
+    text-decoration: underline;
+    position: absolute;
+  }
+  
+  .views {
+    font-size: 18px;
+    text-underline-offset: 2px;
+    color: rgb(27, 27, 27);
+    top: 34%;
+    left: 71%;
+    position: absolute;
+  }
+  
+  .rectangleBar {
+    width: 800px;
+    height: 50px;
+    background-color: rgb(210, 153, 164);
+    top: 40%;
+    left: 25%;
+    position: absolute;
+    border-radius: 5px;
+  }
+  
+  
+  .rectText1 {
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 10px;
+    margin-left: 220px;
+    color: #ffffff;
+  }
+  
+  .rectMiddle {
+    width: 2px;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+    top: 10%;
+    left: 49%;
+    position: absolute;
+  }
+  
+  .rectText2 {
+    color: black;
+    font-size: 22px;
+    margin-top: -35px;
+    margin-left: 480px;
+    position: absolute;
+  }
+  
+  .rectText2link {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .infoBoxLineUp {
+    width: 700px;
+    height: 1.5px;
+    background-color: rgb(0, 0, 0);
+    top: 50%;
+    left: 28%;
+    position: absolute;
+  }
+  
+  .infoBoxLineDown {
+    width: 700px;
+    height: 1.5px;
+    background-color: rgb(0, 0, 0);
+    top: 83.5%;
+    left: 28%;
+    position: absolute;
+  }
+  
+  .infoBoxLineMiddle {
+    width: 2px;
+    height: 220px;
+    background-color: rgb(223, 179, 179);
+    /*
+    top: 52.5%;
+    left: 51%;
+    */
+    position: absolute;
+  }
+  
+  .infoBox {
+    width: 700px;
+    height: 250px;
+    background-color: rgb(247, 239, 239);
+    top: 50%;
+    left: 28%;
+    position: absolute;
+  }
+  
+  .infoBox2 {
+    width: 350px;
+    height: 250px;
+    background-color: rgb(247, 239, 239);
+    /*
+    top: 50%;
+    left: 51%;
+    */
+    position: absolute;
+  }
+  
+  .infoCondition {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-left: 40px;
+  }
+  
+  
+  .infoEmployCount {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-left: 40px;
+  }
+  
+  .infoEmployPrefer {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-left: 40px;
+  }
+  
+  .infoApplyMethod {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-left: 60px;
+  }
+  
+  .infoApplySchedule {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-left: 60px
+  }
+  
+  .infoHashtag {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-left: 60px;
+  }
+  
+  .searchBoxes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  
+  .searchBox {
+    position: absolute;
+    top: 90%;
+    left: 63.5%;
+    font-size: 15px;
+    border: 1px solid #000000;
+    background-color: #ffdfdf;
+    padding: 10px 27px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .qnaBox {
+    width: 700px;
+    height: 300px;
+    background-color: rgb(247, 239, 239);
+    top: 100%;
+    left: 28%;
+    position: absolute;
+  }
+  
+  .qnaBoxUp {
+    width: 700px;
+    height: 1.5px;
+    background-color: rgb(0, 0, 0);
+    top: 100%;
+    left: 28%;
+    position: absolute;
+  }
+  
+  .qnaBoxDown {
+    width: 700px;
+    height: 1.5px;
+    background-color: rgb(0, 0, 0);
+    top: 140%;
+    left: 28%;
+    position: absolute;
+  }
+  
+  .linePost-title {
+    font-size: 20px;
+    display: inline;
+    margin-right: 420px;
+    color: black;
+  }
+  
+  .linePost-date {
+    font-size: 17px;
+    display: inline;
+    color: black;
+    margin-left: 220px;
+    position: absolute;
+    right: 6.5%;
+  }
+  
+  .linePost + .linePost {
+    margin-top: 22px;
+  }
+  
+  #linePostList {
+    top: 15%;
+    left: 6.5%;
+    position: absolute;
+  }

@@ -1,0 +1,49 @@
+{% extends 'header.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% block static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../static/css/mypage_css/my_library.css">
+
+    <title>내가 작성한 글</title>
+</head>
+{% endblock %}
+{% block content %}
+<body>
+    <div class="my_library">
+        <div class="a_text">
+        <a class="move_text" href="#">내가 작성한 글 ></a>
+        <a class="move_mypage" href="#">마이페이지로 돌아가기</a>
+        </div>
+        <hr>
+        <div class="notice_table">
+            <div class="notice" id="notice_1">
+                <a href="#" class="notice_title">게시물 제목</a>
+                <a href="#" class="hits">조회수 00회</a>
+            </div>
+            <div class="notice" id="notice_2">
+                <a href="#" class="notice_title">게시물 제목</a>
+                <a href="#" class="hits">조회수 00회</a>
+            </div>
+            <div class="notice" id="notice_3">
+                <a href="#" class="notice_title">게시물 제목</a>
+                <a href="#" class="hits">조회수 00회</a>
+            </div>
+            <div class="notice" id="notice_4">
+                <a href="#" class="notice_title">게시물 제목</a>
+                <a href="#" class="hits">조회수 00회</a>
+            </div>
+            <div class="notice" id="notice_5">
+                <a href="#" class="notice_title">게시물 제목</a>
+                <a href="#" class="hits">조회수 00회</a>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>

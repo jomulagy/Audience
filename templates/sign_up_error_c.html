@@ -1,0 +1,104 @@
+{% extends 'header.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% block static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login_signup_css/sign_up_error_c_p.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/static/js/signup_change.js"></script>
+
+    <title>기업 회원가입</title>
+</head>
+{% endblock %}
+{% block content %}
+<body>
+    <h1 class="serviceName">청취자들</h1>
+
+
+    <div class="signup_c_p">
+        <form class="form_signup">
+            <div class="id">
+                <h3 class="h3_id">아이디</h3>
+                <input type="text" class="input_id_nickname" placeholder="아이디를 입력해주세요">
+                <input type="button" class="check_button" value="중복확인">
+                <p class="error_message">이미 존재하는 아이디입니다.</p>
+            </div>
+            <div class="pw">
+                <h3 class="h3_pw">비밀번호</h3>
+                <input type="text" class="input_box" placeholder="비밀번호를 입력해주세요">
+                <p class="error_message">영문+숫자+특수문자를 포함한 8-20자리를 입력해주세요</p>
+            </div>
+            <div class="pw_check">
+                <h3 class="h3_pw_check">비밀번호 확인</h3>
+                <input type="text" class="input_box" placeholder="비밀번호를 입력해주세요">
+                <p class="error_message">비밀번호가 일치하지 않습니다.</p>
+            </div>
+            <div class="age">
+                <h3 class="h3_age">나이</h3>
+                <input type="number" min="1" class="input_box" placeholder="나이를 입력해주세요(숫자)">
+            </div>
+            <div class="company">
+                <h3 class="h3_company">회사이름</h3>
+                <input type="text" class="input_box" placeholder="이름을 입력해주세요">
+            </div>
+            <div class="interesting">
+                <h3 class="h3_interest">관련분야</h3>
+                <div class="interest_table">
+                    <input type="checkbox" id="checkbox1" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox2" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox3" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox4" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox5" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox6" class="interest_button" name="interest"></input><input 
+                        type="checkbox" id="checkbox7" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox8" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox9" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox10" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox11" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox12" class="interest_button" name="interest"></input><input 
+                        type="checkbox" id="checkbox13" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox14" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox15" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox16" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox17" class="interest_button" name="interest"></input><input
+                        type="checkbox" id="checkbox18" class="interest_button" name="interest"></input>
+                    <label for="checkbox1" id="old_label_1" class="change_label" onclick="button_2()"><span class="change_span">전기전자</span></label><label
+                        for="checkbox2" id="old_label_2" class="change_label" onclick="button_2()"><span class="change_span">조선업</span></label><label
+                        for="checkbox3" id="old_label_3" class="change_label" onclick="button_2()"><span class="change_span">IT</span></label><label
+                        for="checkbox4" id="old_label_4" class="change_label" onclick="button_2()"><span class="change_span">의료</span></label><label
+                        for="checkbox5" id="old_label_5" class="change_label" onclick="button_2()"><span class="change_span">디지털</span></label><label
+                        for="checkbox6" id="old_label_6" class="change_label" onclick="button_2()"><span class="change_span">기획전략</span></label><label 
+                        for="checkbox7" id="old_label_7" class="change_label" onclick="button_2()"><span class="change_span">의류산업</span></label><label
+                        for="checkbox8" id="old_label_8" class="change_label" onclick="button_2()"><span class="change_span">교육</span></label><label
+                        for="checkbox9" id="old_label_9" class="change_label" onclick="button_2()"><span class="change_span">금융</span></label><label
+                        for="checkbox10" id="old_label_10" class="change_label" onclick="button_2()"><span class="change_span">상품기획/MD</span></label><label
+                        for="checkbox11" id="old_label_11" class="change_label" onclick="button_2()"><span class="change_span">물류</span></label><label
+                        for="checkbox12" id="old_label_12" class="change_label" onclick="button_2()"><span class="change_span">회계/재무</span></label><label 
+                        for="checkbox13" id="old_label_13" class="change_label" onclick="button_2()"><span class="change_span">서비스</span></label><label
+                        for="checkbox14" id="old_label_14" class="change_label" onclick="button_2()"><span class="change_span">공공복지</span></label><label
+                        for="checkbox15" id="old_label_15" class="change_label" onclick="button_2()"><span class="change_span">미디어</span></label><label
+                        for="checkbox16" id="old_label_16" class="change_label" onclick="button_2()"><span class="change_span">농림/어업</span></label><label
+                        for="checkbox17" id="old_label_17" class="change_label" onclick="button_2()"><span class="change_span">건설/토목</span></label><label
+                        for="checkbox18" id="old_label_18" class="change_label" onclick="button_2()"><span class="change_span">스포츠/레크레이션</span></label>
+ 
+                </div>
+            </div>
+            <div class="company_img">
+                <h3 class="company_img">회사 이미지 첨부</h3>
+                <input type="file" id="input_file" class="input_file" onchange="display_filename(this)">
+                <p id="filename"></p>
+                <label for="input_file" class="input_img">이미지첨부</label>
+            </div>
+            <div class="signup_button_wrap">
+                <input type="submit" class="signup_button" value="회원가입하기">
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,167 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* input {
+    border: none;
+} */
+
+a {
+    margin: 3%;
+    width: 169px;
+    height: 30px;
+
+    font-family: Inter;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: center;
+
+    color: #4D4949;
+    text-decoration-line: none;
+}
+
+hr {
+    width: 770.0103759765625px;
+    border: 1px solid #FF5F5F;
+    margin: 2%;
+}
+
+input {
+    border: none;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3% 0 3% 0;
+}
+
+.profile_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    background: #FFE5E5;
+    border-radius: 10px;
+    border: 2px solid #FFBDBD;
+
+}
+
+.mypage_buttons {
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    margin: 3% 0 3% 0;
+}
+
+.mypage_button {
+    margin: 0 7% 0 7%;
+    width: 248px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid #E7ADAD;
+    color: #4D4949;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    background: #ffffff;
+}
+
+#mypage_button_1{
+    background: #ffdcdc;
+}
+
+.mypage_button:hover {
+    background: #FFDCDC;
+}
+
+.mypage_1,
+.mypage_2 {
+    margin-bottom: 8%;
+    padding-top: 15px;
+    width: 832px;
+    height: 460px;
+    border-radius: 10px;
+    border: 1px solid #FF5F5F;
+}
+
+#mypage_2 {
+    display: none
+}
+
+.personal_infor {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.infor_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 105px;
+}
+.infor_title {
+
+    width: 130px;
+    height: 40px;
+    font-family: Inter;
+    font-size: 27px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    background: white;
+    
+}
+
+.infor_text {
+    width: 100px;
+    height: 25px;
+    font-family: Inter;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: center;
+    background: white;
+}
+
+.notice {
+    display: grid;
+    grid-template-columns: 3fr 1fr;   
+    margin: 0 0 0 3%;
+    height: 64px;
+}
+
+.notice_title {
+    width: 98px;
+    height: 33.978946685791016px;
+    font-family: Inter;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.hits {
+    font-family: Inter;
+    font-size: 8px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em; 
+    text-align: center;
+
+}
