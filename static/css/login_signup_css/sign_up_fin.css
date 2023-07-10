@@ -1,0 +1,19 @@
+h1 {
+    text-align: center;
+}
+
+.signup_fin {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.move_login_page {
+    width: 382px;
+    height: 50px;
+    border-radius: 3px;
+    border: none;
+    background: #ffbdbd;
+}
+

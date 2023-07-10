@@ -1,93 +1,30 @@
 a {
-    color: black;
-  }
+  color: black;
+}
 
 h2 {
-    color: black;
+  color: black;
 }
 
 
-  .backg {
-    width: 1000px;
-    height: 1700px;
-    background-color: rgb(247, 220, 225);
-    margin-left: 270px;
-    margin-right: 270px;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    position: relative;
-  }
-  
-  .contentText {
-    font-weight: bold;
-    font-size: 23px;
-    position: absolute;
-    top: 94.5%;
-    left: 28.5%;
-  }
-  
-  .reportText {
-    background-color: transparent; 
-    border: none; 
-    padding: 0; 
-    font-size: 16px;
-    text-underline-offset: 2px;
-    color: rgb(248, 74, 74);
-    top: 35%;
-    left: 72.3%;
-    text-decoration: underline;
-    position: absolute;
-  }
-
-  
-  .companyText {
-    font-size: 23px;
-    position: absolute;
-    top: 210%;
-    left: 28.5%;
-  }
-  
-  .commentText {
-    font-weight: bold;
-    font-size: 23px;
-    position: absolute;
-    top: 280%;
-    left: 28.5%;
-  }
-  
-  .replyForm {
-    position: absolute;
-    top: 30%;
-    left: 26%;
-  }
-  
-  #reply-input {
-    width: 300px;
-  }
-  
-.nickname {
-  font-size: 20px;
-  position: absolute;
-  top: 185px;
-  left: 465px;
-  transform: translate(-50%, -50%);
-  color: rgb(0, 0, 0);
-  text-align: center;
+.backg {
+  width: 1000px;
+  height: 1700px;
+  background-color: rgb(247, 220, 225);
+  margin-left: 270px;
+  margin-right: 270px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  position: relative;
 }
 
-
-.title {
-  font-size: 40px;
+.contentText {
   font-weight: bold;
+  font-size: 23px;
   position: absolute;
-  top: 245px;
-  left: 525px;
-  transform: translate(-50%, -50%);
-  color: rgb(0, 0, 0);
-  text-align: center;
+  top: 94.5%;
+  left: 28.5%;
 }
-  
- 
 
 .reportText {
   background-color: transparent; 
@@ -96,91 +33,154 @@ h2 {
   font-size: 16px;
   text-underline-offset: 2px;
   color: rgb(248, 74, 74);
-  top: 260px;
-  left: 1100px;
+  top: 35%;
+  left: 72.3%;
   text-decoration: underline;
   position: absolute;
+}
+
+
+.companyText {
+  font-size: 23px;
+  position: absolute;
+  top: 210%;
+  left: 28.5%;
+}
+
+.commentText {
+  font-weight: bold;
+  font-size: 23px;
+  position: absolute;
+  top: 280%;
+  left: 28.5%;
+}
+
+.replyForm {
+  position: absolute;
+  top: 30%;
+  left: 26%;
+}
+
+#reply-input {
+  width: 300px;
+}
+
+.nickname {
+font-size: 20px;
+position: absolute;
+top: 185px;
+left: 465px;
+transform: translate(-50%, -50%);
+color: rgb(0, 0, 0);
+text-align: center;
+}
+
+
+.title {
+font-size: 40px;
+font-weight: bold;
+position: absolute;
+top: 245px;
+left: 525px;
+transform: translate(-50%, -50%);
+color: rgb(0, 0, 0);
+text-align: center;
+}
+
+
+
+.reportText {
+background-color: transparent; 
+border: none; 
+padding: 0; 
+font-size: 16px;
+text-underline-offset: 2px;
+color: rgb(248, 74, 74);
+top: 260px;
+left: 1100px;
+text-decoration: underline;
+position: absolute;
 }
 
 .modifyText {
-  background-color: transparent; 
-  border: none; 
-  padding: 0; 
-  font-size: 16px;
-  text-underline-offset: 2px;
-  color: rgb(0, 0, 0);
-  top: 230px;
-  left: 1100px;
-  text-decoration: underline;
-  position: absolute;
+background-color: transparent; 
+border: none; 
+padding: 0; 
+font-size: 16px;
+text-underline-offset: 2px;
+color: rgb(0, 0, 0);
+top: 230px;
+left: 1100px;
+text-decoration: underline;
+position: absolute;
 }
 
 .deleteText {
-  background-color: transparent; 
-  border: none; 
-  padding: 0; 
-  font-size: 16px;
-  text-underline-offset: 2px;
-  color: rgb(0, 0, 0);
-  top: 200px;
-  left: 1100px;
-  text-decoration: underline;
-  position: absolute;
+background-color: transparent; 
+border: none; 
+padding: 0; 
+font-size: 16px;
+text-underline-offset: 2px;
+color: rgb(0, 0, 0);
+top: 200px;
+left: 1100px;
+text-decoration: underline;
+position: absolute;
 }
 
- 
 
-  
+
+
 .rectangleBar {
-  width: 800px;
-  height: 50px;
-  background-color: rgb(210, 153, 164);
-  top: 298px;
-  left: 380px;
-  position: absolute;
-  border-radius: 5px;
+width: 800px;
+height: 50px;
+background-color: rgb(210, 153, 164);
+top: 298px;
+left: 380px;
+position: absolute;
+border-radius: 5px;
 }
-  
-  
-  
+
+
+
 .rectText1 {
-  font-weight: bold;
-  font-size: 22px;
-  margin-top: 10px;
-  margin-left: 220px;
-  color: #ffffff;
+font-weight: bold;
+font-size: 22px;
+margin-top: 10px;
+margin-left: 220px;
+color: #ffffff;
 }
 
 .rectMiddle {
-  width: 2px;
-  height: 40px;
-  background-color: rgb(255, 255, 255);
-  top: 10%;
-  left: 49%;
-  position: absolute;
+width: 2px;
+height: 40px;
+background-color: rgb(255, 255, 255);
+top: 10%;
+left: 49%;
+position: absolute;
 }
 
 .rectText2 {
-  color: rgb(255, 255, 255);
-  font-size: 22px;
-  margin-top: -35px;
-  margin-left: 480px;
-  position: absolute;
+color: rgb(255, 255, 255);
+font-size: 22px;
+margin-top: -35px;
+margin-left: 480px;
+position: absolute;
 }
 
 .rectText1:hover {
-  color: rgb(0, 0, 0);
-  text-decoration: none;
+color: rgb(0, 0, 0);
+text-decoration: none;
 }
 
 .rectText2:hover {
-  color: rgb(0, 0, 0);
-  text-decoration: none;
+color: rgb(0, 0, 0);
+text-decoration: none;
 }
 
 .rectText2link {
-  color: black;
-  text-decoration: none;
+color: black;
+text-decoration: none;
 }
 
 
@@ -231,164 +231,163 @@ position: absolute;
 }
 
 
-  
-  .infoCondition {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 40px;
-  }
-  
-  
-  .infoEmployCount {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 40px;
-  }
-  
-  .infoEmployPrefer {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 40px;
-  }
-  
-  .infoApplyMethod {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 60px;
-  }
-  
-  .infoApplySchedule {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 60px
-  }
-  
-  .infoHashtag {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 60px;
-  }
-  
-  
-  
-  .contentBox {
-    width: 700px;
-    height: 480px;
-    background-color: rgb(247, 239, 239);
-    top: 708px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .contentBoxUp {
-    width: 700px;
-    height: 1.5px;
-    background-color: rgb(0, 0, 0);
-    top: 708px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .contentBoxDown {
-    width: 700px;
-    height: 1.5px;
-    background-color: rgb(0, 0, 0);
-    top: 1188px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .questionContent {
-    width: 600px;
-    height: 370px;
-    background-color: rgb(255, 255, 255);
-    border: 1.5px solid black;
-    top: 15%;
-    left: 8%;
-    position: absolute;
-  }
 
-  .questiontitle {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 30px;
-    margin-left: 50px;
-  }
-
-  .questionText {
-    font-size: 20px;
-    margin: 17px;
-  }
-
-  
-  .contentReBox {
-    width: 700px;
-    height: 480px;
-    background-color: rgb(247, 239, 239);
-    top: 1268.5px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .contentReBoxUp {
-    width: 700px;
-    height: 1.5px;
-    background-color: rgb(0, 0, 0);
-    top: 1268.5px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .contentReBoxDown {
-    width: 700px;
-    height: 1.5px;
-    background-color: rgb(0, 0, 0);
-    top: 1749px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .answerContent {
-    width: 600px;
-    height: 370px;
-    background-color: rgb(255, 255, 255);
-    border: 1.5px solid black;
-    top: 15%;
-    left: 8%;
-    position: absolute;
-  }
-
-  .answerText {
-    font-size: 20px;
-    margin: 17px;
-  }
-
-  .answertitle {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 30px;
-    margin-left: 50px;
-  }
+.infoCondition {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 40px;
+}
 
 
-  .reportMenu2 {
-    display: none;
-    position: absolute;
-    top: 37%;
-    left: 65%;
-  }
+.infoEmployCount {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 40px;
+}
 
-  #reportReason2 {
-    width: 200px;
-    padding: 5px;
-    margin-right: 10px;
-  }
+.infoEmployPrefer {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 40px;
+}
+
+.infoApplyMethod {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 60px;
+}
+
+.infoApplySchedule {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 60px
+}
+
+.infoHashtag {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 60px;
+}
 
 
-  #report-submit2 {
-    background-color: #ff0000;
-    color: #ffffff;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
 
+.contentBox {
+  width: 700px;
+  height: 480px;
+  background-color: rgb(247, 239, 239);
+  top: 708px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.contentBoxUp {
+  width: 700px;
+  height: 1.5px;
+  background-color: rgb(0, 0, 0);
+  top: 708px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.contentBoxDown {
+  width: 700px;
+  height: 1.5px;
+  background-color: rgb(0, 0, 0);
+  top: 1188px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.questionContent {
+  width: 600px;
+  height: 370px;
+  background-color: rgb(255, 255, 255);
+  border: 1.5px solid black;
+  top: 15%;
+  left: 8%;
+  position: absolute;
+}
+
+.questiontitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+.questionText {
+  font-size: 20px;
+  margin: 17px;
+}
+
+
+.contentReBox {
+  width: 700px;
+  height: 480px;
+  background-color: rgb(247, 239, 239);
+  top: 1268.5px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.contentReBoxUp {
+  width: 700px;
+  height: 1.5px;
+  background-color: rgb(0, 0, 0);
+  top: 1268.5px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.contentReBoxDown {
+  width: 700px;
+  height: 1.5px;
+  background-color: rgb(0, 0, 0);
+  top: 1749px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.answerContent {
+  width: 600px;
+  height: 370px;
+  background-color: rgb(255, 255, 255);
+  border: 1.5px solid black;
+  top: 15%;
+  left: 8%;
+  position: absolute;
+}
+
+.answerText {
+  font-size: 20px;
+  margin: 17px;
+}
+
+.answertitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+
+.reportMenu2 {
+  display: none;
+  position: absolute;
+  top: 37%;
+  left: 65%;
+}
+
+#reportReason2 {
+  width: 200px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+
+#report-submit2 {
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 5px 10px;
+  cursor: pointer;
+}

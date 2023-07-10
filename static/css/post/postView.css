@@ -1,694 +1,693 @@
 a {
-    color: black;
-  }
+  color: black;
+}
 
 h2 {
-    color: black;
+  color: black;
 }
-  
-  .backg {
-    width: 1000px;
-    height: 2500px;
-    background-color: rgb(247, 220, 225);
-    margin-left: 270px;
-    margin-right: 270px;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    position: relative;
-  }
 
-  .contentText {
-    font-weight: bold;
-    font-size: 23px;
-    position: absolute;
-    top: 710px;
-    left: 430px;
-  }
+.backg {
+  width: 1000px;
+  height: 2500px;
+  background-color: rgb(247, 220, 225);
+  margin-left: 270px;
+  margin-right: 270px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  position: relative;
+}
 
-  
-  .companyText {
-    font-weight: bold;
-    font-size: 23px;
-    position: absolute;
-    top: 1570px;
-    left: 430px;
-  }
-  
-  .commentText {
-    font-weight: bold;
-    font-size: 23px;
-    position: absolute;
-    top: 2090px;
-    left: 430px;
-  }
-  
-  .replyForm {
-    position: absolute;
-    top: 30%;
-    left: 26%;
-  }
-  
-  #reply-input {
-    width: 300px;
-  }
+.contentText {
+  font-weight: bold;
+  font-size: 23px;
+  position: absolute;
+  top: 710px;
+  left: 430px;
+}
+
+
+.companyText {
+  font-weight: bold;
+  font-size: 23px;
+  position: absolute;
+  top: 1570px;
+  left: 430px;
+}
+
+.commentText {
+  font-weight: bold;
+  font-size: 23px;
+  position: absolute;
+  top: 2090px;
+  left: 430px;
+}
+
+.replyForm {
+  position: absolute;
+  top: 30%;
+  left: 26%;
+}
+
+#reply-input {
+  width: 300px;
+}
 
 
 .reply-form {
-  margin-top: 10px;
+margin-top: 10px;
 }
 
 .reply-form textarea {
-  width: 450px;
-  height: 40px;
-  resize: vertical;
+width: 450px;
+height: 40px;
+resize: vertical;
 }
 
 .reply-form button {
-  background-color: rgb(242, 173, 158);
-  color: rgb(0, 0, 0);
-  padding: 10px 10px;
-  position: absolute;
-  border: 1.5px solid black;
-  cursor: pointer;
+background-color: rgb(242, 173, 158);
+color: rgb(0, 0, 0);
+padding: 10px 10px;
+position: absolute;
+border: 1.5px solid black;
+cursor: pointer;
 }
 
 .reply-form button:hover {
-  background-color: rgb(221, 150, 136);
+background-color: rgb(221, 150, 136);
 }
 
-  
-  
+
+
 .nickname {
-  font-size: 20px;
-  position: absolute;
-  top: 185px;
-  left: 465px;
-  transform: translate(-50%, -50%);
-  color: rgb(0, 0, 0);
-  text-align: center;
+font-size: 20px;
+position: absolute;
+top: 185px;
+left: 465px;
+transform: translate(-50%, -50%);
+color: rgb(0, 0, 0);
+text-align: center;
 }
 
 
 .title {
-  font-size: 40px;
-  font-weight: bold;
-  position: absolute;
-  top: 245px;
-  left: 525px;
-  transform: translate(-50%, -50%);
-  color: rgb(0, 0, 0);
-  text-align: center;
+font-size: 40px;
+font-weight: bold;
+position: absolute;
+top: 245px;
+left: 525px;
+transform: translate(-50%, -50%);
+color: rgb(0, 0, 0);
+text-align: center;
 }
-  
- 
+
+
 .modify {
-  background-color: transparent; 
-  border: none; 
-  padding: 0; 
-  font-size: 16px;
-  text-underline-offset: 2px;
-  color: rgb(0, 0, 0);
-  top: 218px;
-  left: 1100px;
-  text-decoration: underline;
-  position: absolute;
+background-color: transparent; 
+border: none; 
+padding: 0; 
+font-size: 16px;
+text-underline-offset: 2px;
+color: rgb(0, 0, 0);
+top: 218px;
+left: 1100px;
+text-decoration: underline;
+position: absolute;
 }
 
 .delete {
-  background-color: transparent; 
-  border: none; 
-  padding: 0; 
-  font-size: 16px;
-  text-underline-offset: 2px;
-  color: rgb(255, 53, 53);
-  top: 188px;
-  left: 1100px;
-  text-decoration: underline;
-  position: absolute;
+background-color: transparent; 
+border: none; 
+padding: 0; 
+font-size: 16px;
+text-underline-offset: 2px;
+color: rgb(255, 53, 53);
+top: 188px;
+left: 1100px;
+text-decoration: underline;
+position: absolute;
 }
-  
+
 .views {
-  font-size: 18px;
-  text-underline-offset: 2px;
-  color: rgb(27, 27, 27);
-  top: 260px;
-  left: 1073px;
-  position: absolute;
+font-size: 18px;
+text-underline-offset: 2px;
+color: rgb(27, 27, 27);
+top: 260px;
+left: 1073px;
+position: absolute;
 }
 
-  
+
 .rectangleBar {
-  width: 800px;
-  height: 50px;
-  background-color: rgb(210, 153, 164);
-  top: 298px;
-  left: 380px;
-  position: absolute;
-  border-radius: 5px;
+width: 800px;
+height: 50px;
+background-color: rgb(210, 153, 164);
+top: 298px;
+left: 380px;
+position: absolute;
+border-radius: 5px;
 }
-  
-  
-  .rectText1 {
-    font-weight: bold;
-    font-size: 22px;
-    margin-top: 10px;
-    margin-left: 220px;
-    color: #ffffff;
-  }
-  
-  .rectMiddle {
-    width: 2px;
-    height: 40px;
-    background-color: rgb(255, 255, 255);
-    top: 10%;
-    left: 49%;
-    position: absolute;
-  }
-  
-  .rectText2 {
-    color: black;
-    font-size: 22px;
-    margin-top: -35px;
-    margin-left: 480px;
-    position: absolute;
-  }
-
-  .rectText1:hover {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-  }
-
-  .rectText2:hover {
-    color: white;
-    text-decoration: none;
-  }
 
 
-  
-  .rectText2link {
-    color: black;
-    text-decoration: none;
-  }
+.rectText1 {
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 10px;
+  margin-left: 220px;
+  color: #ffffff;
+}
 
-
-  
-.infoBoxLineUp {
-  width: 700px;
-  height: 1.5px;
-  background-color: rgb(0, 0, 0);
-  top: 373px;
-  left: 425.5px;
+.rectMiddle {
+  width: 2px;
+  height: 40px;
+  background-color: rgb(255, 255, 255);
+  top: 10%;
+  left: 49%;
   position: absolute;
+}
+
+.rectText2 {
+  color: black;
+  font-size: 22px;
+  margin-top: -35px;
+  margin-left: 480px;
+  position: absolute;
+}
+
+.rectText1:hover {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.rectText2:hover {
+  color: white;
+  text-decoration: none;
+}
+
+
+
+.rectText2link {
+  color: black;
+  text-decoration: none;
+}
+
+
+
+.infoBoxLineUp {
+width: 700px;
+height: 1.5px;
+background-color: rgb(0, 0, 0);
+top: 373px;
+left: 425.5px;
+position: absolute;
 }
 
 .infoBoxLineDown {
-  width: 700px;
-  height: 1.5px;
-  background-color: rgb(0, 0, 0);
-  top: 623px;
-  left: 425.5px;
-  position: absolute;
+width: 700px;
+height: 1.5px;
+background-color: rgb(0, 0, 0);
+top: 623px;
+left: 425.5px;
+position: absolute;
 }
 
 .infoBoxLineMiddle {
-  width: 2px;
-  height: 220px;
-  background-color: rgb(223, 179, 179);
-  top: 390px;
-  left: 775px;
-  position: absolute;
+width: 2px;
+height: 220px;
+background-color: rgb(223, 179, 179);
+top: 390px;
+left: 775px;
+position: absolute;
 }
 
 .infoBox {
+width: 700px;
+height: 250px;
+background-color: rgb(247, 239, 239);
+top: 373px;
+left: 425.5px;
+position: absolute;
+}
+
+.infoBox2 {
+width: 350px;
+height: 250px;
+background-color: rgb(247, 239, 239);
+top: 373px;
+left: 775px;
+position: absolute;
+}
+
+
+.infoCondition {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 40px;
+}
+
+
+.infoEmployCount {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 40px;
+}
+
+.infoEmployPrefer {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 40px;
+}
+
+.infoApplyMethod {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 60px;
+}
+
+.infoApplySchedule {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 60px
+}
+
+.infoHashtag {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 60px;
+}
+
+
+
+.contentBox {
   width: 700px;
-  height: 250px;
+  height: 750px;
   background-color: rgb(247, 239, 239);
-  top: 373px;
+  top: 747.5px;
   left: 425.5px;
   position: absolute;
 }
 
-.infoBox2 {
-  width: 350px;
-  height: 250px;
-  background-color: rgb(247, 239, 239);
-  top: 373px;
-  left: 775px;
+.contentBoxUp {
+  width: 700px;
+  height: 1.5px;
+  background-color: rgb(0, 0, 0);
+  top: 747.5px;
+  left: 425.5px;
   position: absolute;
 }
- 
-  
-  .infoCondition {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 40px;
-  }
-  
-  
-  .infoEmployCount {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 40px;
-  }
-  
-  .infoEmployPrefer {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 40px;
-  }
-  
-  .infoApplyMethod {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 60px;
-  }
-  
-  .infoApplySchedule {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 60px
-  }
-  
-  .infoHashtag {
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 60px;
-  }
-  
-  
-  
-  .contentBox {
-    width: 700px;
-    height: 750px;
-    background-color: rgb(247, 239, 239);
-    top: 747.5px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .contentBoxUp {
-    width: 700px;
-    height: 1.5px;
-    background-color: rgb(0, 0, 0);
-    top: 747.5px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .contentBoxDown {
-    width: 700px;
-    height: 1.5px;
-    background-color: rgb(0, 0, 0);
-    top: 1497.5px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .companyBox {
-    width: 700px;
-    height: 250px;
-    background-color: rgb(247, 239, 239);
-    top: 1603px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .companyBoxUp {
-    width: 700px;
-    height: 1.5px;
-    background-color: rgb(0, 0, 0);
-    top: 1603px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .companyBoxDown {
-    width: 700px;
-    height: 1.5px;
-    background-color: rgb(0, 0, 0);
-    top: 1853px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .companyImage {
-    width: 120px;
-    height: 120px;
-    background-color: rgb(199, 199, 199);
-    margin-top: 70px;
-    margin-left: 80px;
-  }
-  
-  .companyImageText {
-    color: black;
-    top: 35%;
-    margin-left: 27px;
-    font-size: 25px;
-    position: relative;
-  }
-  
-  .companyWriter {
-    color: #535353;
-    font-size: 20px;
-    top: 30%;
-    left: 30%;
-    position: absolute;
-  }
-  
-  .companyDate {
-    color: #535353;
-    font-size: 20px;
-    top: 42%;
-    left: 30%;
-    position: absolute;
-  }
-  
-  .companyName {
-    color: #535353;
-    font-size: 20px;
-    top: 54%;
-    left: 30%;
-    position: absolute;
-  }
-  
-  .companyType {
-    color: #535353;
-    font-size: 20px;
-    top: 66%;
-    left: 30%;
-    position: absolute;
-  }
-  
-  
-  .goodCircle {
-    width: 100px;
-    height: 100px;
-    top: 205%;
-    left: 43%;
-    background-color: rgb(255, 255, 255);
-    border: 2px solid rgb(236, 143, 143);
-    border-radius: 50%;
-    position: absolute;
-  }
-  
-  .goodText {
-    font-size: 20px;
-    top: 25%;
-    left: 20%;
-    position: absolute;
-  }
-  
-  .badCircle {
-    width: 100px;
-    height: 100px;
-    top: 255%;
-    left: 53%;
-    background-color: rgb(255, 255, 255);
-    border: 2px solid rgb(236, 143, 143);
-    border-radius: 50%;
-    position: absolute;
-  }
-  
-  .badText {
-    font-size: 20px;
-    top: 25%;
-    left: 20%;
-    position: absolute;
-  }
-  
-  .goodButton {
-    width: 100px;
-    height: 100px;
-    top: 1900px;
-    left: 650px;
-    background-color: rgb(255, 255, 255);
-    border: 2px solid rgb(236, 143, 143);
-    border-radius: 50%;
-    position: absolute;
-    cursor: pointer;
-  }
-  
-  .goodButton.clicked {
-    background-color: rgb(255, 155, 171);
-  }
-  
-  .badButton {
-    width: 100px;
-    height: 100px;
-    top: 1900px;
-    left: 800px;
-    background-color: rgb(255, 255, 255);
-    border: 2px solid rgb(236, 143, 143);
-    border-radius: 50%;
-    position: absolute;
-    cursor: pointer;
-  }
-  
-  .badButton.clicked {
-    background-color: rgb(255, 155, 171);
-  }
-  
-  
-  .commentBox {
-    width: 700px;
-    height: 300px;
-    background-color: rgb(247, 239, 239);
-    top: 2125px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .commentBoxUp {
-    width: 700px;
-    height: 1.5px;
-    background-color: rgb(0, 0, 0);
-    top: 2125px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .commentBoxDown {
-    width: 700px;
-    height: 1.5px;
-    background-color: rgb(0, 0, 0);
-    top: 2425px;
-    left: 425.5px;
-    position: absolute;
-  }
-  
-  .commentId {
-    font-size: 20px;
-    top: 12%;
-    left: 7%;
-    position: absolute;
-  }
-  
-  .commentContent {
-    font-size: 20px;
-    top: 12%;
-    left: 27%;
-    position: absolute;
-  }
-  
-  .commentOfComment {
-    font-size: 13px;
-    font-weight: bold;
-    top: 15%;
-    left: 65%;
-    position: absolute;
-  }
-  
-  .commentModify {
-    font-size: 13px;
-    font-weight: bold;
-    top: 15%;
-    left: 75%;
-    position: absolute;
-  }
-  
-  .commentReport {
-    font-size: 13px;
-    color: rgb(247, 80, 80);
-    font-weight: bold;
-    top: 15%;
-    left: 85%;
-    position: absolute;
-  }
-  
-  .reportMenu {
-    display: none;
-    position: absolute;
-    top: 27%;
-    left: 70%;
-  }
-  
-  #reportReason {
-    width: 200px;
-    padding: 5px;
-    margin-right: 10px;
-  }
-  
-  #report-submit {
-    background-color: #ff0000;
-    color: #ffffff;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  
-  .commentSquare {
-    width: 600px;
-    height: 60px;
-    background-color: rgb(255, 255, 255);
-    top: 200%;
-    left: 28%;
-    position: absolute;
-  }
-  
-  
-  #form-commentInfo{
-    width: 130%;
-    top: 65%;
-    left: 10%;
-    position: absolute;
-  }
-  
-  #comment-input{
-    width: 50%;
-    height: 5.0em;
-  }
-  
-  #submit{
-    background-color: rgb(251, 136, 136);
-    width: 6.5em;
-    height: 5.0em;;
-    font-size: 15px;
-    font-weight: bold;
-    color: aliceblue;
-  }
-  
-  #voteUp, #voteDown{
-    width: 3.5em;
-    height: 1.9em;
-    background-color: aqua;    
-  }
-  
-  #comments{
-    margin-top: 10px;
-  }
-  
-  .eachComment{   
-    width :50%; 
-    margin: 10px;  
-    padding: 0.5em; 
-    border-bottom: 1px solid #c1bcba;
-  }
-  
-  .eachComment .name{
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 0.3em;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .eachComment .inputValue{
-    font-size: 1.2em;
-    font-style: italic;    
-  }
-  
-  .eachComment .time{
-    font-size: 0.7em;
-    color: #c1bcba;
-    font-style: oblique;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    
-  }
-  
-  .eachComment .voteDiv{
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .eachComment .deleteComment{
-    background-color: red;
-    color: aliceblue;
-  }
+
+.contentBoxDown {
+  width: 700px;
+  height: 1.5px;
+  background-color: rgb(0, 0, 0);
+  top: 1497.5px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.companyBox {
+  width: 700px;
+  height: 250px;
+  background-color: rgb(247, 239, 239);
+  top: 1603px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.companyBoxUp {
+  width: 700px;
+  height: 1.5px;
+  background-color: rgb(0, 0, 0);
+  top: 1603px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.companyBoxDown {
+  width: 700px;
+  height: 1.5px;
+  background-color: rgb(0, 0, 0);
+  top: 1853px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.companyImage {
+  width: 120px;
+  height: 120px;
+  background-color: rgb(199, 199, 199);
+  margin-top: 70px;
+  margin-left: 80px;
+}
+
+.companyImageText {
+  color: black;
+  top: 35%;
+  margin-left: 27px;
+  font-size: 25px;
+  position: relative;
+}
+
+.companyWriter {
+  color: #535353;
+  font-size: 20px;
+  top: 30%;
+  left: 30%;
+  position: absolute;
+}
+
+.companyDate {
+  color: #535353;
+  font-size: 20px;
+  top: 42%;
+  left: 30%;
+  position: absolute;
+}
+
+.companyName {
+  color: #535353;
+  font-size: 20px;
+  top: 54%;
+  left: 30%;
+  position: absolute;
+}
+
+.companyType {
+  color: #535353;
+  font-size: 20px;
+  top: 66%;
+  left: 30%;
+  position: absolute;
+}
 
 
+.goodCircle {
+  width: 100px;
+  height: 100px;
+  top: 205%;
+  left: 43%;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(236, 143, 143);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.goodText {
+  font-size: 20px;
+  top: 25%;
+  left: 20%;
+  position: absolute;
+}
+
+.badCircle {
+  width: 100px;
+  height: 100px;
+  top: 255%;
+  left: 53%;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(236, 143, 143);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.badText {
+  font-size: 20px;
+  top: 25%;
+  left: 20%;
+  position: absolute;
+}
+
+.goodButton {
+  width: 100px;
+  height: 100px;
+  top: 1900px;
+  left: 650px;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(236, 143, 143);
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+}
+
+.goodButton.clicked {
+  background-color: rgb(255, 155, 171);
+}
+
+.badButton {
+  width: 100px;
+  height: 100px;
+  top: 1900px;
+  left: 800px;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(236, 143, 143);
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+}
+
+.badButton.clicked {
+  background-color: rgb(255, 155, 171);
+}
+
+
+.commentBox {
+  width: 700px;
+  height: 300px;
+  background-color: rgb(247, 239, 239);
+  top: 2125px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.commentBoxUp {
+  width: 700px;
+  height: 1.5px;
+  background-color: rgb(0, 0, 0);
+  top: 2125px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.commentBoxDown {
+  width: 700px;
+  height: 1.5px;
+  background-color: rgb(0, 0, 0);
+  top: 2425px;
+  left: 425.5px;
+  position: absolute;
+}
+
+.commentId {
+  font-size: 20px;
+  top: 12%;
+  left: 7%;
+  position: absolute;
+}
+
+.commentContent {
+  font-size: 20px;
+  top: 12%;
+  left: 27%;
+  position: absolute;
+}
+
+.commentOfComment {
+  font-size: 13px;
+  font-weight: bold;
+  top: 15%;
+  left: 65%;
+  position: absolute;
+}
+
+.commentModify {
+  font-size: 13px;
+  font-weight: bold;
+  top: 15%;
+  left: 75%;
+  position: absolute;
+}
+
+.commentReport {
+  font-size: 13px;
+  color: rgb(247, 80, 80);
+  font-weight: bold;
+  top: 15%;
+  left: 85%;
+  position: absolute;
+}
+
+.reportMenu {
+  display: none;
+  position: absolute;
+  top: 27%;
+  left: 70%;
+}
+
+#reportReason {
+  width: 200px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+#report-submit {
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+
+.commentSquare {
+  width: 600px;
+  height: 60px;
+  background-color: rgb(255, 255, 255);
+  top: 200%;
+  left: 28%;
+  position: absolute;
+}
+
+
+#form-commentInfo{
+  width: 130%;
+  top: 65%;
+  left: 10%;
+  position: absolute;
+}
+
+#comment-input{
+  width: 50%;
+  height: 5.0em;
+}
+
+#submit{
+  background-color: rgb(251, 136, 136);
+  width: 6.5em;
+  height: 5.0em;;
+  font-size: 15px;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+#voteUp, #voteDown{
+  width: 3.5em;
+  height: 1.9em;
+  background-color: aqua;    
+}
+
+#comments{
+  margin-top: 10px;
+}
+
+.eachComment{   
+  width :50%; 
+  margin: 10px;  
+  padding: 0.5em; 
+  border-bottom: 1px solid #c1bcba;
+}
+
+.eachComment .name{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.eachComment .inputValue{
+  font-size: 1.2em;
+  font-style: italic;    
+}
+
+.eachComment .time{
+  font-size: 0.7em;
+  color: #c1bcba;
+  font-style: oblique;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   
+}
+
+.eachComment .voteDiv{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.eachComment .deleteComment{
+  background-color: red;
+  color: aliceblue;
+}
+
+
+
 .comment-container {
-  margin-top: 20px;
+margin-top: 20px;
 }
 
 .comment-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
+font-size: 18px;
+font-weight: bold;
+margin-bottom: 10px;
 }
 
 .comment-input-container {
-  display: flex;
-  margin-bottom: 10px;
-  position: absolute;
-  top: 200px;
-    left: 40px;
+display: flex;
+margin-bottom: 10px;
+position: absolute;
+top: 200px;
+  left: 40px;
 }
 
 #comment-input {
-  width: 500px;
-  max-height: 5em;
-  min-height: 5em;
+width: 500px;
+max-height: 5em;
+min-height: 5em;
 }
 
 #comment-submit {
-  width: 90px;
-  padding: 10px 10px;
-  margin-left: 10px;
-  cursor: pointer;
-  background-color: rgb(242, 173, 158);
+width: 90px;
+padding: 10px 10px;
+margin-left: 10px;
+cursor: pointer;
+background-color: rgb(242, 173, 158);
 }
 
 .comment {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
+border: 1px solid #ccc;
+padding: 10px;
+margin-bottom: 10px;
 }
 
 .comment-options {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 5px;
+display: flex;
+justify-content: flex-end;
+margin-top: 5px;
 }
 
 .comment-options button {
-  margin-left: 10px;
-  cursor: pointer;
-  background-color: none;
-  border: none;
+margin-left: 10px;
+cursor: pointer;
+background-color: none;
+border: none;
 
 }
 
 .comment-list {
-  margin-bottom: 10px;
-  position: absolute;
-  top: 10%;
-  left: 7%;
+margin-bottom: 10px;
+position: absolute;
+top: 10%;
+left: 7%;
 }
 
 
 .commentContainer {
-  margin-top: 20px;
+margin-top: 20px;
 }
 
 .comment-options button.delete-button {
-  color: red;
+color: red;
 }
 
 
 .comment p {
-  display: inline;
-  margin-right: 10px;
+display: inline;
+margin-right: 10px;
 }
-
