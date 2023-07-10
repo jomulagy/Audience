@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View, CreateView, UpdateView
-
+from util.models import Interest
 from .models import Userable, Applicant, Employer
 from employ.models import Postable
 from util.views import update_interest
@@ -113,28 +113,40 @@ def my_page(request):
 @login_required
 def account_detail(request):    # ajax로 받기
     if request.user.is_authenticated:
+        user = request.user
+        user = Userable.objects.get(id = 3)
+        interests = list(user.interest.all().values_list("interest",flat = True))
+        data = {
+            "username" : user.username,
+            "password" : user.password,
+            "interests" : list(Interest.objects.filter(id__in = interests).values_list("name",flat=True)),
+            "name" : user.name,
+            # "nickname" : user.nickname,
+            # "age" : user.age,
+            # "gender" : user.gender,
 
-        user = Userable.objects.filter(id = request.user.id)
-        return JsonResponse({"user" : user.values()[0]})
+        }
+        return JsonResponse({"user" : data})
 
 @login_required
 def my_posts(request):
     if request.user.is_authenticated:
         user = request.user
         posts = Postable.objects.filter(userable = user).order_by('-created_at')[:5]
-        return JsonResponse({'post': list(posts.values())})
+        return JsonResponse({'posts': list(posts.values("id","title","views"))})
 
 @login_required
 def my_posts_detail(request):
     if request.user.is_authenticated:
         user = request.user
+
         data = json.loads(request.body)
         page_num = data["page_num"]
-        posts = Postable.objects.filter(userable = user)[5*(page_num-1):5*page_num-1]
-        return JsonResponse({'post': list(posts.values())})
+        posts = Postable.objects.filter(userable = user).order_by("created_at")[5*(page_num-1):5*page_num-1]
+        return JsonResponse({'post': list(posts.values("id","title","views"))})
 
 # 비밀번호 확인
-# @login_required
+@login_required
 def check_password(request):
     user = request.user
     if request.method == "POST":

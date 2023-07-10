@@ -49,7 +49,6 @@ def toatl_page(request):
                 if search_type == "제목":
                     posts = list(Job_post.objects.filter(title__icontains=keyword).values())
                     ranks = list(Job_post.objects.filter(title__icontains=keyword).order_by("-views").values())[0:4]
-                    print(ranks)
                 elif search_type == "내용":
                     posts = list(Job_post.objects.filter(content__icontains=keyword).values())
                 elif search_type == "제목+내용":
@@ -73,7 +72,8 @@ def toatl_page(request):
                                     "image": free.image.url,
                                 })
                 elif search_type == "회사이름":
-                    posts = list(employer.postable_set.filter(company__icontains=keyword).values())
+                    employer = Employer.objects.filter(company__icontains=keyword)
+                    posts = list(Job_post.objects.filter(title__in=employer).order_by("created_at").values("id","title","views"))
 
             else:
                 if search_type == "제목":
@@ -105,7 +105,9 @@ def toatl_page(request):
                                     "image": free.image.url,
                                 })
                 elif search_type == "회사이름":
-                    posts = list(employer.postable_set.filter(company__icontains=keyword).values())
+                    employer = Employer.objects.filter(company__icontains=keyword)
+                    posts = list(Freepost_j.objects.filter(title__in=employer).order_by("created_at").values("id","title","views"))
+                    ranks = list(Freepost_j.objects.filter(title__in=employer).order_by("-views").values("id","title","views"))[0:4]
 
         elif category == "구인":
             if board_type == "구인":
@@ -221,9 +223,9 @@ def toatl_page(request):
 
                 elif search_type == "해시태그":
                     post = []
+                    hashtag = Hashtag.objects.get(name=keyword)
 
                     for post in hashtag.postable.all():
-                        hashtag = Hashtag.objects.get(name=keyword)
                         if Freepost_e.objects.filter(id=post.id, career="신입").exists():
                             free = Freepost_e.objects.get(id=post.id)
 
@@ -258,15 +260,15 @@ def search_posts(request):
 
             if board_type == "구직":
                 if search_type == "제목":
-                    posts = list(Job_post.objects.filter(title__icontains=keyword).values())
-                    ranks = list(Job_post.objects.filter(title__icontains=keyword).order_by("-views").values())[0:4]
-                    print(ranks)
+                    print(1)
+                    posts = list(Job_post.objects.filter(title__icontains=keyword).order_by("created_at").values("id","title","views"))
+                    ranks = list(Job_post.objects.filter(title__icontains=keyword).order_by("-views").values("id","title","views"))[0:4]
                 elif search_type == "내용":
-                    posts = list(Job_post.objects.filter(content__icontains=keyword).values())
-                    ranks = list(Job_post.objects.filter(content__icontains=keyword).order_by("-views").values())[0:4]
+                    posts = list(Job_post.objects.filter(content__icontains=keyword).order_by("created_at").values())
+                    ranks = list(Job_post.objects.filter(content__icontains=keyword).order_by("-views").values("id","title","views"))[0:4]
                 elif search_type == "제목+내용":
-                    posts = list(Job_post.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).values())
-                    ranks = list(Job_post.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("-views").values())[0:4]
+                    posts = list(Job_post.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).values("id","title","views"))
+                    ranks = list(Job_post.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("-views").values("id","title","views"))[0:4]
                 elif search_type == "해시태그":
                     posts = []
                     if Hashtag.objects.filter(name=keyword).exists():
@@ -278,31 +280,30 @@ def search_posts(request):
                                 posts.append({
                                     "id": free.id,
                                     "title": free.title,
-                                    "content": free.content,
-                                    "created_at": free.created_at,
                                     "views": free.views,
-                                    "userable_id": free.userable.id,
-                                    "postable_ptr_id": free.id,
-                                    "image": free.image.url,
+                                    "created_at": free.created_at,
                                 })
+                    posts = sorted(posts , key= lambda x: x['created_at'], reverse=True)
+                    posts = [{key: value for key, value in dictionary.items() if key != "created_at"} for dictionary in posts]
                     ranks = sorted(posts , key= lambda x: x['views'], reverse=True)
                 elif search_type == "회사이름":
-                    posts = list(employer.postable_set.filter(company__icontains=keyword).values())
-                    ranks = list(employer.postable_set.filter(company__icontains=keyword).order_by("-views").values())[0:4]
+                    employer = Employer.objects.filter(company__icontains=keyword)
+                    posts = list(Freepost_j.objects.filter(title__in=employer).order_by("created_at").values("id","title","views"))
+                    ranks = list(Freepost_j.objects.filter(title__in=employer).order_by("-views").values("id","title","views"))[0:4]
 
             else:
                 if search_type == "제목":
-                    posts = list(Freepost_j.objects.filter(title__icontains=keyword).values())
-                    ranks = list(Freepost_j.objects.filter(title__icontains=keyword).order_by("-views").values())[0:4]
+                    posts = list(Freepost_j.objects.filter(title__icontains=keyword).order_by("created_at").values("id","title","views"))
+                    ranks = list(Freepost_j.objects.filter(title__icontains=keyword).order_by("-views").values("id","title","views"))[0:4]
 
                 elif search_type == "내용":
-                    posts = list(Freepost_j.objects.filter(content__icontains=keyword).values())
-                    ranks = list(Freepost_j.objects.filter(content__icontains=keyword).order_by("-views").values())[0:4]
+                    posts = list(Freepost_j.objects.filter(content__icontains=keyword).order_by("created_at").values("id","title","views"))
+                    ranks = list(Freepost_j.objects.filter(content__icontains=keyword).order_by("-views").values("id","title","views"))[0:4]
 
                 elif search_type == "제목+내용":
                     posts = list(
-                        Freepost_j.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).values())
-                    ranks = list(Freepost_j.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("-views").values())[0:4]
+                        Freepost_j.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("created_at").values("id","title","views"))
+                    ranks = list(Freepost_j.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("-views").values("id","title","views"))[0:4]
 
                 elif search_type == "해시태그":
                     posts = []
@@ -315,17 +316,16 @@ def search_posts(request):
                                 posts.append({
                                     "id": free.id,
                                     "title": free.title,
-                                    "content": free.content,
-                                    "created_at": free.created_at,
                                     "views": free.views,
-                                    "userable_id": free.userable.id,
-                                    "postable_ptr_id": free.id,
-                                    "image": free.image.url,
+                                    "created_at": free.created_at,
                                 })
+                    posts = sorted(posts , key= lambda x: x['created_at'], reverse=True)
+                    posts = [{key: value for key, value in dictionary.items() if key != "created_at"} for dictionary in posts]
                     ranks = sorted(posts , key= lambda x: x['views'], reverse=True)
                 elif search_type == "회사이름":
-                    posts = list(employer.postable_set.filter(company__icontains=keyword).values())
-                    ranks = list(employer.postable_set.filter(company__icontains=keyword).order_by("-views").values())[0:4]
+                    employer = Employer.objects.filter(company__icontains=keyword)
+                    posts = list(Freepost_j.objects.filter(title__in=employer).order_by("created_at").values("id","title","views"))
+                    ranks = list(Freepost_j.objects.filter(title__in=employer).order_by("-views").values("id","title","views"))[0:4]
 
         elif category == "구인":
             if board_type == "구인":
@@ -336,21 +336,21 @@ def search_posts(request):
                     employer = Employer.objects.filter(interest__in=interest)
                     if search_type == "제목":
                         posts = list(
-                            Employ_post.objects.filter(title__icontains=keyword, userable__in=employer).values())
-                        ranks = list(Employ_post.objects.filter(title__icontains=keyword, userable__in=employer).order_by("-views").values())[0:4]
+                            Employ_post.objects.filter(title__icontains=keyword, userable__in=employer).order_by("created_at").values("id","title","views"))
+                        ranks = list(Employ_post.objects.filter(title__icontains=keyword, userable__in=employer).order_by("-views").values("id","title","views"))[0:4]
 
                     elif search_type == "내용":
                         posts = list(
-                            Employ_post.objects.filter(content__icontains=keyword, userable__in=employer).values())
-                        ranks = list(Employ_post.objects.filter(content__icontains=keyword, userable__in=employer).order_by("-views").values())[0:4]
+                            Employ_post.objects.filter(content__icontains=keyword, userable__in=employer).order_by("created_at").values("id","title","views"))
+                        ranks = list(Employ_post.objects.filter(content__icontains=keyword, userable__in=employer).order_by("-views").values("id","title","views"))[0:4]
 
                     elif search_type == "제목+내용":
                         posts = list(Employ_post.objects.filter(Q(title__icontains=keyword, userable__in=employer)
                                                                 | Q(content__icontains=keyword,
-                                                                    userable__in=employer)).values())
-                        ranks = list(mploy_post.objects.filter(Q(title__icontains=keyword, userable__in=employer)
+                                                                    userable__in=employer)).order_by("created_at").values("id","title","views"))
+                        ranks = list(Employ_post.objects.filter(Q(title__icontains=keyword, userable__in=employer)
                                                                 | Q(content__icontains=keyword,
-                                                                    userable__in=employer)).order_by("-views").values())[0:4]
+                                                                    userable__in=employer)).order_by("-views").values("id","title","views"))[0:4]
 
                     elif search_type == "해시태그":
                         posts = []
@@ -363,30 +363,28 @@ def search_posts(request):
                                     posts.append({
                                         "id": free.id,
                                         "title": free.title,
-                                        "content": free.content,
-                                        "created_at": free.created_at,
                                         "views": free.views,
-                                        "userable_id": free.userable.id,
-                                        "postable_ptr_id": free.id,
-                                        "image": free.image.url,
+                                        "created_at": free.created_at,
                                     })
+                        posts = sorted(posts , key= lambda x: x['created_at'], reverse=True)
+                        posts = [{key: value for key, value in dictionary.items() if key != "created_at"} for dictionary in posts]
                         ranks = sorted(posts , key= lambda x: x['views'], reverse=True)
 
 
                 elif post_type == "경력":
                     if search_type == "제목":
-                        posts = list(Employ_post.objects.filter(title__icontains=keyword, career='경력').values())
-                        ranks = list(Employ_post.objects.filter(title__icontains=keyword, career='경력').order_by("-views").values())[0:4]
+                        posts = list(Employ_post.objects.filter(title__icontains=keyword, career='경력').order_by("created_at").values("id","title","views"))
+                        ranks = list(Employ_post.objects.filter(title__icontains=keyword, career='경력').order_by("-views").values("id","title","views"))[0:4]
 
                     elif search_type == "내용":
-                        posts = list(Employ_post.objects.filter(content__icontains=keyword, career='경력').values())
-                        ranks = list(Employ_post.objects.filter(content__icontains=keyword, career='경력').order_by("-views").values())[0:4]
+                        posts = list(Employ_post.objects.filter(content__icontains=keyword, career='경력').order_by("created_at").values("id","title","views"))
+                        ranks = list(Employ_post.objects.filter(content__icontains=keyword, career='경력').order_by("-views").values("id","title","views"))[0:4]
 
                     elif search_type == "제목+내용":
                         posts = list(Employ_post.objects.filter(Q(title__icontains=keyword, career='경력')
-                                                                | Q(content__icontains=keyword, career='경력')).values())
+                                                                | Q(content__icontains=keyword, career='경력')).order_by("created_at").values("id","title","views"))
                         ranks = list(Employ_post.objects.filter(Q(title__icontains=keyword, career='경력')
-                                                                | Q(content__icontains=keyword, career='경력')).order_by("-views").values())[0:4]
+                                                                | Q(content__icontains=keyword, career='경력')).order_by("-views").values("id","title","views"))[0:4]
 
 
                     elif search_type == "해시태그":
@@ -400,29 +398,27 @@ def search_posts(request):
                                     posts.append({
                                         "id": free.id,
                                         "title": free.title,
-                                        "content": free.content,
-                                        "created_at": free.created_at,
                                         "views": free.views,
-                                        "userable_id": free.userable.id,
-                                        "postable_ptr_id": free.id,
-                                        "image": free.image.url,
+                                        "created_at": free.created_at,
                                     })
+                        posts = sorted(posts , key= lambda x: x['created_at'], reverse=True)
+                        posts = [{key: value for key, value in dictionary.items() if key != "created_at"} for dictionary in posts]
                         ranks = sorted(posts , key= lambda x: x['views'], reverse=True)
 
                 elif post_type == "신입":
                     if search_type == "제목":
-                        posts = list(Employ_post.objects.filter(title__icontains=keyword, career='신입').values())
-                        ranks = list(Employ_post.objects.filter(title__icontains=keyword, career='신입').order_by("-views").values())[0:4]
+                        posts = list(Employ_post.objects.filter(title__icontains=keyword, career='신입').order_by("created_at").values("id","title","views"))
+                        ranks = list(Employ_post.objects.filter(title__icontains=keyword, career='신입').order_by("-views").values("id","title","views"))[0:4]
 
                     elif search_type == "내용":
-                        posts = list(Employ_post.objects.filter(content__icontains=keyword, career='신입').values())
-                        ranks = list(Employ_post.objects.filter(content__icontains=keyword, career='신입').order_by("-views").values())[0:4]
+                        posts = list(Employ_post.objects.filter(content__icontains=keyword, career='신입').order_by("created_at").values("id","title","views"))
+                        ranks = list(Employ_post.objects.filter(content__icontains=keyword, career='신입').order_by("-views").values("id","title","views"))[0:4]
 
                     elif search_type == "제목+내용":
                         posts = list(Employ_post.objects.filter(Q(title__icontains=keyword, career='신입')
-                                                                | Q(content__icontains=keyword, career='신입')).values())
+                                                                | Q(content__icontains=keyword, career='신입')).order_by("created_at").values("id","title","views"))
                         ranks = list(Employ_post.objects.filter(Q(title__icontains=keyword, career='신입')
-                                                                | Q(content__icontains=keyword, career='신입')).order_by("-views").values())[0:4]
+                                                                | Q(content__icontains=keyword, career='신입')).order_by("-views").values("id","title","views"))[0:4]
 
                     elif search_type == "해시태그":
                         posts = []
@@ -435,51 +431,47 @@ def search_posts(request):
                                     posts.append({
                                         "id": free.id,
                                         "title": free.title,
-                                        "content": free.content,
-                                        "created_at": free.created_at,
                                         "views": free.views,
-                                        "userable_id": free.userable.id,
-                                        "postable_ptr_id": free.id,
-                                        "image": free.image.url,
+                                        "created_at": free.created_at,
                                     })
+                        posts = sorted(posts , key= lambda x: x['created_at'], reverse=True)
+                        posts = [{key: value for key, value in dictionary.items() if key != "created_at"} for dictionary in posts]
                         ranks = sorted(posts , key= lambda x: x['views'], reverse=True)
 
             else:
                 if search_type == "제목":
-                    posts = list(Freepost_e.objects.filter(title__icontains=keyword).values())
-                    ranks = list(Freepost_e.objects.filter(title__icontains=keyword).order_by("-views").values())[0:4]
+                    posts = list(Freepost_e.objects.filter(title__icontains=keyword).order_by("created_at").values("id","title","views"))
+                    ranks = list(Freepost_e.objects.filter(title__icontains=keyword).order_by("-views").values("id","title","views"))[0:4]
 
                 elif search_type == "내용":
-                    posts = list(Freepost_e.objects.filter(content__icontains=keyword).values())
-                    ranks = list(Freepost_e.objects.filter(content__icontains=keyword).order_by("-views").values())[0:4]
+                    posts = list(Freepost_e.objects.filter(content__icontains=keyword).order_by("created_at").values("id","title","views"))
+                    ranks = list(Freepost_e.objects.filter(content__icontains=keyword).order_by("-views").values("id","title","views"))[0:4]
 
                 elif search_type == "제목+내용":
                     posts = list(
-                        Freepost_e.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).values())
-                    ranks = list(Freepost_e.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("-views").values())[0:4]
+                        Freepost_e.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("created_at").values("id","title","views"))
+                    ranks = list(Freepost_e.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("-views").values("id","title","views"))[0:4]
 
                 elif search_type == "해시태그":
                     post = []
-
+                    hashtag = Hashtag.objects.get(name=keyword)
                     for post in hashtag.postable.all():
-                        hashtag = Hashtag.objects.get(name=keyword)
+
                         if Freepost_e.objects.filter(id=post.id, career="신입").exists():
                             free = Freepost_e.objects.get(id=post.id)
 
                             posts.append({
                                 "id": free.id,
                                 "title": free.title,
-                                "content": free.content,
-                                "created_at": free.created_at,
                                 "views": free.views,
-                                "userable_id": free.userable.id,
-                                "postable_ptr_id": free.id,
-                                "image": free.image.url,
+                                "created_at": free.created_at,
                             })
+                    posts = sorted(posts , key= lambda x: x['created_at'], reverse=True)
+                    posts = [{key: value for key, value in dictionary.items() if key != "created_at"} for dictionary in posts]
                     ranks = sorted(posts , key= lambda x: x['views'], reverse=True)
 
         else:
-            posts = list(Postable.objects.filter(title__contains=keyword).values())
-            ranks = list(Freepost_e.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("-views").values())[0:4]
+            posts = list(Postable.objects.filter(title__contains=keyword).order_by("created_at").values("id","title","views"))
+            ranks = list(Freepost_e.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("-views").values("id","title","views"))[0:4]
 
         return JsonResponse({'posts': posts[5*(page_num-1):5*page_num-1], 'ranks' : ranks})
