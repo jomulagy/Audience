@@ -190,8 +190,8 @@ def search_password(request):  # ajax로 변경(done)
 
         send_mail(
             f'임시 비밀번호: {new_password}',
-            'from@naver.com',  # 임시 계정 만들기
-            [user.email],
+            'audience_likelion@naver.com',  # 임시 계정 만들기
+            [username],
             fail_silently=False,
         )
         return JsonResponse({'success': True, 'username': username, 'password': user.password})
