@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="..\..\static\css\findwork_company_QnA\QnA_answer_w_style.css">
+
+</head>
+<body>
+    <form action="URL" method="POST"> 
+        <div class="container">
+            <input type="text" style="border:0 solid black" id="title" name="title" value="제목:Re [질문제목]" placeholder="제목을 입력해주세요" disabled>
+            
+            <div class="certification_photo">
+                <b id= "certification_photo_text">사진첨부</b>
+    
+                <div id="certification_photo_space">
+                </div>
+    
+                <input type="file" id="upload-input" accept="image/*">
+                <label for="upload-input" class="upload-button">사진 불러오기</label>
+                <div id="preview-container"></div>
+            </div>
+    
+            <textarea id="content" style="border:0 solid black" name="content" placeholder="내용을 입력해주세요"></textarea>
+        
+            <input type="submit" id="upload_btn" value="업로드하기">
+        </div>
+    </form>
+    <script src="..\..\static\js\findwork_company_QnA\QnA_answer_w_script.js"></script>
+</body>

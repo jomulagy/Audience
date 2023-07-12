@@ -1,0 +1,69 @@
+<!--게시글 리스트 페이지 & 게시글 확인 페이지--> # 구인_list
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    
+    <link rel="stylesheet" rel="stylesheet" href="..\..\static\css\post\postList.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</script>
+
+    <title>구직 커뮤니티</title>
+
+</head>
+
+<body>
+    <!--구직 커뮤니티-->
+    <!--선택 박스-->
+    <div class="searchBoxes">
+        <button class="searchBox" type="button" value="Button">관심분야</button>
+        <button class="searchBox" type="button" value="Button">경력</button>
+        <button class="searchBox" type="button" value="Button">신입</button>
+      </div>
+    <!--검색기능 + 옵션 => 분류: 제목, 내용, 제목+내용, 해시태그, 회사명-->
+    <div class="searchContainer">
+		<div class="row">
+            <form action="index/search" method="GET"></form>
+				<table class="pull-right">
+					<tr>
+						<td><select class="form-control" name="searchField">
+								<option value="0">분류</option>
+								<option value="title">제목</option>
+								<option value="content">내용</option>
+								<option value="titleContent">제목+내용</option>
+								<option value="hashTag">해시태그</option>
+								<option value="company">회사명</option>
+						</select></td>
+						<td><input type="text" class="form-control"
+							placeholder="검색어 입력" name="searchText" maxlength="100"></td>
+						<td><button type="submit" class="btn btn-success">검색</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+
+    <h2 id="searchResultHeading" style="display: none;"></h2>
+    <div id="searchResults"></div>
+    
+    
+    <!--게시글(박스) 누르면 다음 페이지로 이동 => 링크는 js에서 임의로 설정-->
+    <div id="postList"></div>
+       <!--위 박스 게시글 (조회수순)-->
+    
+
+    <h2 class="posting">실시간 게시글<hr /></h2>
+
+    <div id="linePostListContainer">
+        <!--게시글(줄) 누르면 다음 페이지로 이동 => 링크는 js에서 임의로 설정-->
+        <div id="linePostList"></div>   <!--아래 줄 게시글-->
+    </div>
+    <div id="newPostContainer"></div>   <!--아래 실시간 게시물-->
+    <script src="..\..\static\js\post\postList.js"></script>
+</body>
+
+</html>
