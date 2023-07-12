@@ -1,7 +1,11 @@
+{% extends 'header.html' %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="kr">
 
 <head>
+	{% block static %}
 	<meta name="code" charset="utf-8">
 	<meta name="viewport"
 		content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes" />
@@ -10,11 +14,12 @@
 	<script src="/static/js/header.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 		rel="stylesheet">
-	<link rel="stylesheet" href="/static/css/intro_style.css" />
+	<link rel="stylesheet" href="../static/css/intro_style.css" />
+	{% endblock %}
+
 </head>
-
+{% block content %}
 <body>
-
 	<!-- content  -->
 	<div class="vh-content">
 		<!-- main visual -->
@@ -25,7 +30,7 @@
 					<div class="title-img"><img src="/static/img/demo/p txt1.png"></div>
 					<div class="sub-img"><img src="/static/img/demo/p txt2.png"></div>
 					<div class="content-img"><img src="/static/img/demo/p txt3.png"></div>
-					<a href="" class="golink">홈으로 돌아가기</a>
+					<a href="{% url 'main:main_view' %}" class="golink">홈으로 돌아가기</a>
 				</div>
 			</div>
 		</div>
@@ -40,6 +45,7 @@
 			$('.hd-gnb-wrap').toggleClass('open');
 		});
 	</script>
-</body>
 
+</body>
+{% endblock %}
 </html>

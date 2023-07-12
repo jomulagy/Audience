@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -7,6 +9,8 @@
 	<script src="/static/js/header.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/static/css/header_style.css"/>
+    {% block static %}
+    {% endblock %}
 </head>
 <body>
 	<div class="vh-container">
@@ -14,26 +18,27 @@
 		<header class="vh-header">
 			<!-- main header -->
 			<div class="hd-main-wrap">
-				<a class="logo" href="" alt="홈으로">
+				<a class="logo" href="{% url 'main:main_view' %}" alt="홈으로">
 					<img src="/static/img/logo/logo-symbol.png" class="logo-symbol">
 					<img src="/static/img/logo/logo-text.png" class="logo-text">
 				</a>
 				<div class="search-wrap">
 					<div class="search-box">
-					  <input type="text" id="keyword-input" placeholder="검색" onchange="printName()">
-					  <button type="button" id="search-button" title="검색"></button>
+					  <input type="" name="" placeholder="검색">
+					  <button type="button" title="검색"></button>
 					</div>
 				  </div>
-				  
-				<div class="tool">
-					<a href="">로그인</a>
-					<a href="">회원가입</a>
-				</div>
-				<!-- <div class="tool">
-					<a href="">로그아웃</a>
-					<a href="">마이페이지</a>
-				</div> -->
-
+				{% if not user.is_authenticated %}
+					<div class="tool">
+						<a href="{% url 'account_login' %}">로그인</a>
+						<a href="{% url 'signup_page' %}">회원가입</a>
+					</div>
+				{% else %}
+					<div class="tool">
+						<a href="{% url 'account_logout' %}">로그아웃</a>
+						<a href="{% url 'my_page' %}">마이페이지</a>
+					</div>
+				{% endif %}
 			</div>
 			<!-- scrolling header -->
 			<div class="hd-gnb-wrap scroll-head">
@@ -86,15 +91,14 @@
 				<!-- drop menu // -->
 			</div>
 		</header>
-		
+	{% block content %}
+    {% endblock %}
 
 	<script type="text/javascript">
 		// header gnb trigger 
 		$('.hd-gnb-trigger').on('click', function(e){
 			$('.hd-gnb-wrap').toggleClass('open');
 		});
-		
-	
 	</script>
 </body>
 </html>

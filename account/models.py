@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractUser
 class Userable(AbstractUser):
     first_name = None
     last_name = None
-    email = models.EmailField(unique=True)
     username = models.CharField(max_length=16, unique=True, null=False, default='')     # 로그인 아이디
     name = models.CharField(max_length=16, null=False, default='')
     CHOICES = [
@@ -14,10 +13,10 @@ class Userable(AbstractUser):
 
 class Applicant(Userable):
     nickname = models.CharField(max_length=16, unique=True, null=False, default='')
-    age = models.IntegerField(null=False, default='20')
+    age = models.IntegerField(null=True)
 
     GENDER = [
-        ('남자', 'male'), ('여자', 'female'), ('선택 안 함', None)
+        ('남자', 'male'), ('여자', 'female'), ('없음', '없음')
     ]
     gender = models.CharField(max_length=10, choices=GENDER)
 
@@ -27,11 +26,10 @@ class Applicant(Userable):
     ]
     school = models.CharField(max_length=10, choices=SCHOOL)
 
-    career = models.CharField(max_length=100, null=True)
+    career = models.ImageField(upload_to='applicant_career/', null=True)
 
 class Employer(Userable):
     company = models.CharField(max_length=20, null=False, default='')
-    # rating_sum = models.IntegerField(null=True) #총점
-    # post_num = models.IntegerField(null=True) #후기글 수
-    # # 회사 평점은 총점/후기글 수로 표현
+    age = models.IntegerField(null=True)
+    image = models.ImageField(upload_to='company_profile/', null=True)
 

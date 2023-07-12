@@ -1,45 +1,67 @@
+{% extends 'header.html' %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+{% block static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/login_signup_css/sign_up_error_c_p.css">
+    <link rel="stylesheet" href="/static/css/login_signup_css/sign_up_error_c_p.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../static/js/signup_change.js"></script>
+    <script src="/static/js/signup_change.js"></script>
 
     <title>구직자 회원가입</title>
 </head>
+{% endblock %}
+{% block content %}
 <body>
     <h1 class="serviceName">청취자들</h1>
 
     <div class="signup_c_p">
-        <form class="form_signup">
+        <form class="form_signup" action="{% url 'create_applicant' %}" method="POST">
             <div class="id">
                 <h3 class="h3_id">아이디</h3>
-                <input type="text" class="input_id_nickname" placeholder="아이디를 입력해주세요">
+                <input type="text" class="input_id_nickname" name="username" placeholder="이메일을 입력해주세요">
                 <input type="button" class="check_button" value="중복확인">
-                <p class="error_message">이미 존재하는 아이디입니다.</p>
+                {% if error == 'username_duplicate_error' %}
+                    <p class="error_message">이미 존재하는 아이디입니다.</p>
+                {% endif %}
+                {% if error == 'wrong_username_error' %}
+                    <p class="error_message">아이디가 email 형식이 아닙니다.</p>
+                {% endif %}
             </div>
             <div class="pw">
                 <h3 class="h3_pw">비밀번호</h3>
-                <input type="text" class="input_box" placeholder="비밀번호를 입력해주세요">
-                <p class="error_message">영문+숫자+특수문자를 포함한 8-20자리를 입력해주세요</p>
+                <input type="text" class="input_box" name="password1" placeholder="비밀번호를 입력해주세요">
+                {% if error == 'wrong_password_error' %}
+                    <p class="error_message">영문+숫자+특수문자를 포함한 8-20자리를 입력해주세요</p>
+                {% endif %}
             </div>
             <div class="pw_check">
                 <h3 class="h3_pw_check">비밀번호 확인</h3>
-                <input type="text" class="input_box" placeholder="비밀번호를 입력해주세요">
-                <p class="error_message">비밀번호가 일치하지 않습니다.</p>
+                <input type="text" class="input_box" name="password2" placeholder="비밀번호를 입력해주세요">
+                {% if error == 'no_same_password_error' %}
+                    <p class="error_message">비밀번호가 일치하지 않습니다.</p>
+                {% endif %}
             </div>
             <div class="name">
                 <h3 class="h3_name">이름</h3>
-                <input type="text" class="input_box" placeholder="이름을 입력해주세요">
+                <input type="text" class="input_box" name="name" placeholder="이름을 입력해주세요">
+                {% if error == 'no_name_error' %}
+                    <p class="error_message">이름은 필수 입력값입니다.</p>
+                {% endif %}
             </div>
             <div class="nickname">
                 <h3 class="h3_nickname">닉네임</h3>
-                <input type="text" class="input_id_nickname" placeholder="닉네임을 입력해주세요">
+                <input type="text" class="input_id_nickname" name="nickname" placeholder="닉네임을 입력해주세요">
                 <input type="button" class="check_button" value="중복확인">
-                <p class="error_message">이미 존재하는 닉네임입니다.</p>
+                {% if error == 'nickname_duplicate_error' %}
+                    <p class="error_message">이미 존재하는 닉네임입니다.</p>
+                {% elif error == 'no_nickname_error' %}
+                    <p class="error_message">닉네임은 필수 입력값입니다.</p>
+                {% endif %}
             </div>
             <div class="gender">
                 <h3 class="h3_gender">성별</h3>
@@ -54,7 +76,7 @@
             </div>
             <div class="age">
                 <h3 class="h3_age">나이</h3>
-                <input type="number" min="1" class="input_box" placeholder="나이를 입력해주세요(숫자)">
+                <input type="number" min="1" class="input_box" name="gender" placeholder="나이를 입력해주세요(숫자)">
             </div>
             <div class="interesting">
                 <h3 class="h3_interest">관련분야</h3>
@@ -130,4 +152,5 @@
         </form>
     </div>
 </body>
+{% endblock %}
 </html>

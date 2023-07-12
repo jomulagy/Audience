@@ -1,20 +1,26 @@
+{% extends 'header.html' %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+{% block static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/login_signup_css/sign_up.css">
+    <link rel="stylesheet" href="{% static 'css/login_signup_css/sign_up.css' %}">
     <title>회원가입</title>
 </head>
+{% endblock %}
+{% block content %}
 <body>
     <h1 class="serviceName">청취자들</h1>
 
     <div class="choice_c_p">
-        <input type="button" class="sign_up_c" value="기업 회원가입"></input>
+        <input type="button" class="sign_up_c" value="기업 회원가입" onclick="location.href='{% url 'create_employer' %}'">
 
-        <input type="button" class="sign_up_p" value="구직 회원가입"></input>
-
+        <input type="button" class="sign_up_p" value="구직 회원가입" onclick="location.href='{% url 'create_applicant' %}'">
     </div>
     
 </body>
+{% endblock %}
 </html>

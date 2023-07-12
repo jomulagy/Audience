@@ -1,32 +1,41 @@
+{% extends 'header.html' %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+{% block static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인에러</title>
-    <link rel="stylesheet" href="../static/css/login_signup_css/login_error.css">
+    <link rel="stylesheet" href="/static/css/login_signup_css/login_error.css">
 </head>
+{% endblock %}
+{% block content %}
 <body>
     <h1 class="serviceName">청취자들</h1>
 
 
-    <form class="login_error">
+    <form class="login_error" method="post">{% csrf_token %}
         <div class="login_box">
             <div class="id_password">
-                <input type="text" class="id" id="id" placeholder="아이디"><br>
-                <input type="text" class="pw" id="pw" placeholder="비밀번호">
+                <input type="text" class="id" id="id" name="id" placeholder="아이디"><br>
+                <input type="password" class="pw" id="pw" name="pw" placeholder="비밀번호">
             </div>
             <div class="login_button">
                 <input type="submit" class="login_button" value="로그인">
             </div>  
         </div>
         <div class="error_message">
+        {% if error %}
             <p class="login_error_message">아이디/비밀번호가 일치하지 않습니다</p>
+        {% endif %}
         </div>
         <div class="sign_find">        
-            <a href="#">회원가입</a>/<a href="#">아이디 비밀번호 찾기</a>
+            <a href="{% url 'signup_page' %}">회원가입</a>/<a href="{% url 'search_id_pw' %}">아이디 비밀번호 찾기</a>
         </div>
     </form>   
     
 </body>
+{% endblock %}
 </html>
