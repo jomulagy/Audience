@@ -216,24 +216,25 @@ a {
 }
 
 .star-rating {
-  margin-left: -8px;
   display: flex;
   flex-direction: row-reverse;
-  font-size: 25px;
+  font-size: 1.8rem;
   line-height: 2.5rem;
   justify-content: space-around;
   padding: 0 0.2em;
   text-align: center;
-  width: 7em;
+  width: 5em;
+  left: -245px;
+  position: relative;
 }
- 
+/* 
 .star-rating input {
   display: none;
 }
  
 .star-rating label {
   -webkit-text-fill-color: transparent; 
-  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-width: 2.3px;
   -webkit-text-stroke-color: #2b2a29;
   cursor: pointer;
 }
@@ -241,17 +242,11 @@ a {
 .star-rating :checked ~ label {
   -webkit-text-fill-color: gold;
 }
-
-/*
+ 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
   -webkit-text-fill-color: #fff58c;
-}
-*/
-
-.star-rating .selected {
-  -webkit-text-fill-color: gold;
-}
+}*/
 
 .infoHashtag {
   font-size: 18px;

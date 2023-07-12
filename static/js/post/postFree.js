@@ -1,19 +1,3 @@
-// 별점
-/*
-const starRating = document.querySelector('.star-rating');
-
-const starInputs = starRating.querySelectorAll('disabled');
-
-starInputs.forEach((disabled) => {
-  input.addEventListener('click', () => {
-    starInputs.forEach((disabled) => {
-      input.disabled = true;
-    });
-  });
-}); */
-
-
-
 // 좋아요/싫어요
 let likeClicked = false;
 let notLikeClicked = false;
@@ -431,8 +415,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const newCommentBoxHeight = 300 + commentHeight;
 
     commentBox.style.height = newCommentBoxHeight + "px";
-    commentBoxDown.style.top = 2050 + commentHeight + "px";
-    backg.style.height = 2000 + commentHeight + "px";
+    commentBoxDown.style.top = 1750 + commentHeight + "px";
+    backg.style.height = 1700 + commentHeight + "px";
     commentInput.style.top = 200 + commentHeight + "px";
   });
 
@@ -467,8 +451,8 @@ function adjustCommentBoxHeight() {
   const backg = document.querySelector(".backg");
   const commentInput = document.querySelector(".comment-input-container");
   commentBox.style.height = newCommentBoxHeight + "px";
-  commentBoxDown.style.top = 2050 + commentHeight + "px";
-  backg.style.height = 2000 + commentHeight + "px";
+  commentBoxDown.style.top = 1750 + commentHeight + "px";
+  backg.style.height = 1700 + commentHeight + "px";
   commentInput.style.top = 200 + commentHeight + "px";
 }
  /*
