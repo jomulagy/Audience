@@ -1,31 +1,39 @@
 {% extends 'header.html' %}
 {% load static %}
 
+{% block static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/mypage_css/changepw_error.css">
+    <link rel="stylesheet" href="/static/css/mypage_css/changepw_error.css">
     <title>비밀번호 변경하기</title>
 </head>
+{% endblock %}
+{% block content %}
 <body>
     <h1 class="serviceName">청취자들</h1>
 
-    <form class="changepw">
+    <form class="changepw" action="{% url 'update_password' %}" method="POST">
         <div class="current_pw">
             <h3 class="h3_current_pw">현재 비밀번호</h3>
-            <input type="text" class="input_current_pw" placeholder="비밀번호를 입력해주세요">
-            <p class="error_message">비밀번호가 일치하지 않습니다</p>
+            <input type="text" class="input_current_pw" name="password" placeholder="비밀번호를 입력해주세요">
+            {% if error == "no_match_password_error" %}
+                <p class="error_message">비밀번호가 일치하지 않습니다</p>
+            {% endif %}
         </div>
         <div class="new_pw">
             <h3 class="h3_new_pw">비밀번호 변경</h3>
-            <input type="text" class="input_new_pw" placeholder="비밀번호를 입력해주세요">
-            <p class="error_message">영문+숫자+특수문자를 포함한 8-20자리를 입력해주세요</p>
+            <input type="text" class="input_new_pw" name="new_password" placeholder="비밀번호를 입력해주세요">
+            {% if error == "wrong_password_error" %}
+                <p class="error_message">영문+숫자+특수문자를 포함한 8-20자리를 입력해주세요</p>
+            {% endif %}
         </div>
 
         <input type="submit" class="button_change_pw" value="비밀번호 변경하기">
     </form>
 
 </body>
+{% endblock %}
 </html>

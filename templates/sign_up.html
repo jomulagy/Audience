@@ -16,10 +16,9 @@
     <h1 class="serviceName">청취자들</h1>
 
     <div class="choice_c_p">
-        <input type="button" class="sign_up_c" value="기업 회원가입"></input>
+        <input type="button" class="sign_up_c" value="기업 회원가입" onclick="location.href='{% url 'create_employer' %}'">
 
-        <input type="button" class="sign_up_p" value="구직 회원가입"></input>
-
+        <input type="button" class="sign_up_p" value="구직 회원가입" onclick="location.href='{% url 'create_applicant' %}'">
     </div>
     
 </body>
