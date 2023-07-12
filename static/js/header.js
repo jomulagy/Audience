@@ -76,3 +76,24 @@ scrollEvent = function(){
 	}
 	this.ready();
 }
+
+
+
+// //keyword input
+// function printName() {
+// 	var keyword = document.getElementById("keyword-input").value;
+// 	console.log(keyword);
+//   }
+
+// // onclick() + url
+// document.addEventListener("DOMContentLoaded", function() {
+
+// 	document.getElementById("search-button").onclick = function() {
+// 		var keyword = document.getElementById("keyword-input").value;
+// 		var url = `http://127.0.0.1:8000/audience/search/keyword/${encodeURIComponent(keyword)}/all/all/all/all/`;
+// 		calculateTotalPagesAndGoToFirstPage(url);
+//   	};
+// });
+
+  
+//버튼에 url 추가하기 

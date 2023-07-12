@@ -47,6 +47,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
     function createButton(number) {
+        //onclick() onclick에 1 강제로 누르기 
         const button = document.createElement('div');
         button.classList.add('button');
         button.id = number;

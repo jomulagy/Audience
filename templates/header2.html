@@ -6,7 +6,7 @@
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 	<script src="/static/js/header.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/static/css/header_style.css"/>
+	<link rel="stylesheet" href="/static/css/header2_style.css"/>
 </head>
 <body>
 	<div class="vh-container">
@@ -17,25 +17,9 @@
 				<a class="logo" href="" alt="홈으로">
 					<img src="/static/img/logo/logo-symbol.png" class="logo-symbol">
 					<img src="/static/img/logo/logo-text.png" class="logo-text">
-				</a>
-				<div class="search-wrap">
-					<div class="search-box">
-					  <input type="text" id="keyword-input" placeholder="검색" onchange="printName()">
-					  <button type="button" id="search-button" title="검색"></button>
-					</div>
-				  </div>
-				  
-				<div class="tool">
-					<a href="">로그인</a>
-					<a href="">회원가입</a>
-				</div>
-				<!-- <div class="tool">
-					<a href="">로그아웃</a>
-					<a href="">마이페이지</a>
-				</div> -->
+				</a>	
 
-			</div>
-			<!-- scrolling header -->
+				<!-- scrolling header -->
 			<div class="hd-gnb-wrap scroll-head">
 				<!-- gnb -->
 				<div class="hd-gnb">
@@ -85,6 +69,16 @@
 				</div>
 				<!-- drop menu // -->
 			</div>
+			<div class="tool">
+				<a href="">로그인</a>
+				<a href="">회원가입</a>
+			</div>
+			
+				<!-- <div class="tool">
+					<a href="">로그아웃</a>
+					<a href="">마이페이지</a>
+				</div> -->
+			</div>			
 		</header>
 		
 
@@ -93,8 +87,8 @@
 		$('.hd-gnb-trigger').on('click', function(e){
 			$('.hd-gnb-wrap').toggleClass('open');
 		});
-		
-	
 	</script>
 </body>
 </html>
+
+
