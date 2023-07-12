@@ -122,7 +122,7 @@ def QA_list(request):
         post = Employ_post.objects.get(id = data['post_id'])
         QA_list = post.question_set.all()
         page_num = int(data["page_num"])
-        QA_list = list(QA_list[5*(page_num-1):5*page_num-1].values())
+        QA_list = list(QA_list[5*(page_num-1):5*page_num-1].values("id","title","views"))
 
         context = {
             "QA_List" : QA_list
