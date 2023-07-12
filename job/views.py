@@ -7,7 +7,7 @@ from util.views import add_hashtag, add_rating
 from util.models import Hashtag
 import json
 from django.http import JsonResponse
-from Audience.views import post list
+from Audience.views import post_list
 
 def job_post_detail(request,post_id): #게시물 상세(id)
     #회사
@@ -60,7 +60,7 @@ def update_job_post(request,id): #구직글 수정
 def delete_job_post(request,id): #구직글 삭제
     post = get_object_or_404(Postable, id=id)
     post.delete()
-    return redirect('post list')
+    return redirect('post_list')
 
 def job_free_post_detail(request,post_id):
     post = Freepost_j.objects.get(id=post_id)
@@ -107,7 +107,7 @@ def update_job_free_post(request,id): #구직/자유소통 수정
 def delete_job_free_post(request,id): #구직/자유소통 삭제
     post = get_object_or_404(Postable, id=id)
     post.delete()
-    return redirect('post list')
+    return redirect('post_list')
 
 def report_create_j(request):
     if request.method == 'POST':
