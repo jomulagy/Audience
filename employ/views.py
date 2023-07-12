@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import QuestionForm, AnswerForm, FreePostForm_e, EPostForm
-from .models import Employ_post, Freepost_e, Question, Postable,Answer
+from .models import Employ_post, Freepost_e, Question, Postable, Answer
 from job.models import report
 from account.models import Employer
 from django.http import JsonResponse
@@ -8,65 +8,61 @@ from util.views import add_hashtag
 from Audience.views import post_list
 import json
 
-def employ_post_detail(request,post_id,category) :#게시물 상세(id, 모집공고/Q&A)
-    #회사
-    if category == "recruitment" : #모집공고 일때
-        post = Employ_post.objects.get(id = post_id)
-        post.views +=1
-        post.save()
-        likes = post.like_set.all().count()
-        dislikes = post.dislike_set.all().count()
-        context = {
-            "post" : post,
-            "likes" : likes,
-            "dislikes" : dislikes
-        }
 
-        return render(request,"postView.html",context)
-    else:
-        context = {
-            "post" : post
-        }
-        return render(request,"postView.html",context)
+def employ_post_detail(request, post_id):  # 게시물 상세(id, 모집공고/Q&A)
+    # 회사
+    post = Employ_post.objects.get(id=post_id)
+    post.views += 1
+    post.save()
+    likes = post.like_set.all().count()
+    dislikes = post.dislike_set.all().count()
+    context = {
+        "post": post,
+        "likes": likes,
+        "dislikes": dislikes
+    }
+
+    return render(request, "Post/postView.html", context)
 
 
 def create_employ_post(request):  # 구인글 작성
     # 해시태그 저장 함수 utls에서 찾아서 사용
     if request.method == 'POST':
-        form = EPostForm(request.POST,request.FILES)
+        form = EPostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save()
             # 해시태그들을 list로 바꾸기
             add_hashtag()
-            return redirect('employ_post_detail',post.id,"recruitment")
+            return redirect('employ_post_detail', post.id, "recruitment")
 
         else:
-            return render(request, 'write_company.html')
+            return render(request, 'findwork_company_QnA/write_company.html')
 
     else:
-        return render(request, 'write_company.html')
+        return render(request, 'findwork_company_QnA/write_company.html')
 
 
-def update_employ_post(request,id): #구인글 수정 #해시태그 저장 함수 utls에서 찾아서 사용
+def update_employ_post(request, id):  # 구인글 수정 #해시태그 저장 함수 utls에서 찾아서 사용
     post = get_object_or_404(Employ_post, id=id)
     if request.method == 'POST':
-        form = EPostForm(request.POST, request.FILES,instance = post)
+        form = EPostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('employ_post_detail',id,"recruitment")
+            return redirect('employ_post_detail', id, "recruitment")
         else:
-            return render(request, 'write_company.html')
+            return render(request, 'findwork_company_QnA/write_company.html')
 
     else:
-        return render(request, 'write_company.html')
+        return render(request, 'findwork_company_QnA/write_company.html', {"post": post})
 
-def delete_employ_post(request,id): #구인글 삭제
+
+def delete_employ_post(request, id):  # 구인글 삭제
     post = get_object_or_404(Postable, id=id)
     post.delete()
     return redirect('post_list')
 
 
-def employ_free_post_detail(request,post_id):
+def employ_free_post_detail(request, post_id):
     post = Freepost_e.objects.get(id=post_id)
     post.views += 1
     post.save()
@@ -77,9 +73,10 @@ def employ_free_post_detail(request,post_id):
         "likes": likes,
         "dislikes": dislikes
     }
-    return render(request, "postFree.html", context)
+    return render(request, "Post/postFree.html", context)
 
-def create_employ_free_post(request): #구직/자유소통 작성 #해시태그 저장 함수 utls에서 찾아서 사용
+
+def create_employ_free_post(request):  # 구직/자유소통 작성 #해시태그 저장 함수 utls에서 찾아서 사용
     if request.method == 'POST':
         form = FreePostForm_e(request.POST, request.FILES)
         if form.is_valid():
@@ -90,82 +87,101 @@ def create_employ_free_post(request): #구직/자유소통 작성 #해시태그 
 
             return redirect('employ_free_post_detail', post.id)
         else:
-            return render(request, 'free_write.html')
+            return render(request, 'findwork_company_QnA/free_write.html', {"type": "post_e"})
     else:
-        return render(request, 'free_write.html')
+        return render(request, 'findwork_company_QnA/free_write.html', {"type": "post_e"})
 
-def update_employ_free_post(request,id): #구직/자유소통 수정
-    #해시태그 저장 함수 utls에서 찾아서 사용
+
+def update_employ_free_post(request, id):  # 구직/자유소통 수정
+    # 해시태그 저장 함수 utls에서 찾아서 사용
     post = get_object_or_404(Postable, id=id)
     if request.method == 'POST':
-        form = FreePostForm_e(request.POST, request.FILES,instance = post)
+        form = FreePostForm_e(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('employ_free_post_detail',id)
+            return redirect('employ_free_post_detail', id)
         else:
-            return render(request, 'free_write.html')
+            return render(request, 'findwork_company_QnA/free_write.html', {"type": "post_e", "post": post})
 
     else:
-        return render(request, 'free_write.html')
+        return render(request, 'findwork_company_QnA/free_write.html', {"type": "post_e", "post": post})
 
-def delete_employ_free_post(request,id): #구직/자유소통 삭제
+
+def delete_employ_free_post(request, id):  # 구직/자유소통 삭제
     post = get_object_or_404(Postable, id=id)
     post.delete()
     return redirect('post_list')
 
 
-def QA_list(request):
+def QA_list_data(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        post = Employ_post.objects.get(id = data['post_id'])
+        post = Employ_post.objects.get(id=data['post_id'])
         QA_list = post.question_set.all()
         page_num = int(data["page_num"])
-        QA_list = list(QA_list[5*(page_num-1):5*page_num-1].values("id","title","views"))
+        QA_list = list(QA_list[5 * (page_num - 1):5 * page_num - 1].values("id", "title", "views"))
 
         context = {
-            "QA_List" : QA_list
+            "QA_List": QA_list
         }
         return JsonResponse(context)
 
 
-def create_question(request,post_id):  # Q&A 질문 작성(게시물 id)
+def QA_list(request,id):
+    post = Employ_post.objects.get(id = id)
+    context = {
+        "post":post
+    }
+    return render(request, "Q&A/Q&A_p.html",context)
+
+def create_question(request, post_id):  # Q&A 질문 작성(게시물 id)
+    post = Employ_post.objects.get(id=post_id)
     if request.method == 'POST':
         print(request.POST)
-        form = QuestionForm(request.POST,request.FILES)
+        form = QuestionForm(request.POST, request.FILES)
         if form.is_valid():
             question = form.save(commit=False)
-            question.employ_post_ref = Employ_post.objects.get(id = post_id)
+            question.employ_post_ref = post
             question.userable = request.user
             question.progress = "답변대기중"
             question.save()
-            return redirect('question_detail',post_id,question.id)
+            return redirect('question_detail', post_id, question.id)
         else:
             print(form.errors)
-            return render(request, 'QnA_question_w.html')
+            return render(request, 'findwork_company_QnA/QnA_question_w.html',{"post":post})
     else:
-        return render(request, 'QnA_question_w.html')
+        return render(request, 'findwork_company_QnA/QnA_question_w.html',{"post":post})
 
-def delete_question(request,question_id):  # Q&A 질문 삭제(질문 id)
+
+def delete_question(request, question_id):  # Q&A 질문 삭제(질문 id)
     question = get_object_or_404(Question, id=question_id)
     question.delete()
     return redirect('QA_list')
 
-def question_detail(request,post_id,question_id):
-    post = Postable.objects.get(id = post_id)
-    question = Question.objects.get(id = question_id)
+
+def question_detail(request, post_id, question_id):
+    post = Postable.objects.get(id=post_id)
+    question = Question.objects.get(id=question_id)
     answers = question.answer_set.all()
 
     context = {
-        "post" : post,
-        "question" : question,
-        "answers" : answers
+        "post": post,
+        "question": question,
+        "answers": answers
     }
-    return render(request,"Q&A_sub.html",context)
+    return render(request, "Q&A/Q&A_sub.html", context)
 
-def create_answer(request, post_id,question_id):  # Q&A 답변 작성(질문 id)
+
+def create_answer(request, post_id, question_id):  # Q&A 답변 작성(질문 id)
+    post = Employ_post.objects.get(id = post_id)
+    question = Question.objects.get(id=question_id)
+    context = {
+        "post": post,
+        "question": question
+    }
     if request.method == 'POST':
-        question = Question.objects.get(id = question_id)
-        form = AnswerForm(request.POST,request.FILES)
+
+        form = AnswerForm(request.POST, request.FILES)
         if form.is_valid():
             answer = form.save(commit=False)
             answer.question_ref = question
@@ -173,22 +189,25 @@ def create_answer(request, post_id,question_id):  # Q&A 답변 작성(질문 id)
             answer.save()
             question.progress = "답변완료"
             question.save()
-            return redirect('question_detail',post_id,question.id)
+            return redirect('question_detail', post_id, question.id)
         else:
-             return render(request, 'QnA_answer_w.html')
+            return render(request, 'findwork_company_QnA/QnA_answer_w.html',context)
     else:
-        return render(request, 'QnA_answer_w.html')
 
-def delete_answer(request,answer_id): #Q&A 답변 삭제?(답변 id)
-    answer = get_object_or_404(Answer, id = answer_id)
+        return render(request, 'findwork_company_QnA/QnA_answer_w.html',context)
+
+
+def delete_answer(request, answer_id):  # Q&A 답변 삭제?(답변 id)
+    answer = get_object_or_404(Answer, id=answer_id)
     answer.delete()
     return redirect('QA_list')
+
 
 def report_create_e(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        post = Postable.objects.get(id = data['post_id'])
+        post = Postable.objects.get(id=data['post_id'])
         content = data['content']
-        new = report.objects.create(content = content, postable = post)
+        new = report.objects.create(content=content, postable=post)
 
         return JsonResponse({})

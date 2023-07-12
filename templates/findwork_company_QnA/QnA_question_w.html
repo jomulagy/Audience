@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="..\..\static\css\findwork_company_QnA\QnA_question_w_style.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/findwork_company_QnA/QnA_question_w_style.css' %}">
 
 </head>
 <body>
-    <form action="URL" method="POST"> 
+    {% include 'header2.html' %}
+    <form action="{% url 'employ:create_answer' post.id question.id %}" method="POST" enctype="multipart/form-data">
         <div class="container">
-            <input type="text" style="border:0 solid black" id="title" name="title" placeholder="제목을 입력해주세요">
+            <input type="text" style="border:0 solid black" id="title" value = "제목:Re [{{question.title}}]" name="title" placeholder="제목을 입력해주세요">
             
             <div class="certification_photo">
                 <b id= "certification_photo_text">사진첨부</b>
@@ -19,7 +21,7 @@
                 <div id="certification_photo_space">
                 </div>
     
-                <input type="file" id="upload-input" accept="image/*">
+                <input type="file" id="upload-input" name = "image" accept="image/*">
                 <label for="upload-input" class="upload-button">사진 불러오기</label>
                 <div id="preview-container"></div>
             </div>
@@ -29,5 +31,5 @@
             <input type="submit" id="upload_btn" value="업로드하기">
         </div>
     </form>
-    <script src="..\..\static\js\findwork_company_QnA\QnA_question_w_script.js"></script>
+    <script src="{% static 'js/findwork_company_QnA/QnA_question_w_script.js' %}"></script>
 </body>
