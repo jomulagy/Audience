@@ -5,7 +5,7 @@ from job.models import report
 from account.models import Employer
 from django.http import JsonResponse
 from util.views import add_hashtag
-from Audience.views import post list
+from Audience.views import post_list
 import json
 
 def employ_post_detail(request,post_id,category) :#게시물 상세(id, 모집공고/Q&A)
@@ -63,7 +63,7 @@ def update_employ_post(request,id): #구인글 수정 #해시태그 저장 함�
 def delete_employ_post(request,id): #구인글 삭제
     post = get_object_or_404(Postable, id=id)
     post.delete()
-    return redirect('post list')
+    return redirect('post_list')
 
 
 def employ_free_post_detail(request,post_id):
@@ -111,7 +111,7 @@ def update_employ_free_post(request,id): #구직/자유소통 수정
 def delete_employ_free_post(request,id): #구직/자유소통 삭제
     post = get_object_or_404(Postable, id=id)
     post.delete()
-    return redirect('post list')
+    return redirect('post_list')
 
 
 def QA_list(request):
