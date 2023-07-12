@@ -47,6 +47,7 @@ for (var i = 0; i < stars.length; i++) {
   stars[i].addEventListener('click', function() {
     var value = this.getAttribute('data-value');
     starNumberInput.value = value;
+    console.log(starNumberInput.value)
   });
 }
 
