@@ -86,7 +86,8 @@ document.addEventListener("DOMContentLoaded", function () {
     $.ajax({
        type : 'GET',
        dataType : 'json',
-       url : "url" + word,
+       url : "http://127.0.0.1:8000/audience/search/posts/" + word,
+       contentType: 'application/json',
        error : function(err) {
           console.log("실행중 오류가 발생하였습니다.");
        },

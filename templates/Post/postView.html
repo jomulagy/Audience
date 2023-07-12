@@ -1,12 +1,9 @@
-{% extends 'header.html' %}
-{% load static %}
-
 <!--게시글 리스트 페이지 & 게시글 확인 페이지-->
 <!DOCTYPE html>
 <html lang="ko">
-{% block static %}
+
 <head>
-    <link type="text/css" rel="stylesheet" href="..\static\css\postView.css" />
+    <link type="text/css" rel="stylesheet" href="..\..\static\css\post\postView.css" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +14,7 @@
     <title>게시글 확인 페이지</title>
 
 </head>
-{% endblock %}
+
 <body>
     <div class="backg"></div>
 
@@ -107,13 +104,13 @@
 
     <h2 class="nickname">기업이름</h2>
     <h2 class="title">게시글 제목</h2>
-    <button class="modify">수정하기</button>
-    <button class="delete">삭제하기</button>
+    <a href="h" class="modify">수정하기</a>
+    <a href="h" class="delete">삭제하기</a>
     <h2 class="views">조회수 00회</h2>
 
-    <script src="..\static\js\postView.js"></script>
+    <script src="..\..\static\js\post\postView.js"></script>
 </body>
-{% endblock %}
+
 </html>
 
 

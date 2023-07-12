@@ -1,12 +1,9 @@
-{% extends 'header.html' %}
-{% load static %}
-
 <!--게시글 리스트 페이지 & 게시글 확인 페이지-->
 <!DOCTYPE html>
 <html lang="ko">
-{% block static %}
+
 <head>
-    <link type="text/css" rel="stylesheet" href="{% static 'css\Q&A_p.css' %}>
+    <link type="text/css" rel="stylesheet" href="..\..\static\css\Q&A\Q&A_sub.css" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +14,7 @@
     <title>게시글 확인 페이지</title>
 
 </head>
-{% endblock %}
-{% block content %}
+
 <body>
     <div class="backg"></div>
 
@@ -46,31 +42,49 @@
     <div class="infoBoxLineDown"></div>
     <div class="infoBoxLineMiddle"></div>
 
-    <div class="searchBoxes">
-        <button class="searchBox" type="button" value="Button">질문 작성하기</button>
-    </div>
 
-    <h2 class="qnaText">Q&A 게시판</h2>
-    <div class="qnaBox">
-        <div id="linePostListContainer">
-            <!--게시글(줄) 누르면 다음 페이지로 이동 => 링크는 js에서 임의로 설정-->
-            <div id="linePostList"></div>   <!--아래 줄 게시글-->
+
+    <div class="contentBox">
+        <h2 class="questiontitle">질문 제목: </h2>
+        <div class="questionContent">
+            <h2 class="questionText">[내용]</h2>
         </div>
     </div>
-    <div class="qnaBoxUp"></div>
-    <div class="qnaBoxDown"></div>
+    <div class="contentBoxUp"></div>
+    <div class="contentBoxDown"></div>
 
+
+    <div class="contentReBox">
+        <h2 class="answertitle">답변: RE: [질문 제목] </h2>
+        <div class="answerContent">
+            <h2 class="answerText">[내용]</h2>
+        </div>
+    </div>
+    <div class="contentReBoxUp"></div>
+    <div class="contentReBoxDown"></div>
+
+    
     <h2 class="nickname">기업이름</h2>
     <h2 class="title">게시글 제목</h2>
-    <button class="modify">수정하기</button>
-    <button class="delete">삭제하기</button>
-    <h2 class="views">조회수 00회</h2>
+    <h2 class="reportText">신고하기</h2>
+    <a href="h" class="modifyText">수정하기</a>
+    <a href="h" class="deleteText">삭제하기</a>   
+    
+    <div class="reportMenu2" style="display: none;">
+        <select id="reportReason2">
+          <option value="">사유를 선택하세요</option>
+          <option value="사칭/사기">사칭/사기</option>
+          <option value="욕설/비하">욕설/비하</option>
+          <option value="상업적 광고 및 판매">상업적 광고 및 판매</option>
+          <option value="기타">기타</option>
+        </select>
+        <button id="report-submit2">신고</button>
+      </div>
 
-
-    <script src="..\static\js\Q&A_p.js"></script>
+    <script src="..\..\static\js\Q&A\Q&A_sub.js"></script>
 </body>
-{% endblock %}
+
 </html>
+<!---->
 
 
-<!--수정사항: 반응형 css + 게시글내용/댓글 부분 영역 증감 + 댓글 수정하기 기능-->
