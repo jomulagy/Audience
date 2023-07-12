@@ -1,24 +1,17 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse, reverse_lazy  # 리버스 오류나면 리버스레이지로
 from django.http import JsonResponse
 import json, re
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from django.contrib.auth.hashers import check_password, make_password
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import View, CreateView, UpdateView
+from django.contrib.auth.hashers import check_password
+from django.views.generic import View
 
 from .models import Userable, Applicant, Employer
 from employ.models import Postable
 from util.views import update_interest
 from util.models import UserInterest
-from .forms import ApplicantUpdateForm, EmployerUpdateForm
-
-from django.core.validators import validate_email
-from django.core.exceptions import ValidationError
-
 # 로그인
 class UserLoginView(View):
     template_name = 'login_error.html'
