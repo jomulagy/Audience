@@ -1,7 +1,10 @@
+{% extends 'header.html' %}
+{% load static %}
+
 <!--게시글 리스트 페이지 & 게시글 확인 페이지-->
 <!DOCTYPE html>
 <html lang="ko">
-
+{% block static %}
 <head>
     <!--<link rel="stylesheet" href=".static/css/postCheck.css" />-->
     <meta charset="UTF-8">
@@ -9,38 +12,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="..\..\static\css\post\postCheck.css" />
+    <link type="text/css" rel="stylesheet" href="..\static\css\postCheck.css" />
 </script> 
     <title>게시글 확인 페이지</title>
 </head>
-
+{% endblock %}
+{% block content %}
 <body>
     <div class="backg"></div>
 
-    <div class="rectangleBar"></div>
+    <div class="rectangleBar">
+        <h2><a class="rectText1" href="https://google.com">모집공고</a></h2>
+        <div class="rectMiddle"></div>
+        <h2><a class="rectText2" href="https://google.com">Q&A</a></h2>
+    </div>
 
     <div class="infoBox">
         <h2 class="infoCondition">지원조건(인턴/정규직/비정규직)<br>[내용 입력]</h2>
         <h2 class="infoStar">평점
-            <br>
-            <div class="star-rating space-x-4 mx-auto">
-                <span class="star pr-4" id="1-star" value="1">★</span>
-                <span class="star" id="2-star" value="2">★</span>
-                <span class="star" id="3-star" value="3">★</span>
-                <span class="star" id="4-star" value="4">★</span>
-                <span class="star" id="5-star" value="5">★</span>
-                <!--
-                <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" disabled />
+            <br><div class="star-rating">   <!--별점-->
+                <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
                 <label for="5-stars" class="star pr-4">★</label>
-                <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" disabled />
+                <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
                 <label for="4-stars" class="star">★</label>
-                <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" disabled />
+                <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
                 <label for="3-stars" class="star">★</label>
-                <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" disabled />
+                <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
                 <label for="2-stars" class="star">★</label>
-                <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" disabled />
-                <label for="1-star" class="star">★</label> -->
-              </div>
+                <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
+                <label for="1-star" class="star">★</label>
+            </div>
         </h2>
         <h2 class="infoHashtag">해시태그<br>[내용 입력]</h2>
     </div>
@@ -81,6 +82,7 @@
     <div id="comment-list"></div>
     </div>
 
+    
   
 
 <div class="commentBoxUp"></div>
@@ -90,9 +92,9 @@
 
     <h2 class="nickname">게시자 닉네임</h2>
     <h2 class="title">게시글 제목</h2>
-    <h2 class="reportText">신고하기</h2>
-    <a href="h" class="modifyText">수정하기</a>
-    <a href="h" class="deleteText">삭제하기</a>
+    <button class="reportText">신고하기</button>
+    <button class="modifyText">수정하기</button>
+    <button class="deleteText">삭제하기</button>
     <div class="reportMenu2" style="display: none;">
         <select id="reportReason2">
           <option value="">사유를 선택하세요</option>
@@ -106,8 +108,9 @@
 
     <h2 class="views">조회수 00회</h2>
 
-    <script src="..\..\static\js\post\postCheck.js"></script>
+    <script src="..\static\js\postCheck.js"></script>
 </body>
+{% endblock %}
 </html>
 
 <!--좋아요/싫어요 버튼 클릭 기능 구현 -->

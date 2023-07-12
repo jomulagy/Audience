@@ -60,22 +60,3 @@ function lineShowPosts() {
 document.addEventListener("DOMContentLoaded", function () {
   lineShowPosts();
 });
-
-
-// 신고하기 (게시글)
-const reportButton2 = document.querySelector('.reportText');
-const reportMenu2 = document.querySelector('.reportMenu2');
-
-reportButton2.addEventListener('click', () => {
-  reportMenu2.style.display = 'block';
-});
-
-const reportSubmitButton2 = document.getElementById('report-submit2');
-reportSubmitButton2.addEventListener('click', () => {
-  const reportReason2 = document.getElementById('reportReason2').value;
-
-  console.log('신고 이유:', reportReason2);
-
-  reportMenu2.style.display = 'none';
-});
-//

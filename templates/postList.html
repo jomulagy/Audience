@@ -1,10 +1,13 @@
+{% extends 'header.html' %}
+{% load static %}
+
 <!--게시글 리스트 페이지 & 게시글 확인 페이지-->
 <!DOCTYPE html>
 <html lang="ko">
-
+{% block static %}
 <head>
     
-    <link rel="stylesheet" rel="stylesheet" href="..\..\static\css\post\postList.css" />
+    <link rel="stylesheet" rel="stylesheet" href="..\static\css\postList.css" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +18,8 @@
     <title>구직 커뮤니티</title>
 
 </head>
-
+{% endblock %}
+{% block content %}
 <body>
     <!--구직 커뮤니티-->
     <!--선택 박스-->
@@ -46,6 +50,7 @@
 			</form>
 		</div>
 	</div>
+{% include 'pagination.html' %}
 
     <h2 id="searchResultHeading" style="display: none;"></h2>
     <div id="searchResults"></div>
@@ -63,7 +68,7 @@
         <div id="linePostList"></div>   <!--아래 줄 게시글-->
     </div>
     <div id="newPostContainer"></div>   <!--아래 실시간 게시물-->
-    <script src="..\..\static\js\post\postList.js"></script>
+    <script src="..\static\js\postList.js"></script>
 </body>
-
+{% endblock %}
 </html>
