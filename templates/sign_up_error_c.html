@@ -24,7 +24,7 @@
         <form class="form_signup" action="{% url 'create_employer' %}" method="POST">
             <div class="id">
                 <h3 class="h3_id">아이디</h3>
-                <input type="text" class="input_id_nickname" placeholder="이메일을 입력해주세요">
+                <input type="text" class="input_id_nickname" value="{{username}}" placeholder="이메일을 입력해주세요">
                 <input type="button" class="check_button" value="중복확인">
                 {% if error == 'username_duplicate_error' %}
                     <p class="error_message">이미 존재하는 아이디입니다.</p>
