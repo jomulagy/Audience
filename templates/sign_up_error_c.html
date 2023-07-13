@@ -20,7 +20,7 @@
     <h1 class="serviceName">청취자들</h1>
 
     <div class="signup_c_p">
-        <form class="form_signup" action="{% url 'create_employer' %}" method="POST">
+        <form class="form_signup" action="{% url 'create_employer' %}" method="POST" enctype="multipart/form-data">
             <div class="id">
                 <h3 class="h3_id">아이디</h3>
                 <input type="text" class="input_id_nickname" name="username" value="{{username}}" placeholder="이메일을 입력해주세요">

@@ -98,12 +98,7 @@ def create_applicant(request):
         )
 
         if career:
-            file_path = 'applicant_career/' + career.name
-            with open(file_path, 'wb') as f:
-                for chunk in career.chunks():
-                    f.write(chunk)
-
-            applicant.profile_pic = file_path
+            applicant.career = career
 
         update_interest(applicant, interest)
         applicant.save()
@@ -161,12 +156,7 @@ def create_employer(request):
         )
         update_interest(employer, interest)
         if image:
-            file_path = 'company_profile/' + image.name
-            with open(file_path, 'wb') as f:
-                for chunk in image.chunks():
-                    f.write(chunk)
-
-            employer.profile_pic = file_path
+            employer.image = image
 
         employer.save()
         return render(request, 'signup_fin.html', {'id': employer.username})
@@ -180,7 +170,7 @@ def signup_finish(request):
     return render(request, 'signup_finish.html')
 
 def search_id_pw(request):
-    return render(request, 'find_id_pw.html')
+    return render(request, 'find_id_pw.html', {'type': request.user.type})
 
 # 아이디 찾기 tested
 def search_username(request):  # ajax로 받기 (done)
@@ -247,13 +237,15 @@ def my_page(request):
         detail_user = Applicant.objects.get(id=request.user.id)
     else:
         detail_user = Employer.objects.get(id=request.user.id)
+
     return render(request, 'mypage.html', {'interest_list': interest_list, 'posts': post, 'detail_user': detail_user})
 
+
+
 def my_posts_detail(request):
-    if request.user.is_authenticated:
-        user = request.user
-        post = Postable.objects.filter(userable=user)
-        return render(request, 'my_library.html', {'post': post})
+    user = request.user
+    posts = list(Postable.objects.filter(userable=user).values("id", "title", "views"))
+    return JsonResponse({'posts': posts})
 
 # 비밀번호 확인
 def check_user_password(request):
@@ -270,19 +262,34 @@ def check_user_password(request):
 
 # 아이디 중복 검사
 def check_duplicate_username(request):
+    data = json.loads(request.body)
+    username = data['username']
+
     if request.method == 'POST':
-        username = request.POST.get('username')
-        if Applicant.objects.filter(username=username).exists():
-            return JsonResponse({'error': 'username_duplicate_error'})
+        if Userable.objects.filter(username=username).exists():
+            return JsonResponse({'success': 'exist_username'})
         else:
-            return JsonResponse({'error': 'no_duplicate_name'})
+            return JsonResponse({'success': 'no_exist_username'})
+
 def check_duplicate_nickname(request):
+    data = json.loads(request.body)
+    nickname = data['nickname']
+
     if request.method == 'POST':
-        nickname = request.POST.get('nickname')
-        if Applicant.objects.filter(nickname=nickname):
-            return JsonResponse({'error': 'nickname_duplicate_error'})
+        if Applicant.objects.filter(nickname=nickname).exists():
+            return JsonResponse({'success': 'exist_nickname'})
         else:
-            return JsonResponse({'error': 'no_duplicate_name'})
+            return JsonResponse({'success': 'no_exist_nickname'})
+
+def check_duplicate_company(request):
+    data = json.loads(request.body)
+    company = data['company']
+
+    if request.method == 'POST':
+        if Employer.objects.filter(company=company).exists:
+            return JsonResponse({'success': 'exist_company'})
+        else:
+            return JsonResponse({'success': 'no_exist_company'})
 
 # 비면번호 변경
 # render 사용해서 틀렸을 때 context에 error(key값으로 두 개) 넣어서 같은 페이지로 이동 (done)
