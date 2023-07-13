@@ -16,5 +16,8 @@ urlpatterns = [
     path('signup/finish/', views.signup_finish, name='signup_finish'),
     path('signup/', views.signup_page, name='signup_page'),
     path('search_id_pw/', views.search_id_pw, name='search_id_pw'),
-    path('mypage/', views.my_page, name='my_page')
+    path('mypage/', views.my_page, name='my_page'),
+    path('username/check/', views.check_duplicate_username, name='check_duplicate_username'),
+    path('nickname/check/', views.check_duplicate_nickname, name='check_duplicate_nickname'),
+    path('company/check/', views.check_duplicate_company, name='check_duplicate_company')
 ]

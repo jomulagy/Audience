@@ -1,31 +1,4 @@
 // 사각형; 게시글 데이터 (예시)
-var posts = [
-  {
-    title: "첫 번째 게시글 제목",
-    content: "내용",
-    views: 100,
-    link: "https://www.google.com"
-  },
-  {
-    title: "두 번째 게시글 제목",
-    content: "20자 이상의 게시글입니다. 20자 이상의 게시글입니다. 20자 이상의 게시글입니다.",
-    views: 90,
-    link: "https://www.naver.com"
-  },
-  {
-    title: "세 번째 게시글 제목",
-    content: "내용",
-    views: 80,
-    link: "https://www.naver.com/222"
-  },
-  {
-    title: "네 번째 게시글 제목",
-    content: "내용",
-    views: 60,
-    link: "https://www.naver.com/777"
-  }
-];
-
 function truncateContentName(content) {
   if (content.length > 20) {
     return content.slice(0, 20) + "...";
@@ -34,10 +7,9 @@ function truncateContentName(content) {
   }
 }
 
-function showPosts() {
+function showPosts(posts) {
   var postList = document.getElementById("postList");
   postList.innerHTML = "";
-
   for (var i = 0; i < 4 && i < posts.length; i++) {
     var post = posts[i];
     var postElement = document.createElement("div");
@@ -69,9 +41,9 @@ function showPosts() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  showPosts();
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//   showPosts();
+// });
 
   
   // 검색 기능 ---> ajax,,,
@@ -91,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
        error : function(err) {
           console.log("실행중 오류가 발생하였습니다.");
        },
-       success : function(data) {
+       success : function(data) { 
 
           console.log("data확인 : " + data);
           console.log("결과 갯수 : " + data.dataSearch.content.length);
@@ -104,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    function listenForNewPosts() {
+    function listenForNewPosts(linePosts) {
       setInterval(function() {
         var newPost = {
           title: "새로운 게시글 " + (posts.length + 1),
@@ -130,41 +102,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-// 줄; 게시글 데이터 (예시)
-var linePosts = [
-  {
-    lineTitle: "첫 번째 게시글",
-    lineCompany: "회사명",
-    lineViews: 100,
-    link: "https://www.google.com"
-  },
-  {
-    lineTitle: "두 번째 게시글",
-    lineCompany: "회사명",
-    lineViews: 50,
-    link: "https://www.naver.com"
-  },
-  {
-    lineTitle: "세 번째 게시글",
-    lineCompany: "회사명",
-    lineViews: 70,
-    link: "https://www.naver.com/222"
-  },
-  {
-    lineTitle: "네 번째 게시글",
-    lineCompany: "회사명",
-    lineViews: 55,
-    link: "https://www.naver.com/777"
-  },
-  {
-    lineTitle: "다섯 번째 게시글",
-    lineCompany: "회사명",
-    lineViews: 60,
-    link: "https://www.naver.com/000"
-  }
-];
 
-function lineShowPosts() {
+
+function lineShowPosts(linePosts) {
   var linePostList = document.getElementById("linePostList");
   linePostList.innerHTML = "";
 
@@ -175,15 +115,14 @@ function lineShowPosts() {
 
     var lineCompanyElement = document.createElement("h2");
     lineCompanyElement.classList.add("linePost-company");
-    lineCompanyElement.textContent = "[" + linePost.lineCompany + "]";
 
     var lineTitleElement = document.createElement("h2");
     lineTitleElement.classList.add("linePost-title");
-    lineTitleElement.textContent = linePost.lineTitle;
+    lineTitleElement.textContent = linePost.title;
 
     var lineViewsElement = document.createElement("p");
     lineViewsElement.classList.add("linePost-views");
-    lineViewsElement.textContent = "조회수: " + linePost.lineViews;
+    lineViewsElement.textContent = "조회수: " + linePost.views;
 
     var linkElement = document.createElement("a");
     linkElement.href = linePost.link;
@@ -198,6 +137,6 @@ function lineShowPosts() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  lineShowPosts();
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//   lineShowPosts();
+// });

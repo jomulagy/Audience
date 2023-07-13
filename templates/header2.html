@@ -7,7 +7,9 @@
 	<meta name="code" charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes"/>
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-	<script src="/static/js/header.js"></script>
+	<script src="/static/js/header2.js"></script>
+	<script src="/static/js/pagination.js"></script>
+
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/static/css/header2_style.css"/>
 </head>
@@ -32,14 +34,14 @@
 					<div class="hd-gnb-menu">
 						<ul>
 							<li>
-								<a href="{% url 'main:post_list_page' '구인' 'all' 'all' 'all' %}" class="depth-title">채용정보</a>
+								<a href="{% url 'main:post_list_page' '구인' '구인' 'all' 'all' %}" class="depth-title">채용정보</a>
 								<ul class="hd-gnb-depth">
 									<li><a href="{% url 'main:post_list_page' '구인' '구인' 'all' 'all' %}">구인글</a></li>
 									<li><a href="{% url 'main:post_list_page' '구인' 'free' 'all' 'all' %}">자유소통</a></li>
 								</ul>
 							</li>
 							<li>
-								<a href="" class="depth-title">청취자</a>
+								<a href="{% url 'main:post_list_page' '구직' '구직' 'all' 'all' %}" class="depth-title">청취자</a>
 								<ul class="hd-gnb-depth">
 									<li><a href="{% url 'main:post_list_page' '구직' '구직' 'all' 'all' %}">구직자들(평점,후기)</a></li>
 									<li><a href="{% url 'main:post_list_page' '구직' 'free' 'all' 'all' %}">자유소통</a></li>
@@ -54,14 +56,14 @@
 				<div class="he-gnb-drop">
 					<ul>
 						<li>
-							<a href="{% url 'main:post_list_page' '구인' 'all' 'all' 'all' %}" class="depth-title">채용정보</a>
+							<a href="{% url 'main:post_list_page' '구인' '구인' 'all' 'all' %}" class="depth-title">채용정보</a>
 							<ul class="hd-gnb-depth">
 								<li><a href="{% url 'main:post_list_page' '구인' '구인' 'all' 'all' %}">구인글</a></li>
 								<li><a href="{% url 'main:post_list_page' '구인' 'free' 'all' 'all' %}">자유소통</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="{% url 'main:post_list_page' '구직' 'all' 'all' 'all' %}" class="depth-title">청취자</a>
+							<a href="{% url 'main:post_list_page' '구직' '구직' 'all' 'all' %}" class="depth-title">청취자</a>
 							<ul class="hd-gnb-depth">
 								<li><a href="{% url 'main:post_list_page' '구직' '구직' 'all' 'all' %}">구직자들(평점,후기)</a></li>
 								<li><a href="{% url 'main:post_list_page' '구직' 'free' 'all' 'all' %}">자유소통</a></li>

@@ -26,10 +26,10 @@ class Applicant(Userable):
     ]
     school = models.CharField(max_length=10, choices=SCHOOL)
 
-    career = models.ImageField(upload_to='applicant_career/', null=True)
+    career = models.ImageField(upload_to='applicant_career/', null=True, blank=True)
 
 class Employer(Userable):
     company = models.CharField(max_length=20, null=False, default='')
     age = models.IntegerField(null=True)
-    image = models.ImageField(upload_to='company_profile/', null=True)
+    image = models.ImageField(upload_to='company_profile/', null=True, blank=True)
 

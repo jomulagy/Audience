@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-import json, re
+import json
+import re
+import string
+import random
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.contrib.auth.hashers import check_password
 from django.views.generic import View
 
@@ -95,12 +98,7 @@ def create_applicant(request):
         )
 
         if career:
-            file_path = 'applicant_career/' + career.name
-            with open(file_path, 'wb') as f:
-                for chunk in career.chunks():
-                    f.write(chunk)
-
-            applicant.profile_pic = file_path
+            applicant.career = career
 
         update_interest(applicant, interest)
         applicant.save()
@@ -131,7 +129,6 @@ def create_employer(request):
         if password1 != password2:
             context["error"] = 'no_same_password_error'
             return render(request, 'sign_up_error_c.html', context)
-
         password_pattern = r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$'
         if not re.match(password_pattern, password1):
             context["error"] = 'wrong_password_error'
@@ -159,12 +156,7 @@ def create_employer(request):
         )
         update_interest(employer, interest)
         if image:
-            file_path = 'company_profile/' + image.name
-            with open(file_path, 'wb') as f:
-                for chunk in image.chunks():
-                    f.write(chunk)
-
-            employer.profile_pic = file_path
+            employer.image = image
 
         employer.save()
         return render(request, 'signup_fin.html', {'id': employer.username})
@@ -212,39 +204,48 @@ def search_password(request):  # ajax로 변경(done)
     # 성공
     if Userable.objects.filter(username=username).exists():
         user = Userable.objects.get(username=username)
-        new_password = Userable.objects.make_random_password()
+
+        pw_candidate = string.ascii_letters + string.digits + string.punctuation
+        new_password = ""
+        for i in range(10):
+            new_password += random.choice(pw_candidate)
+
         user.set_password(new_password)
         user.save()
 
-        send_mail(
-            f'임시 비밀번호: {new_password}',
-            'audience_likelion@naver.com',  # 임시 계정 만들기
-            [username],
-            fail_silently=False,
-        )
-        return JsonResponse({'success': True, 'username': username, 'password': user.password})
+        subject = "From Audience"
+        to = [username]
+        from_email = "audience_likelion@naver.com"
+        message = f'임시 비밀번호: {new_password}'
+        EmailMessage(subject=subject, body=message, to=to, from_email=from_email).send()
+        return JsonResponse({'success': True})
     # 실패
     else:
         return JsonResponse({'success': False, 'error': f'"{username}" does not exist.'})
 
-
 # 마이페이지
 @login_required
 def my_page(request):
-    interest = UserInterest.objects.filter(userable=request.user)
+    interests = UserInterest.objects.filter(userable=request.user)
+    interest_list=[]
+    for interest in interests:
+        interest_list.append(interest.interest.name)
+    print(interest_list)
     user_posts = Postable.objects.filter(userable=request.user)
     post = user_posts.order_by('-created_at')[:5]
     if request.user.type == "구직자":
         detail_user = Applicant.objects.get(id=request.user.id)
     else:
         detail_user = Employer.objects.get(id=request.user.id)
-    return render(request, 'mypage.html', {'interest': interest, 'posts': post, 'detail_user': detail_user})
+
+    return render(request, 'mypage.html', {'interest_list': interest_list, 'posts': post, 'detail_user': detail_user})
+
+
 
 def my_posts_detail(request):
-    if request.user.is_authenticated:
-        user = request.user
-        post = Postable.objects.filter(userable=user)
-        return render(request, 'my_library.html', {'post': post})
+    user = request.user
+    posts = list(Postable.objects.filter(userable=user).values("id", "title", "views"))
+    return
 
 # 비밀번호 확인
 def check_user_password(request):
@@ -261,19 +262,34 @@ def check_user_password(request):
 
 # 아이디 중복 검사
 def check_duplicate_username(request):
+    data = json.loads(request.body)
+    username = data['username']
+
     if request.method == 'POST':
-        username = request.POST.get('username')
-        if Applicant.objects.filter(username=username).exists():
-            return JsonResponse({'error': 'username_duplicate_error'})
+        if Userable.objects.filter(username=username).exists():
+            return JsonResponse({'success': 'exist_username'})
         else:
-            return JsonResponse({'error': 'no_duplicate_name'})
+            return JsonResponse({'success': 'no_exist_username'})
+
 def check_duplicate_nickname(request):
+    data = json.loads(request.body)
+    nickname = data['nickname']
+
     if request.method == 'POST':
-        nickname = request.POST.get('nickname')
-        if Applicant.objects.filter(nickname=nickname):
-            return JsonResponse({'error': 'nickname_duplicate_error'})
+        if Applicant.objects.filter(nickname=nickname).exists():
+            return JsonResponse({'success': 'exist_nickname'})
         else:
-            return JsonResponse({'error': 'no_duplicate_name'})
+            return JsonResponse({'success': 'no_exist_nickname'})
+
+def check_duplicate_company(request):
+    data = json.loads(request.body)
+    company = data['company']
+
+    if request.method == 'POST':
+        if Employer.objects.filter(company=company).exists:
+            return JsonResponse({'success': 'exist_company'})
+        else:
+            return JsonResponse({'success': 'no_exist_company'})
 
 # 비면번호 변경
 # render 사용해서 틀렸을 때 context에 error(key값으로 두 개) 넣어서 같은 페이지로 이동 (done)
@@ -317,12 +333,15 @@ def update_account(request):
             age = request.POST.get('age')
             interest = request.POST.getlist('interest')
             school = request.POST.get('school')
+            career = request.FILES.get('career')
 
             applicant.name = name
             applicant.gender = gender
             applicant.age = age
             applicant.school = school
             update_interest(applicant, interest)
+            if career:
+                applicant.career = career
             applicant.save()
 
             return render(request, 'change_complete.html')
@@ -346,8 +365,11 @@ def update_account(request):
 @login_required
 def delete_account(request):
     if request.method == 'POST':
-        if request.POST.get('password1') == request.POST.get('password2'):
-            if request.POST.get('password1') == request.user.password:
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+
+        if password1 == password2:
+            if check_password(password2, request.user.password):
                 request.user.delete()
                 return redirect('account_login')
             else:

@@ -1069,12 +1069,12 @@ def post_list(request):
         if category == "구직":
 
             if board_type == "구직":
-                posts = list(Job_post.objects.all().order_by("-created_at").values("id","title","views"))
-                ranks = list(Job_post.objects.all().order_by("-views").values("id","title","views"))[0:4]
+                posts = list(Job_post.objects.all().order_by("-created_at").values("id","title","views", "content"))
+                ranks = list(Job_post.objects.all().order_by("-views").values("id","title","views", "content"))[0:4]
 
             else:
-                posts = list(Freepost_j.objects.all().order_by("created_at").values("id","title","views"))
-                ranks = list(Freepost_j.objects.all().order_by("-views").values("id","title","views"))[0:4]
+                posts = list(Freepost_j.objects.all().order_by("created_at").values("id","title","views", "content"))
+                ranks = list(Freepost_j.objects.all().order_by("-views").values("id","title","views", "content"))[0:4]
 
         elif category == "구인":
             if board_type == "구인":
@@ -1083,27 +1083,27 @@ def post_list(request):
                     user = request.user
                     interest = list(UserInterest.objects.filter(userable=user).values_list("interest", flat=True))
                     employer = Employer.objects.filter(interest__in=interest)
-                    posts = list(Employ_post.objects.filter(userable__in=employer).order_by("created_at").values("id","title","views"))
-                    ranks = list(Employ_post.objects.filter(userable__in=employer).order_by("-views").values("id","title","views"))[0:4]
+                    posts = list(Employ_post.objects.filter(userable__in=employer).order_by("created_at").values("id","title","views", "content"))
+                    ranks = list(Employ_post.objects.filter(userable__in=employer).order_by("-views").values("id","title","views", "content"))[0:4]
 
                 elif post_type == "경력":
-                    posts = list(Employ_post.objects.filter(career='경력').order_by("created_at").values("id","title","views"))
-                    ranks = list(Employ_post.objects.filter(career='경력').order_by("-views").values("id","title","views"))[0:4]
+                    posts = list(Employ_post.objects.filter(career='경력').order_by("created_at").values("id","title","views", "content"))
+                    ranks = list(Employ_post.objects.filter(career='경력').order_by("-views").values("id","title","views", "content"))[0:4]
 
                 elif post_type == "신입":
-                    posts = list(Employ_post.objects.filter(career='신입').order_by("created_at").values("id","title","views"))
-                    ranks = list(Employ_post.objects.filter(career='신입').order_by("-views").values("id","title","views"))[0:4]
+                    posts = list(Employ_post.objects.filter(career='신입').order_by("created_at").values("id","title","views", "content"))
+                    ranks = list(Employ_post.objects.filter(career='신입').order_by("-views").values("id","title","views", "content"))[0:4]
 
                 else:
-                    posts = list(Employ_post.objects.all().order_by("created_at").values("id","title","views"))
-                    ranks = list(Employ_post.objects.all().order_by("-views").values("id","title","views"))[0:4]
+                    posts = list(Employ_post.objects.all().order_by("created_at").values("id","title","views", "content"))
+                    ranks = list(Employ_post.objects.all().order_by("-views").values("id","title","views", "content"))[0:4]
 
             else:
-                posts = list(Freepost_e.objects.all().order_by("created_at").values("id","title","views"))
-                ranks = list(Freepost_e.objects.all().order_by("-views").values("id","title","views"))[0:4]
+                posts = list(Freepost_e.objects.all().order_by("created_at").values("id","title","views", "content"))
+                ranks = list(Freepost_e.objects.all().order_by("-views").values("id","title","views", "content"))[0:4]
 
         else:
-            posts = list(Postable.objects.all().order_by("created_at").values("id", "title","views"))
-            ranks = list(Postable.objects.all().order_by("-views").values("id", "title", "views"))[0:4]
+            posts = list(Postable.objects.all().order_by("created_at").values("id", "title","views", "content"))
+            ranks = list(Postable.objects.all().order_by("-views").values("id", "title", "views", "content"))[0:4]
 
         return JsonResponse({'posts': posts[5*(page_num-1):5*page_num-1], 'ranks': ranks})

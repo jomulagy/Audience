@@ -13,7 +13,9 @@
 {% endblock %}
 {% block content %}
 <body>
-    <h1 class="serviceName">청취자들</h1>
+    <div class="serviceName_wrap">
+        <h1 class="serviceName">청취자들</h1>
+    </div>
 
     <form class="delete_pw" action="{% url 'delete_account' %}" method="POST">
         <div class="pw">
@@ -24,14 +26,15 @@
             {% endif %}
         </div>
         <div class="check_pw">
-            <h3 class="h3_check_pw">비밀번호 변경</h3>
+            <h3 class="h3_check_pw">비밀번호 확인</h3>
             <input type="password" class="input_check_pw" name="password2" placeholder="비밀번호를 입력해주세요">
             {% if error == 'no_match_password_error' %}
                 <p class="error_message">비밀번호가 일치하지 않습니다</p>
             {% endif %}
         </div>
-
-        <input type="submit" class="button_delete_pw" value="계정 삭제하기">
+        <div class="button_delete_pw_wrap">
+            <input type="submit" class="button_delete_pw" value="계정 삭제하기">
+        </div>
     </form>
 </body>
 {% endblock %}

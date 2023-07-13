@@ -53,6 +53,17 @@ input {
     border: 2px solid #FFBDBD;
 
 }
+.profile_box img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    background-color: #ffffff;
+    }
+
+.profile_nickname_wrap {
+    display: flex;
+    justify-content: center;
+}
 
 .mypage_buttons {
     display: flex;
@@ -164,8 +175,8 @@ input {
 }
 
 .infor_text {
-    width: 100px;
-    height: 25px;
+    width: 140px;
+    height: 30px;
     font-family: Inter;
     font-size: 17px;
     font-weight: 400;
@@ -193,7 +204,7 @@ input {
     text-align: left;
 }
 
-.hits {
+.views {
     font-family: Inter;
     font-size: 8px;
     font-weight: 400;
