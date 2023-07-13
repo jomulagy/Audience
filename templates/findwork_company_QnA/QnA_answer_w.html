@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="..\..\static\css\findwork_company_QnA\QnA_answer_w_style.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css\findwork_company_QnA\QnA_answer_w_style.css' %}">
 
 </head>
 <body>
-    <form action="URL" method="POST"> 
+    {% include 'header2.html' %}
+    <form action="{% url 'employ:create_answer' post.id question.id %}" method="POST">
         <div class="container">
             <input type="text" style="border:0 solid black" id="title" name="title" value="제목:Re [질문제목]" placeholder="제목을 입력해주세요" disabled>
             
@@ -29,5 +31,5 @@
             <input type="submit" id="upload_btn" value="업로드하기">
         </div>
     </form>
-    <script src="..\..\static\js\findwork_company_QnA\QnA_answer_w_script.js"></script>
+    <script src=".{% static 'js\findwork_company_QnA\QnA_answer_w_script.js' %}"></script>
 </body>
