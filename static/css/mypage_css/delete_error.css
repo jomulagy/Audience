@@ -11,6 +11,11 @@ input::placeholder{
     color: black;
 }
 
+.serviceName_wrap{
+    display: flex;
+    justify-content: center;
+}
+
 .delete_pw {
     position: absolute;
     left: 50%;
@@ -42,11 +47,13 @@ input::placeholder{
     color: black;
 }
 
-.button_delete_pw {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+.button_delete_pw_wrap{
+    display: flex;
+    justify-content: center;
+    margin: 3%;
+}
 
+.button_delete_pw {
     width: 382px;
     height: 50px;
     border-radius: 3px;

@@ -113,7 +113,7 @@ input::placeholder{
 
 
 #form_find_pw,
-#form_show_user_id
+#form_show_user_id,
 #form_show_user_pw {
     display: none;
 }

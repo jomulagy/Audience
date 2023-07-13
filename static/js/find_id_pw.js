@@ -55,7 +55,7 @@ function findId(){
         success : function(data){
             show_id_result();
 
-            var showBox = document.querySelector('.show_box');
+            var showBox = document.querySelector('.show_box_id');
             showBox.innerHTML = '아이디: ' + data.username;
 
         }, error: function(){
@@ -76,6 +76,8 @@ function findPw(){
             "username" : email
         }),
         success : function(data){
+            var showBox = document.querySelector('.show_box_pw')
+            showBox.innerHTML = data.email + '로 메일을 보냈습니다. 메일을 통해 비밀번호를 변경해주십시오.'
             show_pw_result();
         }, error: function(){
             console.log('실패');
