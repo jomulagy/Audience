@@ -1,28 +1,27 @@
 body{
-  position: relative;
-  width: 1440px;
-  height: 100%;
+  width: 100vw; 
+  height: 100vh;
   margin: auto;
 }
 
 
 .container {
-  min-height: 1400px;
+  position: relative;
+  min-height: 1750px;
   background-color: #FFE5E5;
   width: 1134.79px;
   height: 100%;
-  margin-top: 163.46px;
-  margin-left: 158.81px;
-  margin-right: 146.4px;
+  margin : auto;
   background-size: cover;
 }
 
+
 /*글제목*/
 
-#title {
+#title5 {
   position: absolute;
-  top: 69.54px; 
-  left: 223px;
+  top: 5%; 
+  left: 7.5%;
   width: 964px;
   max-width: 1000px;
   height: 28px;
@@ -32,8 +31,8 @@ body{
 
 #certification_photo_text {
   position: absolute;
-  top: 124.62px; 
-  left: 229.5px; 
+  top: 7%;
+  left: 7.5%; 
   width: 90px;
   height: 24px; 
   font-size: 20px; 
@@ -41,8 +40,8 @@ body{
 
 #certification_photo_space {
   position: absolute;
-  top : 155.74px;
-  left: 223.5px;
+  top : 9%;
+  left: 7.5%;
   width: 964px;
   height: 600px;
   background-color: white;
@@ -52,8 +51,8 @@ body{
 .upload-button {
   display: inline-block;
   position: absolute;
-  top: 124.62px; 
-  left: 1048px; 
+  top: 7%; 
+  left: 80%; 
   width: 140.03px;
   height: 23.37px; 
   background-color:#FFBDBD;
@@ -70,11 +69,11 @@ body{
 
 #preview-image {
   position: absolute;
-  top: 456.77px;
-  left: 48%;
-  transform: translate(-50%, -50%);
-  max-width: 944px;
-  max-height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  max-width: 894px;
+  max-height: 550px;
 }
 
 #upload-input {
@@ -85,8 +84,8 @@ body{
 
 #content {
   position: absolute;
-  top: 782.54px; 
-  left: 224.5px;
+  top: 46%; 
+  left: 7.5%;
   width: 964px;
   height: 226px;
   font-size: 20px; 
@@ -95,8 +94,8 @@ body{
 
 #hashtag_text {
   position: absolute;
-  top: 1037.37px; 
-  left: 229.5px; 
+  top: 60%; 
+  left: 7.5%; 
   width: 90px;
   height: 24px; 
   font-size: 20px; 
@@ -104,10 +103,12 @@ body{
 
 
 .tag-container {
-position: relative;
-display: flex;
-flex-wrap: nowrap; 
-max-width: 700px; 
+  position: absolute;
+  top: 61.4%;
+  left: 20%;
+  display: flex;
+  flex-wrap: nowrap; 
+  max-width: 700px; 
 }
 
 
@@ -117,8 +118,8 @@ background-color: #FFBDBD;
 border: none;
 cursor: pointer;
 position: relative;
-top: 1075.87px; 
-left: 225.69px;
+top: 0%; 
+left: 0%;
 width: 134px;
 height: 28px;
 font-size: 20px;
@@ -127,8 +128,8 @@ text-align: center;
 
 .input-container {
 position: absolute;
-top: 1087.87px; 
-left: 225.69px;
+top: 62%; 
+left: 7.5%;
 width: 134px;
 height: 28px; 
 }
