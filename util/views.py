@@ -82,12 +82,13 @@ def add_rating(applicant, employer, rating):
 # 파이썬 함수처럼 만들어서 회원정보 수정에서 호출할 수 있도록 수정
 def update_interest(user, interest_list):
     # 관심분야 clear
-    UserInterest.objects.filter(userable=user).delete()
+    if UserInterest.objects.filter(userable=user).exists():
+        UserInterest.objects.filter(userable=user).delete()
     # 다시 전부다 연결
     if len(interest_list) > 0:
         for interest in interest_list:
-
-            UserInterest.objects.create(userable=user, interest=Interest.objects.get(name=interest))
+            user_interest = UserInterest.objects.create(userable=user, interest=Interest.objects.get(name=interest))
+            user_interest.save()
     else:
         pass
 

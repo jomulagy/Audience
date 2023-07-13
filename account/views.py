@@ -170,7 +170,7 @@ def signup_finish(request):
     return render(request, 'signup_finish.html')
 
 def search_id_pw(request):
-    return render(request, 'find_id_pw.html', {'type': request.user.type})
+    return render(request, 'find_id_pw.html')
 
 # 아이디 찾기 tested
 def search_username(request):  # ajax로 받기 (done)
@@ -245,7 +245,7 @@ def my_page(request):
 def my_posts_detail(request):
     user = request.user
     posts = list(Postable.objects.filter(userable=user).values("id", "title", "views"))
-    return JsonResponse({'posts': posts})
+    return
 
 # 비밀번호 확인
 def check_user_password(request):
@@ -333,12 +333,15 @@ def update_account(request):
             age = request.POST.get('age')
             interest = request.POST.getlist('interest')
             school = request.POST.get('school')
+            career = request.FILES.get('career')
 
             applicant.name = name
             applicant.gender = gender
             applicant.age = age
             applicant.school = school
             update_interest(applicant, interest)
+            if career:
+                applicant.career = career
             applicant.save()
 
             return render(request, 'change_complete.html')
