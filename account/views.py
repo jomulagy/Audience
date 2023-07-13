@@ -28,7 +28,7 @@ class UserLoginView(View):
         # 성공
         if user is not None:
             login(request, user=user)
-            return redirect('main_view')
+            return redirect('main:main_view')
         # 실패
         else:
             return render(request, 'login_error.html', {'error': True})
