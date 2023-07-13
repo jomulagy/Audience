@@ -36,8 +36,6 @@ def create_job_post(request): #구직글 작성
             add_hashtag ()
             hashtags = list(Hashtag.objects.filter(name__contains=add_hashtag).values("name"))
             # 평점 추가하기   add_rating
-
-
             return redirect(' post_detail', post.id)
         else:
             return render(request, 'findwork_company_QnA/write_findwork.html')

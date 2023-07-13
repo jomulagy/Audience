@@ -27,12 +27,10 @@
                     <label class="temporary_btn" id="temporary_btn">비정규직</label>
 
                 </div>
-                {% if post.userable %}
+
                     <b id="company_name_text">회사 이름</b>
-                {% else %}
-                    <b id="company_name_text">{{post.userable.name}}</b>
-                {% endif %}
-                <input type="text" style="border:0 solid black" id="company_name" name="name" value = {{post.userable.name}}" placeholder="회사 검색하기" onclick="openNewWindow()">
+
+                <input type="text" style="border:0 solid black" id="company_name" name="name" value = "{{post.userable.name}}" placeholder="회사 검색하기" onclick="openNewWindow()">
 
                 <b id="grade_text">평점</b>
                 <input type="number" name="rating" id="star_number" value = "{{post.rating}}"style="display: none;">

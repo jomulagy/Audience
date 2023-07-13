@@ -5,6 +5,7 @@ from job.models import report, Freepost_j, Job_post
 from account.models import Employer
 from django.http import JsonResponse
 from util.views import add_hashtag
+from util.models import Hashtag
 from Audience.views import post_list
 import json
 
@@ -16,6 +17,7 @@ def employ_post_detail(request, post_id):  # 게시물 상세(id, 모집공고/Q
     post.save()
     likes = post.like_set.all().count()
     dislikes = post.dislike_set.all().count()
+    hashtags = list(Hashtag.objects.filter(name__contains=add_hashtag).values("name"))
     context = {
         "post": post,
         "likes": likes,
