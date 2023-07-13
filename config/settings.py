@@ -82,10 +82,11 @@ DATABASES = {
 
 # email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.naver.com'
+EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'example@naver.com'
-EMAIL_HOST_PASSWORD = '설정한 계정의 비밀번호'
+EMAIL_HOST_USER = 'audience_likelion@naver.com'
+EMAIL_HOST_PASSWORD = 'cjdcnlwkemf'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Password validation
