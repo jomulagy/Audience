@@ -21,14 +21,14 @@
 <body>
     <div class="profile"> <!--js에 의해 바뀌지 않는 프로필 상단-->
         <div class="profile_box">
-            {% if user.type == '구직자' %}
-            <img src="{{ user.image.url }}" alt="#">
+            {% if detail_user.type == '구직자' %}
+                <img src="{{ detail_user.career.url }}" alt="#">
             {% else %}
-            <img src="{{ user.career.url }}" alt="#">
+                <img src="{{ detail_user.image.url }}" alt="#">
             {% endif %}
-            {% if user_type == '구직자' %}
+            {% if detail_user.type == '구직자' %}
                 <input type="text" class="profile_nickname" value="{{detail_user.nickname}}" disabled>
-            {% elif user_type == '구인자' %}
+            {% elif detail_user.type == '구인자' %}
                 <input type="text" class="profile_nickname" value="{{detail_user.company}}" disabled>
             {% endif %}
         </div>
