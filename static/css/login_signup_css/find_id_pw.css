@@ -118,7 +118,8 @@ input::placeholder{
     display: none;
 }
 
-.show_box {
+.show_box_id,
+.show_box_pw {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -142,4 +143,9 @@ p.pw {
     letter-spacing: 0em;
     text-align: center;
 
+}
+
+.button_login {
+    display: flex;
+    justify-content: center;
 }

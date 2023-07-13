@@ -15,6 +15,23 @@ function show_mypage2() {
     $("#mypage_2").show();
     $("#mypage_button_1").css("background-color", "#FFFFFF");
     $("#mypage_button_2").css("background-color", "#FFDCDC");
+    // $("<a>").text(data.title).class("notice_title").id(data.id).appendTo(notice);
+    // $("<a>").text(data.views).class("views").id(data.id).appendTo(notice);     
+    $.ajax({
+        type : 'GET',
+        url : "/account/posts/",
+        data: JSON.stringify({
+
+        }),
+        succes : function(data){
+            console.log("111");
+            var notice = document.querySelector('.notice');
+            $("<a></a>").text(data.title).class("notice_title").id(data.id).appendTo(notice);
+            $("<a></a>").text(data.views).class("views").id(data.id).appendTo(notice);            
+        }
+    })
+       
+    
 }
 
 // function button_2() {
