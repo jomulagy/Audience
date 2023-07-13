@@ -24,10 +24,12 @@ def main_view(request):
 # 검색페이지(검색어 get parameter)
 # 뷰만 띄움
 def search_page(request, keyword, category, board_type, post_type, search_type):
-    return render(request, 'postList.html')
+
+    return render(request, 'Post/postList.html')
 
 def post_list_page(request, category, board_type, post_type, search_type):
-    return render(request, 'postList.html')
+    return render(request, 'Post/postList.html')
+
 # 검색 결과
 # 매개변수로 검색어랑 카테고리 pk로 받아서 검색
 # ajax
