@@ -21,7 +21,7 @@
     <h1 class="serviceName">청취자들</h1>
 
     <div class="change_p">
-        <form action="{% url 'update_account' %}" method="POST">
+        <form action="{% url 'update_account' %}" method="POST" enctype="multipart/form-data">
             <div class="id">
                 <h3 class="h3_id">아이디</h3>
                 <input type="text" class="user_id" value="{{user.username}}" disabled>
