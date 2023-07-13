@@ -16,6 +16,7 @@ function show_form_id(){
     $("#form_find_pw").hide();
     $("#form_find_id").show();
     $("#form_show_user_id").hide();
+    $("#form_show_user_pw").hide();
     $("#find_id_button").css("background-color", "#FFBDBD");
     $("#find_pw_button").css("background-color", "#FFE5E5");
 }
@@ -24,6 +25,7 @@ function show_form_pw(){
     $("#form_find_id").hide();
     $("#form_find_pw").show();
     $("#form_show_user_id").hide();
+    $("#form_show_user_pw").hide();
     $("#find_id_button").css("background-color", "#FFE5E5");
     $("#find_pw_button").css("background-color", "#FFBDBD");
 }
@@ -35,8 +37,9 @@ function show_id_result(){
 
 }
 function show_pw_result(){
-    $("#form_show_user_id").show();
+    $("#form_show_user_pw").show();
     $("#form_find_id").hide();
+    $("#form_find_pw").hide();
 }
 
 //json
@@ -76,9 +79,11 @@ function findPw(){
             "username" : email
         }),
         success : function(data){
-            var showBox = document.querySelector('.show_box_pw')
-            showBox.innerHTML = data.email + '로 메일을 보냈습니다. 메일을 통해 비밀번호를 변경해주십시오.'
             show_pw_result();
+            var showBox = document.querySelector('.show_box_pw');
+            $("<p>").text("아이디로 메일을 보냈습니다.").appendTo(showBox);
+            $("<p>").text("메일을 통해 비밀번호를 변경해주십시오.").appendTo(showBox);
+            
         }, error: function(){
             console.log('실패');
         }
