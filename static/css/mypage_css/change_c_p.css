@@ -1,9 +1,14 @@
 h1 {
     text-align: center;
+    margin-top: 10%;
 }
 
 input, button {
     border: none;
+}
+
+::placeholder{
+    color: black;
 }
 
 .change_p {
@@ -20,6 +25,12 @@ input, button {
 
 .id {
     margin-bottom: 5%;
+}
+
+.user_id,
+.user_pw{
+    background-color: white;
+    padding: 0 0 0 10px;
 }
 
 .user_name,
@@ -39,8 +50,8 @@ input, button {
     line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
-    color: #4D4949;
-
+    padding: 0 0 0 10px;
+    color: black;
 }
 
 .pw {
@@ -182,7 +193,7 @@ input, button {
     justify-content: center;
 }
 
-a {
+a.move_delete_p {
     font-family: Inter;
     font-size: 12px;
     font-weight: 400;

@@ -21,7 +21,7 @@
 		<header class="vh-header">
 			<!-- main header -->
 			<div class="hd-main-wrap">
-				<a class="logo" href="" alt="홈으로">
+				<a class="logo" href="{% url 'main:main_view' %}" alt="홈으로">
 					<img src="/static/img/logo/logo-symbol.png" class="logo-symbol">
 					<img src="/static/img/logo/logo-text.png" class="logo-text">
 				</a>	
@@ -34,20 +34,20 @@
 					<div class="hd-gnb-menu">
 						<ul>
 							<li>
-								<a href="" class="depth-title">채용정보</a>
+								<a href="{% url 'main:post_list_page' '구인' 'all' 'all' 'all' %}" class="depth-title">채용정보</a>
 								<ul class="hd-gnb-depth">
-									<li><a href="">구인글</a></li>
-									<li><a href="">자유소통</a></li>
+									<li><a href="{% url 'main:post_list_page' '구인' '구인' 'all' 'all' %}">구인글</a></li>
+									<li><a href="{% url 'main:post_list_page' '구인' 'free' 'all' 'all' %}">자유소통</a></li>
 								</ul>
 							</li>
 							<li>
 								<a href="" class="depth-title">청취자</a>
 								<ul class="hd-gnb-depth">
-									<li><a href="">구인자들(평점,후기)</a></li>
-									<li><a href="">자유소통</a></li>
+									<li><a href="{% url 'main:post_list_page' '구직' '구직' 'all' 'all' %}">구직자들(평점,후기)</a></li>
+									<li><a href="{% url 'main:post_list_page' '구직' 'free' 'all' 'all' %}">자유소통</a></li>
 								</ul>
 							</li>
-							<li><a href="" class="depth-title">소개</a></li>
+							<li><a href="{% url 'intro_view' %}" class="depth-title">소개</a></li>
 						</ul>
 					</div>
 				</div>
@@ -56,35 +56,37 @@
 				<div class="he-gnb-drop">
 					<ul>
 						<li>
-							<a href="" class="depth-title">채용정보</a>
+							<a href="{% url 'main:post_list_page' '구인' 'all' 'all' 'all' %}" class="depth-title">채용정보</a>
 							<ul class="hd-gnb-depth">
-								<li><a href="">구인글</a></li>
-								<li><a href="">자유소통</a></li>
+								<li><a href="{% url 'main:post_list_page' '구인' '구인' 'all' 'all' %}">구인글</a></li>
+								<li><a href="{% url 'main:post_list_page' '구인' 'free' 'all' 'all' %}">자유소통</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="" class="depth-title">청취자</a>
+							<a href="{% url 'main:post_list_page' '구직' 'all' 'all' 'all' %}" class="depth-title">청취자</a>
 							<ul class="hd-gnb-depth">
-								<li><a href="">구인자들(평점,후기)</a></li>
-								<li><a href="">자유소통</a></li>
+								<li><a href="{% url 'main:post_list_page' '구직' '구직' 'all' 'all' %}">구직자들(평점,후기)</a></li>
+								<li><a href="{% url 'main:post_list_page' '구직' 'free' 'all' 'all' %}">자유소통</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="" class="depth-title">소개</a>
+							<a href="{% url 'intro_view' %}" class="depth-title">소개</a>
 						</li>
 					</ul>
 				</div>
 				<!-- drop menu // -->
 			</div>
-			<div class="tool">
-				<a href="">로그인</a>
-				<a href="">회원가입</a>
-			</div>
-			
-				<!-- <div class="tool">
-					<a href="">로그아웃</a>
-					<a href="">마이페이지</a>
-				</div> -->
+			{% if not user.is_authenticated %}
+				<div class="tool">
+					<a href="{% url 'account_login' %}">로그인</a>
+					<a href="{% url 'signup_page' %}">회원가입</a>
+				</div>
+			{% else %}
+				<div class="tool">
+					<a href="{% url 'account_logout' %}">로그아웃</a>
+					<a href="{% url 'my_page' %}">마이페이지</a>
+				</div>
+			{% endif %}
 			</div>			
 		</header>
 		

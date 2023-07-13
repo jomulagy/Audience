@@ -1,5 +1,6 @@
 h1 {
     text-align: center;
+    margin-top: 10%;
 }
 
 input, button {
@@ -11,7 +12,7 @@ input, button {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 15%;
+    margin-top: 5%;
 }
 
 .sign_up_c,

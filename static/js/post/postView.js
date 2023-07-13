@@ -285,22 +285,22 @@ document.addEventListener("DOMContentLoaded", function () {
         content: commentContent
       };
 
-      // fetch('http://127.0.0.1:8000/comment/create/', {
-      //   method: 'POST',
-      //   headers: {
-      //     contentType: 'application/json'
-      //   },
-      //   body: JSON.stringify(requestData)
-      // })
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     const comment = createCommentElement(commentContent);
-      //     commentList.insertBefore(comment, commentList.firstChild);
-      //     commentInput.value = "";
-      //   })
-      //   .catch(error => {
-      //     console.log('댓글 작성 실패:', error);
-      //   });
+       fetch('http://127.0.0.1:8000/comment/create/', {
+         method: 'POST',
+         headers: {
+           contentType: 'application/json'
+         },
+         body: JSON.stringify(requestData)
+       })
+         .then(response => response.json())
+         .then(data => {
+           const comment = createCommentElement(commentContent);
+           commentList.insertBefore(comment, commentList.firstChild);
+           commentInput.value = "";
+         })
+         .catch(error => {
+           console.log('댓글 작성 실패:', error);
+         });
 
 
       const comment = createCommentElement("aa"); 
@@ -366,29 +366,29 @@ document.addEventListener("DOMContentLoaded", function () {
       comment.remove(); // 댓글 삭제
       adjustCommentBoxHeight();
       
-      //   // Ajax
-      // const requestData = {
-      //   comment_id: 1 // 대댓글 ID를 적절히 설정해야 합니다.
-      // };
+         // Ajax
+       const requestData = {
+         comment_id: 1 // 대댓글 ID를 적절히 설정해야 합니다.
+       };
 
-      // fetch('http://127.0.0.1:8000/comment/comment/delete/', {
-      //   method: 'POST',
-      //   headers: {
-      //     contentType: 'application/json'
-      //   },
-      //   body: JSON.stringify(requestData)
-      // })
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     if (data.success) {
-      //       reply.remove();
-      //     } else {
-      //       console.log('댓글 삭제 실패');
-      //     }
-      //   })
-      //   .catch(error => {
-      //     console.log('댓글 삭제 실패:', error);
-      //   });
+       fetch('http://127.0.0.1:8000/comment/comment/delete/', {
+         method: 'POST',
+         headers: {
+           contentType: 'application/json'
+         },
+         body: JSON.stringify(requestData)
+       })
+         .then(response => response.json())
+         .then(data => {
+           if (data.success) {
+             reply.remove();
+           } else {
+             console.log('댓글 삭제 실패');
+           }
+         })
+         .catch(error => {
+           console.log('댓글 삭제 실패:', error);
+         });
       });
 
     commentOptions.appendChild(replyButton);

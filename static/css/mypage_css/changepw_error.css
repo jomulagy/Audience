@@ -1,9 +1,14 @@
 h1 {
     text-align: center;
+    margin-top: 10%;
 }
 
 input, button {
     border: none;
+}
+
+::placeholder{
+    color: black;
 }
 
 .changepw {
@@ -33,6 +38,8 @@ input, button {
     letter-spacing: 0em;
     text-align: left;
     background: #FFE5E5;
+    padding: 0 0 0 10px;
+    color: black;
 }
 
 .button_change_pw {
