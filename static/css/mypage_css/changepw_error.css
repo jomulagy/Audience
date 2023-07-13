@@ -6,6 +6,10 @@ input, button {
     border: none;
 }
 
+::placeholder{
+    color: black;
+}
+
 .changepw {
     position: absolute;
     left: 50%;

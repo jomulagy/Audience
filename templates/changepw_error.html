@@ -18,14 +18,14 @@
     <form class="changepw" action="{% url 'update_password' %}" method="POST">
         <div class="current_pw">
             <h3 class="h3_current_pw">현재 비밀번호</h3>
-            <input type="text" class="input_current_pw" name="password" placeholder="비밀번호를 입력해주세요">
+            <input type="password" class="input_current_pw" name="password" placeholder="비밀번호를 입력해주세요">
             {% if error == "no_match_password_error" %}
                 <p class="error_message">비밀번호가 일치하지 않습니다</p>
             {% endif %}
         </div>
         <div class="new_pw">
             <h3 class="h3_new_pw">비밀번호 변경</h3>
-            <input type="text" class="input_new_pw" name="new_password" placeholder="비밀번호를 입력해주세요">
+            <input type="password" class="input_new_pw" name="new_password" placeholder="비밀번호를 입력해주세요">
             {% if error == "wrong_password_error" %}
                 <p class="error_message">영문+숫자+특수문자를 포함한 8-20자리를 입력해주세요</p>
             {% endif %}

@@ -18,14 +18,14 @@
     <form class="delete_pw" action="{% url 'delete_account' %}" method="POST">
         <div class="pw">
             <h3 class="h3_pw">비밀번호</h3>
-            <input type="text" class="input_pw" name="password1" placeholder="비밀번호를 입력해주세요">
+            <input type="password" class="input_pw" name="password1" placeholder="비밀번호를 입력해주세요">
             {% if error == 'wrong_password_error' %}
                 <p class="error_message">영문+숫자+특수문자를 포함한 8-20자리를 입력해주세요</p>
             {% endif %}
         </div>
         <div class="check_pw">
             <h3 class="h3_check_pw">비밀번호 변경</h3>
-            <input type="text" class="input_check_pw" name="password2" placeholder="비밀번호를 입력해주세요">
+            <input type="password" class="input_check_pw" name="password2" placeholder="비밀번호를 입력해주세요">
             {% if error == 'no_match_password_error' %}
                 <p class="error_message">비밀번호가 일치하지 않습니다</p>
             {% endif %}
