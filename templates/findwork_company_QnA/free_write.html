@@ -25,17 +25,18 @@
         {% endif %}
     {% endif %}
         <div class="container">
-            <input type="text" style="border:0 solid black" id="title" name="title" value = "{{post.title}}" placeholder="제목을 입력해주세요">
+            <input type="text" style="border:0 solid black" id="title5" name="title5" value = "{{post.title}}" placeholder="제목을 입력해주세요">
             
             <div class="certification_photo">
                 <b id= "certification_photo_text">사진첨부</b>
     
                 <div id="certification_photo_space">
+                    <div id="preview-container"></div>
                 </div>
     
                 <input type="file" id="upload-input" name = "image" value = "{{post.image.url}}" accept="image/*">
                 <label for="upload-input" class="upload-button">사진 불러오기</label>
-                <div id="preview-container"></div>
+         
             </div>
     
             <textarea id="content" style="border:0 solid black" name="content" placeholder="내용을 입력해주세요">{{post.content}}</textarea>

@@ -15,15 +15,15 @@ a {
   font-weight: bold;
   font-size: 23px;
   position: absolute;
-  top: 700px;
-  left: 430px;
+  top: 100%;
+  left: 29.2%;
 }
 
 .reportMenu2 {
   display: none;
   position: absolute;
-  top: 22%;
-  left: 65%;
+  top: 31.5%;
+  left: 68.5%;
 }
 
 #reportReason2 {
@@ -44,8 +44,8 @@ a {
   font-weight: bold;
   font-size: 23px;
   position: absolute;
-  top: 1710px;
-  left: 430px;
+  top: 240%;
+  left: 29.2%;
 }
 
 
@@ -78,8 +78,8 @@ a {
   font-size: 16px;
   text-underline-offset: 2px;
   color: rgb(248, 74, 74);
-  top: 218px;
-  left: 1100px;
+  top: 38.5%;
+  left: 74.5%;
   text-decoration: underline;
   position: absolute;
 }
@@ -115,8 +115,8 @@ a {
   font-size: 18px;
   text-underline-offset: 2px;
   color: rgb(27, 27, 27);
-  top: 260px;
-  left: 1073px;
+  top: 43.5%;
+  left: 72.5%;
   position: absolute;
 }
 
@@ -287,8 +287,8 @@ a {
   width: 700px;
   height: 750px;
   background-color: rgb(247, 239, 239);
-  top: 746.5px;
-  left: 425.5px;
+  top: 105%;
+  left: 29.2%;
   position: absolute;
 }
 
@@ -296,8 +296,8 @@ a {
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 746.5px;
-  left: 425.5px;
+  top: 105%;
+  left: 29.2%;
   position: absolute;
 }
 
@@ -305,8 +305,8 @@ a {
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 1496.5px;
-  left: 425.5px;
+  top: 205.6%;
+  left: 29.2%;
   position: absolute;
 }
 
@@ -349,8 +349,8 @@ a {
 .goodButton {
   width: 100px;
   height: 100px;
-  top: 1530px;
-  left: 650px;
+  top: 215%;
+  left: 44%;
   background-color: rgb(255, 255, 255);
   border: 2px solid rgb(236, 143, 143);
   border-radius: 50%;
@@ -365,8 +365,8 @@ a {
 .badButton {
   width: 100px;
   height: 100px;
-  top: 1530px;
-  left: 800px;
+  top: 215%;
+  left: 54%;
   background-color: rgb(255, 255, 255);
   border: 2px solid rgb(236, 143, 143);
   border-radius: 50%;
@@ -383,8 +383,8 @@ a {
   width: 700px;
   height: 300px;
   background-color: rgb(247, 239, 239);
-  top: 1751px;
-  left: 425.5px;
+  top: 245%;
+  left: 29.2%;
   position: absolute;
 } 
 
@@ -392,8 +392,8 @@ a {
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 1750px;
-  left: 425.5px;
+  top: 245%;
+  left: 29.2%;
   position: absolute;
 }
 
@@ -401,8 +401,8 @@ a {
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 2050px;
-  left: 425.5px;
+  top: 285.1%;
+  left: 29.2%;
   position: absolute;
 }
 
