@@ -22,9 +22,13 @@
     <div class="profile"> <!--js에 의해 바뀌지 않는 프로필 상단-->
         <div class="profile_box">
             {% if detail_user.type == '구직자' %}
-                <img src="{{ detail_user.career.url }}" alt="#">
+                {% if detail_user.career %}
+                    <img src="{{ detail_user.career.url }}" alt="#">
+                {% endif %}
             {% else %}
-                <img src="{{ detail_user.image.url }}" alt="#">
+                {% if detail_user.image %}
+                    <img src="{{ detail_user.image.url }}" alt="#">
+                {% endif %}
             {% endif %}
             {% if detail_user.type == '구직자' %}
                 <input type="text" class="profile_nickname" value="{{detail_user.nickname}}" disabled>
