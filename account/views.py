@@ -12,7 +12,8 @@ from django.contrib.auth.hashers import check_password
 from django.views.generic import View
 
 from .models import Userable, Applicant, Employer
-from employ.models import Postable
+from employ.models import Postable, Employ_post, Freepost_e
+from job.models import Job_post, Freepost_j
 from util.views import update_interest
 from util.models import UserInterest
 # 로그인
@@ -304,6 +305,7 @@ def change_password(request):
         if check_password(password, user.password):
             if re.match(password_pattern, new_password):
                 user.set_password(new_password)
+                user.save()
                 return render(request, 'changepw_complete.html')
             else:
                 return render(request, 'changepw_error.html', {'error': 'wrong_password_error'})
@@ -384,4 +386,29 @@ def delete_account(request):
     else:
         return render(request, 'delete_error.html')
 
+def create_post_view(request):
+    if request.method == "POST":
+        category = request.POST.get('category')
+        user = request.user
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        company = request.POST.get('company')
+
+        if category == '1':
+            post = Job_post.objects.create(title=title, content=content)
+        elif category == '2':
+            post = Freepost_j.objects.create(title=title, content=content)
+        elif category == '3':
+            post = Employ_post.objects.create(title=title, content=content, career='경력')
+        elif category == '4':
+            post = Employ_post.objects.create(title=title, content=content, career='신입')
+        else:
+            post = Freepost_e.objects.create(title=title, content=content)
+
+        post.userable = user
+        post.save()
+
+        return redirect('employ:employ_free_post_detail', post.id)
+    else:
+        return render(request, 'create_post_view.html')
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .form-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff; /* Changed to white */
+      border: 2px solid #ffffff; /* Changed to white */
+      border-radius: 8px; /* Changed to less rounded corners */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-container select,
+    .form-container input[type="text"],
+    .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      background-color: #ffffff; /* Changed to white */
+    }
+
+    .form-container textarea {
+      height: 200px;
+    }
+
+    .form-container button {
+      background-color: #e286aa;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #d16a8f;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <form action="{% url 'create_post_view' %}" method="post">
+      {% csrf_token %}
+{% if user.type == '구직자' %}
+{% else %} {% endif %}
+      <label for="category">카테고리:</label>
+      <select id="category" name="category">
+        <option disabled selected>선택</option>
+        <optgroup label="구직">
+          {% if user.type == '구직자' %}
+            <option value="1">구직</option>
+          {% else %}
+            <option disabled selected>구직</option>
+          {% endif %}
+          <option value="2">자유</option>
+        </optgroup>
+        <optgroup label="구인">
+          {% if user.type == '구직자' %}
+            <option disabled selected>경력</option>
+            <option disabled selected>신입</option>
+          {% else %}
+            <option value="3">경력</option>
+            <option value="4">신입</option>
+          {% endif %}
+          <option value="5">자유</option>
+        </optgroup>
+      </select>
+
+      <label for="title">제목:</label>
+      <input type="text" id="title" name="title">
+
+      <label for="title">회사:</label>
+      <input type="text" id="titl" name="title">
+
+      <label for="content">내용:</label>
+      <textarea id="content" name="content"></textarea>
+
+      <button type="submit">작성</button>
+    </form>
+  </div>
+</body>
+</html>
