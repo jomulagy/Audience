@@ -170,7 +170,7 @@ def signup_finish(request):
     return render(request, 'signup_finish.html')
 
 def search_id_pw(request):
-    return render(request, 'find_id_pw.html', {'type': request.user.type})
+    return render(request, 'find_id_pw.html')
 
 # 아이디 찾기 tested
 def search_username(request):  # ajax로 받기 (done)
@@ -226,20 +226,26 @@ def search_password(request):  # ajax로 변경(done)
 # 마이페이지
 @login_required
 def my_page(request):
-    interest = UserInterest.objects.filter(userable=request.user)
+    interests = UserInterest.objects.filter(userable=request.user)
+    interest_list=[]
+    for interest in interests:
+        interest_list.append(interest.interest.name)
+    print(interest_list)
     user_posts = Postable.objects.filter(userable=request.user)
     post = user_posts.order_by('-created_at')[:5]
     if request.user.type == "구직자":
         detail_user = Applicant.objects.get(id=request.user.id)
     else:
         detail_user = Employer.objects.get(id=request.user.id)
-    return render(request, 'mypage.html', {'interest': interest, 'posts': post,
-                                           'user_type': request.user.type, 'detail_user': detail_user})
+
+    return render(request, 'mypage.html', {'interest_list': interest_list, 'posts': post, 'detail_user': detail_user})
+
+
 
 def my_posts_detail(request):
     user = request.user
     posts = list(Postable.objects.filter(userable=user).values("id", "title", "views"))
-    return JsonResponse({'posts': posts})
+    return
 
 # 비밀번호 확인
 def check_user_password(request):
@@ -327,12 +333,15 @@ def update_account(request):
             age = request.POST.get('age')
             interest = request.POST.getlist('interest')
             school = request.POST.get('school')
+            career = request.FILES.get('career')
 
             applicant.name = name
             applicant.gender = gender
             applicant.age = age
             applicant.school = school
             update_interest(applicant, interest)
+            if career:
+                applicant.career = career
             applicant.save()
 
             return render(request, 'change_complete.html')
