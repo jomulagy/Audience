@@ -118,7 +118,8 @@ input::placeholder{
     display: none;
 }
 
-.show_box {
+.show_box_id,
+.show_box_pw {
     display: flex;
     flex-direction: column;
     justify-content: center;
