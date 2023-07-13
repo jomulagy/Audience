@@ -1,5 +1,6 @@
 h1 {
     text-align: center;
+    margin-top: 10%;
 }
 
 input, button {
@@ -26,6 +27,12 @@ input, button {
     margin-bottom: 5%;
 }
 
+.user_id,
+.user_pw{
+    background-color: white;
+    padding: 0 0 0 10px;
+}
+
 .user_name,
 .user_age {
     display: flex;
@@ -44,7 +51,7 @@ input, button {
     letter-spacing: 0em;
     text-align: left;
     color: #4D4949;
-
+    padding: 0 0 0 10px;
 }
 
 .pw {
