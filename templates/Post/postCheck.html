@@ -134,10 +134,10 @@
 <h2 class="nickname">{{post.userable.name}}</h2>
 <h2 class="title">{{post.title}}</h2>
 {% if post.userable == request.user %}
-<a href="{% url 'job:update_job_post' post.id %}" class="modifyText" >수정하기</a>
-<a href="{% url 'job:delete_job_post' post.id %}" class="deleteText">삭제하기</a>
+    <a href="{% url 'job:update_job_post' post.id %}" class="modifyText" >수정하기</a>
+    <a href="{% url 'job:delete_job_post' post.id %}" class="deleteText">삭제하기</a>
 {% else %}
-<h2 class="reportText">신고하기</h2>
+    <h2 class="reportText">신고하기</h2>
 {% endif %}
 
 <div class="reportMenu2" style="display: none;">
