@@ -5,6 +5,9 @@ h1 {
 input, button {
     border: none;
 }
+::placeholder{
+    color: black;
+}
 
 .form_signup {
     margin: 0 0 17% 0;
