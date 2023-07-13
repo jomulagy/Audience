@@ -22,7 +22,11 @@
     <div class="profile"> <!--js에 의해 바뀌지 않는 프로필 상단-->
         <div class="profile_box">
             <img src="" alt="###">
-            <input type="text" class="profile_nickname" value="{{user.nickname}}" disabled>
+            {% if user.type == '구직자' %}
+                <input type="text" class="profile_nickname" value="{{detail_user.nickname}}" disabled>
+            {% elif user.type == '구인자' %}
+                <input type="text" class="profile_nickname" value="{{detail_user.company}}" disabled>
+            {% endif %}
         </div>
         <div class="mypage_buttons">
             <input type="button" class="mypage_button" id="mypage_button_1" value="개인정보 관리" onclick="show_mypage1()">
