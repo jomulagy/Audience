@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     else{
         var data = {
-            "keyword" : None,
+            "keyword" : null,
             "category" : segmentList[4],
             "board_type" : segmentList[5],
             "post_type" : segmentList[6],
@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         success: function(data) {
             buttonCount = data.total_pages;
             renderButton();
-            
+            console.log(buttonCount)
             $("#1").trigger("click");
         },
        
