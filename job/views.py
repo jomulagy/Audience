@@ -128,3 +128,4 @@ def search_company(request):
         }
         return JsonResponse(context)
 
+

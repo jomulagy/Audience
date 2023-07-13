@@ -13,7 +13,7 @@ starInputs.forEach((disabled) => {
 }); */
 
 
-
+/*
 // 좋아요/싫어요
 let likeClicked = false;
 let notLikeClicked = false;
@@ -76,6 +76,60 @@ function toggleNotLike() {
     notLikeClicked = false;
   }
 }
+*/
+let likeClicked = false;
+let dislikeClicked = false;
+
+function toggleLike() {
+  if (!likeClicked) {
+    likeClicked = true;
+    if (dislikeClicked) {
+      dislikeClicked = false;
+    }
+
+    $.ajax({
+      url: 'http://example.com/util/like',
+      type: 'POST',
+      dataType: 'json',
+      data: { action: 'like' },
+      success: function(response) {
+        console.log('좋아요 클릭:', response);
+      },
+      error: function(xhr, textStatus, error) {
+        console.log('좋아요 클릭 에러:', error);
+      }
+    });
+  } else {
+    likeClicked = false;
+    console.log('좋아요 취소');
+  }
+}
+
+function toggleDislike() {
+  if (!dislikeClicked) {
+    dislikeClicked = true;
+    if (likeClicked) {
+      likeClicked = false;
+    }
+
+    $.ajax({
+      url: 'http://example.com/util/dislike',
+      type: 'POST',
+      dataType: 'json',
+      data: { action: 'dislike' },
+      success: function(response) {
+        console.log('싫어요 클릭:', response);
+      },
+      error: function(xhr, textStatus, error) {
+        console.log('싫어요 클릭 에러:', error);
+      }
+    });
+  } else {
+    dislikeClicked = false;
+    console.log('싫어요 취소');
+  }
+}
+
 
 
 // 신고하기 (게시글)
@@ -118,7 +172,6 @@ reportSubmitButton2.addEventListener('click', () => {
 
 
 
-
 // 댓글 달기
 document.addEventListener("DOMContentLoaded", function () {
   const commentList = document.getElementById("comment-list");
@@ -131,39 +184,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Ajax
       const requestData = {
-        post_id: 1,
-        content: commentContent
+        post_id: post_id,
+        content: "sss"
+        //commentContent
       };
 
-      // fetch('http://127.0.0.1:8000/comment/create/', {
-      //   method: 'POST',
-      //   headers: {
-      //     contentType: 'application/json'
-      //   },
-      //   body: JSON.stringify(requestData)
-      // })
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     const comment = createCommentElement(commentContent);
-      //     commentList.insertBefore(comment, commentList.firstChild);
-      //     commentInput.value = "";
-      //   })
-      //   .catch(error => {
-      //     console.log('댓글 작성 실패:', error);
-      //   });
+       fetch('http://127.0.0.1:8000/comment/create/', {
+         method: 'POST',
+         headers: {
+           contentType: 'application/json'
+         },
+         body: JSON.stringify(requestData)
+       })
+         .then(response => response.json())
+         .then(data => {
+           const comment = createCommentElement(commentContent,data.id);
+          console.log(comment)
+           commentList.insertBefore(comment, commentList.firstChild);
+           commentInput.value = "";
+         })
+         .catch(error => {
+           console.log('댓글 작성 실패:', error);
+         });
 
-
+/*
       const comment = createCommentElement("aa"); 
       console.log(comment)
       commentList.insertBefore(comment, commentList.firstChild);
       commentInput.value = "";
+      */
     }
   });
 
-  function createCommentElement(content) {
+  function createCommentElement(content,id) {
     const comment = document.createElement("div");
     comment.classList.add("comment");
-
+    comment.setAttribute("id",id)
     const commentId = document.createElement("p");
     commentId.textContent = "[아이디]";
 
@@ -213,32 +269,33 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteButton = document.createElement("delete-button");
     deleteButton.textContent = " 삭제하기";
     deleteButton.addEventListener("click", function () {
+      console.log(comment.id)
       comment.remove(); // 댓글 삭제
       adjustCommentBoxHeight();
       
-      //   // Ajax
-      // const requestData = {
-      //   comment_id: 1 // 대댓글 ID를 적절히 설정해야 합니다.
-      // };
+         // Ajax
+       const requestData = {
+         comment_id:  1// 대댓글 ID를 적절히 설정해야 합니다.
+       };
 
-      // fetch('http://127.0.0.1:8000/comment/comment/delete/', {
-      //   method: 'POST',
-      //   headers: {
-      //     contentType: 'application/json'
-      //   },
-      //   body: JSON.stringify(requestData)
-      // })
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     if (data.success) {
-      //       reply.remove();
-      //     } else {
-      //       console.log('댓글 삭제 실패');
-      //     }
-      //   })
-      //   .catch(error => {
-      //     console.log('댓글 삭제 실패:', error);
-      //   });
+       fetch('http://127.0.0.1:8000/comment/comment/delete/', {
+         method: 'POST',
+         headers: {
+           contentType: 'application/json'
+         },
+         body: JSON.stringify(requestData)
+       })
+         .then(response => response.json())
+         .then(data => {
+           if (data.success) {
+             reply.remove();
+           } else {
+             console.log('댓글 삭제 실패');
+           }
+         })
+         .catch(error => {
+           console.log('댓글 삭제 실패:', error);
+         });
       });
 
     commentOptions.appendChild(replyButton);
@@ -350,7 +407,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteButton = document.createElement("delete-button");
     deleteButton.textContent = " 삭제하기";
     deleteButton.addEventListener("click", function () {
-      /*
+      
       // Ajax
     const requestData = {
       reply_id: 1 // 대댓글 ID를 적절히 설정해야 합니다.
@@ -375,7 +432,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log('대댓글 삭제 실패:', error);
       });
     });
-    */
+    
 
       replyOptions.appendChild(editButton);
       replyOptions.appendChild(deleteButton);
@@ -385,8 +442,7 @@ document.addEventListener("DOMContentLoaded", function () {
       reply.appendChild(replyOptions);
 
       return reply;
-    })
-  };
+    };
 
   /*
     document.addEventListener("DOMContentLoaded", function () {
@@ -431,7 +487,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const newCommentBoxHeight = 300 + commentHeight;
 
     commentBox.style.height = newCommentBoxHeight + "px";
-    commentBoxDown.style.top = 2050 + commentHeight + "px";
+    commentBoxDown.style.top = 2126 + commentHeight + "px";
     backg.style.height = 2000 + commentHeight + "px";
     commentInput.style.top = 200 + commentHeight + "px";
   });
@@ -467,7 +523,7 @@ function adjustCommentBoxHeight() {
   const backg = document.querySelector(".backg");
   const commentInput = document.querySelector(".comment-input-container");
   commentBox.style.height = newCommentBoxHeight + "px";
-  commentBoxDown.style.top = 2050 + commentHeight + "px";
+  commentBoxDown.style.top = 2126 + commentHeight + "px";
   backg.style.height = 2000 + commentHeight + "px";
   commentInput.style.top = 200 + commentHeight + "px";
 }
@@ -487,3 +543,34 @@ commentList.addEventListener("click", function (event) {
   }
 });
 });*/
+
+$(document).on('click','delete-button', function (){
+  var comment = $(this).parent().parent();
+  var comment_id = comment.attr("id");
+  comment.remove(); // 댓글 삭제
+  adjustCommentBoxHeight();
+  
+     // Ajax
+   const requestData = {
+     "comment_id": comment_id// 대댓글 ID를 적절히 설정해야 합니다.
+   };
+
+   fetch('/comment/delete/'`, {
+     method: 'POST',
+     headers: {
+       contentType: 'application/json'
+     },
+     body: JSON.stringify(requestData)
+   })
+     .then(response => response.json())
+     .then(data => {
+       if (data.success) {
+         reply.remove();
+       } else {
+         console.log('댓글 삭제 실패');
+       }
+     })
+     .catch(error => {
+       console.log('댓글 삭제 실패:', error);
+     });
+  });
