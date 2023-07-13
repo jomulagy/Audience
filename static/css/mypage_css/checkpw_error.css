@@ -1,5 +1,6 @@
 h1 {
     text-align: center;
+    margin-top: 10%;
 }
 
 input, button {
@@ -27,6 +28,7 @@ input, button {
 }
 
 .input_check_pw {
+    margin: 1rem 0 1rem 0;
     width: 460px;
     height: 62px;
     border-radius: 3px;
@@ -37,6 +39,7 @@ input, button {
     letter-spacing: 0em;
     text-align: left;
     background: #FFE5E5;
+    padding: 0 0 0 10px;
 }
 
 .button_change_mypage {
