@@ -30,10 +30,10 @@
         <form action="{% url 'search_username' %}" method="post" class="form_find_id" id="form_find_id">
             <div class="find_for_id_pw"><!--유저가 입력할 폼-->
                 <div class="name">
-                    <input type="text" class="input_user" name="username" placeholder="이름">
+                    <input type="text" class="input_user" id="name" name="name" placeholder="이름">
                 </div>
                 <div class="nickname">
-                    <input type="text" class="input_user" name="name" placeholder="닉네임">
+                    <input type="text" class="input_user" id="nickname" name="nickname" placeholder="닉네임">
                 </div>
             </div>
             <div class="submit_find_id">
@@ -51,7 +51,7 @@
 
         <form action="{% url 'search_password' %}" method="post" class="form_find_pw" id="form_find_pw">
             <div class="find_for_id_pw"><!--유저가 입력할 폼-->
-                <input type="text" class="input_user" name="username" placeholder="아이디">
+                <input type="text" class="input_user" id="id" name="id" placeholder="아이디">
             </div>
             <div class="submit_find_pw">
                 <input type="submit" class="submit_find" value="비밀번호찾기"><!--최종클릭 버튼-->
