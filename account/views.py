@@ -54,36 +54,38 @@ def create_applicant(request):
         age = request.POST.get('age')
         interest = request.POST.getlist('interest')
         school = request.POST.get('school')
-        career = request.FILES('career')
+        career = request.FILES.get('career')
+
+        context = {'username': username, 'name': name, 'nickname': nickname, 'age': age, 'career': career}
 
         email_pattern = r'^[\w\.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         if not re.match(email_pattern, username):
-            context = {"error": 'wrong_username_error'}
+            context["error"] = 'wrong_username_error'
             return render(request, 'sign_up_error_p.html', context)
 
         if password1 != password2:
-            context = {"error": 'no_same_password_error'}
+            context["error"] = 'no_same_password_error'
             return render(request, 'sign_up_error_p.html', context)
 
         password_pattern = r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$'
         if not re.match(password_pattern, password1):
-            context = {"error": 'wrong_password_error'}
+            context["error"] = 'wrong_password_error'
             return render(request, 'sign_up_error_p.html', context)
 
         if Userable.objects.filter(username=username).exists():
-            context = {"error": 'username_duplicate_error'}
+            context["error"] = 'username_duplicate_error'
             return render(request, 'sign_up_error_p.html', context)
 
         if Applicant.objects.filter(nickname=nickname).exists():
-            context = {"error": 'nickname_duplicate_error'}
+            context["error"] = 'nickname_duplicate_error'
             return render(request, 'sign_up_error_p.html', context)
 
         if not name:
-            context = {"error": 'no_name_error'}
+            context["error"] = 'no_name_error'
             return render(request, 'sign_up_error_p.html', context)
 
         if not nickname:
-            context = {"error": 'no_nickname_error'}
+            context["error"] = 'no_nickname_error'
             return render(request, 'sign_up_error_p', context)
 
         applicant = Applicant.objects.create_user(
@@ -117,36 +119,38 @@ def create_employer(request):
         name = request.POST.get('name')
         company = request.POST.get('company')
         interest = request.POST.getlist('interest')
-        image = request.FILES('image')
+        image = request.FILES.get('image')
+
+        context = {'username': username, 'name': name, 'company': company}
 
         email_pattern = r'^[\w\.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         if not re.match(email_pattern, username):
-            context = {"error": 'wrong_username_error'}
+            context["error"] = 'wrong_username_error'
             return render(request, 'sign_up_error_c.html', context)
 
         if password1 != password2:
-            context = {"error": 'no_same_password_error'}
+            context["error"] = 'no_same_password_error'
             return render(request, 'sign_up_error_c.html', context)
 
         password_pattern = r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$'
         if not re.match(password_pattern, password1):
-            context = {"error": 'wrong_password_error'}
+            context["error"] = 'wrong_password_error'
             return render(request, 'sign_up_error_c.html', context)
 
         if Userable.objects.filter(username=username).exists():
-            context = {"error": 'username_duplicate_error'}
+            context["error"] = 'username_duplicate_error'
             return render(request, 'sign_up_error_c.html', context)
 
         if Employer.objects.filter(company=company).exists():
-            context = {"error": 'company_duplicate_error'}
+            context["error"] = 'company_duplicate_error'
             return render(request, 'sign_up_error_c.html', context)
 
         if not name:
-            context = {"error": 'no_name_error'}
+            context["error"] = 'no_name_error'
             return render(request, 'sign_up_error_c.html', context)
 
         if not company:
-            context = {"error": 'no_company_error'}
+            context["error"] = 'no_company_error'
             return render(request, 'sign_up_error_c', context)
 
         employer = Employer.objects.create_user(
@@ -179,16 +183,22 @@ def search_id_pw(request):
 # 아이디 찾기 tested
 def search_username(request):  # ajax로 받기 (done)
     data = json.loads(request.body)
-    email = data['email']
     name = data['name']
+    subname = data['subname']
 
     # 성공
-    if Userable.objects.filter(email=email).exists():
-        username = Userable.objects.get(email=email, name=name).username
-        return JsonResponse({'success': True, 'username': username})
+    is_applicant = Applicant.objects.filter(name=name, nickname=subname).exists()
+    is_employer = Employer.objects.filter(name=name, company=subname).exists()
+    if is_applicant:
+        user = Applicant.objects.get(name=name, nickname=subname)
+        return JsonResponse({'success': True, 'username': user.username})
+
+    elif is_employer:
+        user = Employer.objects.get(name=name, company=subname)
+        return JsonResponse({'success': True, 'username': user.username})
     # 실패
     else:
-        return JsonResponse({'success': False, 'error': f'"{email}", "{name}" does not exist.'})
+        return JsonResponse({'success': False, 'error': f'"{name}", "{subname}" does not exist.'})
 
 
 # 아이디/비밀번호 찾기 창 view 만들기
