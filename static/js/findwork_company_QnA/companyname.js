@@ -1,37 +1,36 @@
-// DOM
 $(function() {
-    $("#name").keyup(function() {
-  
-      const recommendBox = document.querySelector("#suggestion_box");
-      
-      // invisible을 지워준다.
-      recommendBox.classList.remove('invisible');
-      const input_name = document.getElementById("#name");
-      
-      // 기존 검색 추천 데이터 지우고, 새로 넣어주기 안 그러면 계속 추가됨
-      recommendBox.innerHTML = "";
-  
-      const suggestedItems = document.createElement('div')
-      suggestedItems.id = "suggested_items"
-  
-      recommendBox.appendChild(suggestedItems);
-  
-      // item별 리스트
-      var items = [];
-      
-      // for문 돌면서 item 추가
-      for (var i in items) {
-  
-        var player_content = document.createTextNode(items[i]);
-        var suggestedItem = document.createElement('div')
-        suggestedItem.className = "item"
-  
-        suggestedItem.addEventListener('click', function(e){
-          document.getElementById("name").value = this.textContent.split(' ')[0];
-        });
-  
-        suggestedItem.appendChild(player_content);
-        suggestedItems.appendChild(suggestedItem);
+  $("#name").keyup(function() {
+    const recommendBox = document.querySelector("#suggestion_box");
+    recommendBox.classList.remove('invisible');
+    const inputName = document.getElementById("name").value;
+
+    recommendBox.innerHTML = "";
+
+    const suggestedItems = document.createElement('div');
+    suggestedItems.id = "suggested_items";
+    recommendBox.appendChild(suggestedItems);
+
+    $.ajax({
+      url: "/job/company/search/",
+      method: "POST",
+      data: JSON.stringify({ name: inputName }),
+      contentType: "application/json",
+      success: function(response) {
+        const companies = response.companies;
+        for (var i in companies) {
+          var companyName = companies[i].name;
+          if (companyName.includes(inputName)) { // 입력한 단어가 포함된 경우에만 추가
+            var playerContent = document.createTextNode(companyName);
+            var suggestedItem = document.createElement('div');
+            suggestedItem.className = "item";
+            suggestedItem.addEventListener('click', function(e) {
+              document.getElementById("name").value = this.textContent.split(' ')[0];
+            });
+            suggestedItem.appendChild(playerContent);
+            suggestedItems.appendChild(suggestedItem);
+          }
+        }
       }
-    })
-  })
+    });
+  });
+});
