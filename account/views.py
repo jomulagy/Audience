@@ -17,6 +17,7 @@ class UserLoginView(View):
     template_name = 'login_error.html'
 
     def get(self, request):
+        print(1)
         return render(request, self.template_name)
 
     def post(self, request):
@@ -27,7 +28,7 @@ class UserLoginView(View):
         # 성공
         if user is not None:
             login(request, user=user)
-            return redirect('main_view')
+            return redirect('main:main_view')
         # 실패
         else:
             return render(request, 'login_error.html', {'error': True})
@@ -210,7 +211,7 @@ def my_page(request):
         detail_user = Applicant.objects.get(id=request.user.id)
     else:
         detail_user = Employer.objects.get(id=request.user.id)
-    return render(request, 'mypage_1.html', {'interest': interest, 'posts': post, 'detail_user': detail_user})
+    return render(request, 'mypage.html', {'interest': interest, 'posts': post, 'detail_user': detail_user})
 
 def my_posts_detail(request):
     if request.user.is_authenticated:
