@@ -98,12 +98,7 @@ def create_applicant(request):
         )
 
         if career:
-            file_path = 'applicant_career/' + career.name
-            with open(file_path, 'wb') as f:
-                for chunk in career.chunks():
-                    f.write(chunk)
-
-            applicant.profile_pic = file_path
+            applicant.career = career
 
         update_interest(applicant, interest)
         applicant.save()
@@ -161,12 +156,7 @@ def create_employer(request):
         )
         update_interest(employer, interest)
         if image:
-            file_path = 'company_profile/' + image.name
-            with open(file_path, 'wb') as f:
-                for chunk in image.chunks():
-                    f.write(chunk)
-
-            employer.profile_pic = file_path
+            employer.image = image
 
         employer.save()
         return render(request, 'signup_fin.html', {'id': employer.username})
@@ -180,7 +170,7 @@ def signup_finish(request):
     return render(request, 'signup_finish.html')
 
 def search_id_pw(request):
-    return render(request, 'find_id_pw.html')
+    return render(request, 'find_id_pw.html', {'type': request.user.type})
 
 # 아이디 찾기 tested
 def search_username(request):  # ajax로 받기 (done)
@@ -247,10 +237,9 @@ def my_page(request):
                                            'user_type': request.user.type, 'detail_user': detail_user})
 
 def my_posts_detail(request):
-    if request.user.is_authenticated:
-        user = request.user
-        post = Postable.objects.filter(userable=user)
-        return render(request, 'my_library.html', {'post': post})
+    user = request.user
+    posts = list(Postable.objects.filter(userable=user).values("id", "title", "views"))
+    return JsonResponse({'posts': posts})
 
 # 비밀번호 확인
 def check_user_password(request):
@@ -289,7 +278,7 @@ def check_duplicate_nickname(request):
 def check_duplicate_company(request):
     data = json.loads(request.body)
     company = data['company']
-    
+
     if request.method == 'POST':
         if Employer.objects.filter(company=company).exists:
             return JsonResponse({'success': 'exist_company'})
