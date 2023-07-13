@@ -12,12 +12,14 @@ def create_comment(request): # 댓글 생성(ajax)
         user = request.user
 
         data = json.loads(request.body)
+        print(data)
         post = Postable.objects.get(id = data['post_id'])
+
         content = data['content']
 
-        Comment.objects.create(content = content, postable = post, userable = user)
+        comment = Comment.objects.create(content = content, postable = post, userable = user)
 
-        return JsonResponse({})
+        return JsonResponse({"id": comment.id})
 
 @login_required
 def update_comment(request):

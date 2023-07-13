@@ -6,23 +6,22 @@ h2 {
   color: black;
 }
 
+
 .backg {
   width: 1000px;
   height: 2500px;
   background-color: rgb(247, 220, 225);
-  margin-left: 270px;
-  margin-right: 270px;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  position: relative;
+  top: 25%;
+  left: 18.5%;
+  position: absolute;
 }
 
 .contentText {
   font-weight: bold;
   font-size: 23px;
   position: absolute;
-  top: 710px;
-  left: 430px;
+  top: 100%;
+  left: 29.2%;
 }
 
 
@@ -40,6 +39,20 @@ h2 {
   position: absolute;
   top: 2090px;
   left: 430px;
+}
+
+
+.reportText {
+  background-color: transparent; 
+  border: none; 
+  padding: 0; 
+  font-size: 16px;
+  text-underline-offset: 2px;
+  color: rgb(248, 74, 74);
+  top: 38.5%;
+  left: 74.5%;
+  text-decoration: underline;
+  position: absolute;
 }
 
 .replyForm {
@@ -93,8 +106,8 @@ text-align: center;
 font-size: 40px;
 font-weight: bold;
 position: absolute;
-top: 33.5%;
-left: 57.5%;
+top: 43.5%;
+left: 32.5%;
 transform: translate(-50%, -50%);
 color: rgb(0, 0, 0);
 text-align: center;

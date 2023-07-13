@@ -268,6 +268,44 @@ function toggleNotLike() {
 }
 
 
+// 신고하기 (게시글)
+const reportButton2 = document.querySelector('.reportText');
+const reportMenu2 = document.querySelector('.reportMenu2');
+
+reportButton2.addEventListener('click', () => {
+  reportMenu2.style.display = 'block';
+});
+
+const reportSubmitButton2 = document.getElementById('report-submit2');
+reportSubmitButton2.addEventListener('click', () => {
+  const reportReason2 = document.getElementById('reportReason2').value;
+
+  console.log('신고 이유:', reportReason2);
+
+  reportMenu2.style.display = 'none';
+
+  // Ajax 요청
+  const requestData = {
+    post_id: 1,
+    content: reportReason2
+  };
+
+  fetch('http://127.0.0.1:8000/employ/report/create/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(requestData)
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('신고 응답:', data);
+    })
+    .catch(error => {
+      console.log('신고 실패:', error);
+    });
+});
+
 
 // 댓글 달기
 document.addEventListener("DOMContentLoaded", function () {

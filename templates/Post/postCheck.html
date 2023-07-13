@@ -4,6 +4,8 @@
 <html lang="ko">
 
 <head>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!--<link rel="stylesheet" href=".static/css/postCheck.css" />-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,12 +95,13 @@
 
     <div id="comment-list">
         {% for comment in post.comment_set.all %}
-            <div class="comment"><p>[{{comment.userable.name}}]</p>
+            <div id = "{{comment.id}}" class="comment"><p>[{{comment.userable.name}}]</p>
                 <p>{{comment.content}}</p>
                 <div class="comment-options">
                     <button>대댓글 달기</button>
-                    <button onclick = "location.href = '{% url 'job:update_job_post' post.id %}'">수정하기</button>
-                    <delete-button onclick = "location.href = '{% url 'job:delete_job_post' post.id %}'"> 삭제하기</delete-button>
+                    <!--<button onclick = "location.href = '{% url 'job:update_job_post' post.id %}'">수정하기</button>-->
+                    <button class ="comment_update">수정하기</button>
+                    <delete-button>삭제하기</delete-button>
                 </div>
             </div>
         {% endfor %}
@@ -131,7 +134,7 @@
 </div>
 
 <h2 class="views">조회수 {{post.views}}회</h2>
-
+<script type = "text/javascript">var post_id = "{{post.id}}"</script>
 <script src="{% static 'js/post/postCheck.js' %}"></script>
 
 </body>

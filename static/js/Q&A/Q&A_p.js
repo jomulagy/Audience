@@ -1,4 +1,5 @@
 // 줄; 게시글 데이터 (예시)
+/*
 var linePosts = [
   {
     lineTitle: "게시물 제목(답변 대기중)",
@@ -59,6 +60,33 @@ function lineShowPosts() {
 
 document.addEventListener("DOMContentLoaded", function () {
   lineShowPosts();
+});
+*/
+
+function loadQAList() {
+  $.ajax({
+    url: 'http://127.0.0.1:8000/employ/question/list/',
+    type: 'POST',
+    dataType: 'json',
+    data: JSON.stringify({
+      post_id: 3,
+      page_num: 1
+    }),
+    contentType: 'application/json',
+    success: function(response) {
+      var qaList = response.QA_List;
+      // Q&A 리스트를 처리하는 로직 추가
+      console.log('Q&A 리스트:', qaList);
+    },
+    error: function(xhr, textStatus, error) {
+      console.log('Q&A 리스트 불러오기 에러:', error);
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  lineShowPosts();
+  loadQAList();
 });
 
 
