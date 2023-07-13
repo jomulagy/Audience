@@ -7,7 +7,7 @@ input, button {
     border: none;
 }
 
-::placeholder{
+input::placeholder{
     color: black;
 }
 
@@ -113,7 +113,8 @@ input, button {
 
 
 #form_find_pw,
-#form_show_user{
+#form_show_user_id
+#form_show_user_pw {
     display: none;
 }
 
