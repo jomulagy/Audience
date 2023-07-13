@@ -170,7 +170,7 @@ def signup_finish(request):
     return render(request, 'signup_finish.html')
 
 def search_id_pw(request):
-    return render(request, 'find_id_pw.html', {'type': request.user.type})
+    return render(request, 'find_id_pw.html')
 
 # 아이디 찾기 tested
 def search_username(request):  # ajax로 받기 (done)
