@@ -86,7 +86,8 @@ def update_interest(user, interest_list):
     # 다시 전부다 연결
     if len(interest_list) > 0:
         for interest in interest_list:
-            UserInterest.objects.create(userable=user, interest=interest)
+
+            UserInterest.objects.create(userable=user, interest=Interest.objects.get(name=interest))
     else:
         pass
 

@@ -7,8 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
+
+
     <!-- JavaScript Bundle with Popper -->
     <script src="/static/js/find_id_pw.js"></script>
 
@@ -24,25 +24,25 @@
     <div class="find_id_pw">
         <div class="id_pw_button"><!--아이디/비번 찾기 버튼-->
                 <input type="button" class="find_id_button" id="find_id_button" value="아이디 찾기" onclick="show_form_id()"></input><!--아이디찾기 버튼-->
-            
+
                 <input type="button" class="find_pw_button" id="find_pw_button" value="비밀번호 찾기" onclick="show_form_pw()"></input><!--비번찾기 버튼-->
         </div>
         <form action="{% url 'search_username' %}" method="post" class="form_find_id" id="form_find_id">
             <div class="find_for_id_pw"><!--유저가 입력할 폼-->
                 <div class="name">
-                    <input type="text" class="input_user" id="name" name="name" placeholder="이름">
+                    <input type="text" class="input_user" name="name" placeholder="이름">
                 </div>
                 <div class="nickname">
-                    <input type="text" class="input_user" id="nickname" name="nickname" placeholder="닉네임">
+                    <input type="text" class="input_user" name="subname" placeholder="닉네임">
                 </div>
             </div>
             <div class="submit_find_id">
                 <input type="submit" class="submit_find" value="아이디찾기"><!--최종클릭 버튼-->
-            </div>  
+            </div>
         </form>
         <form action="" class="form_show_user" id="form_show_user"> <!--아이디 보여주기-->
             <div class="show_box">
-                <p class="id">아이디:</p>
+                <p class="id">아이디:{{username}}</p>
             </div>
             <div class="button_login">
                 <input type="submit" class="submit_button" value="로그인하기">
@@ -55,7 +55,7 @@
             </div>
             <div class="submit_find_pw">
                 <input type="submit" class="submit_find" value="비밀번호찾기"><!--최종클릭 버튼-->
-            </div>   
+            </div>
         </form>
         <form class="form_show_user" id="form_show_user"> <!--안내문구 보여주기-->
             <div class="show_box">
@@ -64,7 +64,7 @@
             <div class="button_login">
                 <input type="submit" class="submit_button" value="로그인하기">
             </div>
-             
+
         </form>
     </div>
 </body>
