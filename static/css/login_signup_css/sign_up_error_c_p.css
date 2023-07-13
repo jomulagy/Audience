@@ -1,5 +1,6 @@
 h1 {
     text-align: center;
+    margin-top: 10%;
 }
 
 input, button {
@@ -37,7 +38,8 @@ input, button {
     line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
-
+    padding: 0 0 0 10px;
+    color: black;
 }
 
 /* .id_check { */
@@ -69,6 +71,8 @@ input, button {
     line-height: 18px;
     letter-spacing: 0em;
     text-align: left;
+    padding: 0 0 0 10px;
+    color: black;
 }
 
 .interest_table,
@@ -164,6 +168,4 @@ input, button {
     line-height: 24px;
     letter-spacing: 0em;
     text-align: center;
-
-
 }

@@ -1,5 +1,6 @@
 h1 {
     text-align: center;
+    margin-top: 7%;
 }
 
 input, button {
@@ -22,7 +23,7 @@ input, button {
 }
 
 .id_pw_button {
-    margin-top: 8%;
+    margin-top: 5%;
 }
 
 .find_id_button {
@@ -82,6 +83,8 @@ input, button {
     line-height: 24px;
     letter-spacing: 0em;
     text-align: left;
+    padding-left: 10px;
+    color: black;
 }
 
 .submit_find_id,

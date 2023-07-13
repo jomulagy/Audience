@@ -1,12 +1,13 @@
 h1 {
     text-align: center;
+    margin-top: 10%;
 }
 
 input, button {
     border: none;
 }
 
-::placeholder{
+input::placeholder{
     color: black;
 }
 
@@ -27,6 +28,7 @@ input, button {
 }
 
 .input_check_pw {
+    margin: 1rem 0 1rem 0;
     width: 460px;
     height: 62px;
     border-radius: 3px;
@@ -37,13 +39,16 @@ input, button {
     letter-spacing: 0em;
     text-align: left;
     background: #FFE5E5;
+    padding: 0 0 0 10px;
+    color: black;
+}
+
+.button_change_mypage_wrap{
+    display: flex;
+    justify-content: center;
 }
 
 .button_change_mypage {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-
     width: 382px;
     height: 50px;
     border-radius: 3px;

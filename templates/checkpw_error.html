@@ -14,16 +14,19 @@
 {% block content %}
 <body>
     <h1 class="serviceName">청취자들</h1>
-
-    <form class="check_pw" action="{% url 'check_user_password' %}" method="POST">
-        
-        <h3 class="h3_check_pw">비밀번호 확인</h3>
-        <input type="password" class="input_check_pw" name="password" placeholder="비밀번호를 입력해주세요">
-        {% if error == 'no_match_password_error' %}
-            <p class="error_message">비밀번호가 일치하지 않습니다</p>
-        {% endif %}
-        <input type="submit" class="button_change_mypage" value="개인정보 수정하기">
-    </form>
+    <div class="check_pw">
+        <form class="_form_check_pw" action="{% url 'check_user_password' %}" method="POST">
+            
+            <h3 class="h3_check_pw">비밀번호 확인</h3>
+            <input type="password" class="input_check_pw" name="password" placeholder="비밀번호를 입력해주세요">
+            {% if error == 'no_match_password_error' %}
+                <p class="error_message">비밀번호가 일치하지 않습니다</p>
+            {% endif %}
+            <div class="button_change_mypage_wrap">    
+                <input type="submit" class="button_change_mypage" value="개인정보 수정하기">
+            </div>
+        </form>
+    </div>
 </body>
 {% endblock %}
 </html>
