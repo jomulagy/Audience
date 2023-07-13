@@ -1,5 +1,8 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="kr">
+{% block static %}
 <head>
 	<meta name="code" charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes"/>
@@ -8,6 +11,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/static/css/header2_style.css"/>
 </head>
+{% endblock %}
+{% block content %}
 <body>
 	<div class="vh-container">
 		<!-- header -->
@@ -89,6 +94,7 @@
 		});
 	</script>
 </body>
+{% endblock %}
 </html>
 
 

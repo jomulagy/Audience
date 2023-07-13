@@ -79,21 +79,21 @@ scrollEvent = function(){
 
 
 
-// //keyword input
-// function printName() {
-// 	var keyword = document.getElementById("keyword-input").value;
-// 	console.log(keyword);
-//   }
+//keyword input
 
-// // onclick() + url
-// document.addEventListener("DOMContentLoaded", function() {
+// onclick() + url
+document.addEventListener("DOMContentLoaded", function() {
+	document.getElementById("search-button").onclick = function() {
+		var keyword = document.getElementById("keyword-input").value;
+		var url = `/audience/search/${encodeURIComponent(keyword)}/all/all/all/all/`;
+		location.href=url
+  	};
+});
 
-// 	document.getElementById("search-button").onclick = function() {
-// 		var keyword = document.getElementById("keyword-input").value;
-// 		var url = `http://127.0.0.1:8000/audience/search/keyword/${encodeURIComponent(keyword)}/all/all/all/all/`;
-// 		calculateTotalPagesAndGoToFirstPage(url);
-//   	};
-// });
+
+
+
+
 
   
 //버튼에 url 추가하기 
