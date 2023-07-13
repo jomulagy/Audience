@@ -4,6 +4,8 @@
 <html lang="ko">
 
 <head>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link type="text/css" rel="stylesheet" href="{% static 'css/post/postView.css' %}" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,14 +38,7 @@
     <div class="infoBox2">
         <h2 class="infoApplyMethod">지원 방법<br>[{{post.apply_method}}]</h2>
         <h2 class="infoApplySchedule">지원 일정<br>[{{post.start_date|date:'Y-m-d H:i'}} ~ {{post.end_date|date:'Y-m-d H:i'}}]</h2>
-        <h2 class="infoHashtag">해시태그<br>[
-            {% for hashtag in post.hashtag_set.all %}
-                {{hashtag}}
-                {% if not forloop.first %}
-                    ,&nbsp;
-                {% endif %}
-            {% endfor %}
-            ]</h2>
+        <h2 class="infoHashtag">해시태그<br>[ # IT ]</h2>
     </div>
 
 
@@ -85,7 +80,7 @@
         <h2 class="goodText">{{post.like_set.count}}👍<br>좋아요</h2>
     </button>
     
-    <button class="badButton" type="button" value="Button" onclick="toggleNotLike()">
+    <button class="badButton" type="button" value="Button" onclick="toggleDislike()">
         <h2 class="badText">{{post.dislike_set.count}}👎<br>싫어요</h2>
     </button>
 
@@ -102,6 +97,39 @@
           </div>
 
 
+<h2 class="commentText">댓글</h2>
+
+<div class="commentBox">
+    <div class="comment-input-container">
+        <textarea id="comment-input" placeholder="댓글을 작성하세요"></textarea>
+        <button id="comment-submit">SEND</button>
+    </div>
+
+    <div id="comment-list">
+        {% for comment in post.comment_set.all %}
+            <div id = "{{comment.id}}" class="comment"><p>[{{comment.userable.name}}]</p>
+                <p class = "comment_content">{{comment.content}}</p>
+                <div class="comment-options">
+                    <button class="recomment" onclick = "createReplyForm(this)">대댓글 달기</button>
+                    <!--<button onclick = "location.href = '{% url 'job:update_job_post' post.id %}'">수정하기</button>-->
+                    <button class ="comment_update" onclick = "updateComment(this)">수정하기</button>
+                    <delete-button>삭제하기</delete-button>
+                </div>
+                {% for reply in comment.reply_set.all %}
+                <div id = "{{reply.id}}" class="reply">
+                    <p>└ RE: [{{reply.userable.name}}]</p>
+                    <p class = "reply_content">{{reply.content}}</p>
+                    <div class="comment-options">
+                        <button class="reply_update" onclick="updateReply(this)">수정하기</button>
+                        <delete-button onclick = "deleteReply(this)"> 삭제하기</delete-button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<!--
     <h2 class="commentText">댓글</h2>
 
     <div class="commentBox">
@@ -123,6 +151,7 @@
         {% endfor %}
     </div>
     </div>
+-->
 
     <div class="commentBoxUp"></div>
     <div class="commentBoxDown"></div>
@@ -135,14 +164,25 @@
         <a href="{% url 'employ:update_employ_post' post.id %}" class="modify">수정하기</a>
         <a href="{% url 'employ:delete_employ_post' post.id %}" class="delete">삭제하기</a>
     {% else %}
-        <h2 class="reportText">신고하기</h2>
+    
+        <p class="reportText">신고하기</p>
     {% endif %}
-    <h2 class="views">조회수 {{post.views}}회</h2>
+    <div class="reportMenu2" style="display: none;">
+        <select id="reportReason2">
+            <option value="">사유를 선택하세요</option>
+            <option value="사칭/사기">사칭/사기</option>
+            <option value="욕설/비하">욕설/비하</option>
+            <option value="상업적 광고 및 판매">상업적 광고 및 판매</option>
+            <option value="기타">기타</option>
+        </select>
+        <button id="report-submit2">신고</button>
+    </div>
 
+    <h2 class="views">조회수 {{post.views}}회</h2>
+    <script type = "text/javascript">var post_id = "{{post.id}}"</script>
     <script src="{% static 'js/post/postView.js' %}"></script>
 </body>
 
 </html>
 
 
-<!--수정사항: 반응형 css + 게시글내용/댓글 부분 영역 증감 + 댓글 수정하기 기능-->
