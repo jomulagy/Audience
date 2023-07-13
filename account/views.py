@@ -267,28 +267,34 @@ def check_user_password(request):
 
 # 아이디 중복 검사
 def check_duplicate_username(request):
+    data = json.loads(request.body)
+    username = data['username']
+
     if request.method == 'POST':
-        username = request.POST.get('username')
-        if Applicant.objects.filter(username=username).exists():
-            return JsonResponse({'success': True})
+        if Userable.objects.filter(username=username).exists():
+            return JsonResponse({'success': 'exist_username'})
         else:
-            return JsonResponse({'success': False})
+            return JsonResponse({'success': 'no_exist_username'})
 
 def check_duplicate_nickname(request):
+    data = json.loads(request.body)
+    nickname = data['nickname']
+
     if request.method == 'POST':
-        nickname = request.POST.get('nickname')
         if Applicant.objects.filter(nickname=nickname).exists():
-            return JsonResponse({'success': True})
+            return JsonResponse({'success': 'exist_nickname'})
         else:
-            return JsonResponse({'success': False})
+            return JsonResponse({'success': 'no_exist_nickname'})
 
 def check_duplicate_company(request):
+    data = json.loads(request.body)
+    company = data['company']
+    
     if request.method == 'POST':
-        company = request.POST.get('company')
         if Employer.objects.filter(company=company).exists:
-            return JsonResponse({'success': True})
+            return JsonResponse({'success': 'exist_company'})
         else:
-            return JsonResponse({'success': False})
+            return JsonResponse({'success': 'no_exist_company'})
 
 # 비면번호 변경
 # render 사용해서 틀렸을 때 context에 error(key값으로 두 개) 넣어서 같은 페이지로 이동 (done)
