@@ -86,11 +86,14 @@
         </select>
         <button id="report-submit2">신고</button>
       </div>
-
+    <div class="container">
+        <div class="button-container" id="buttonContainer"></div>
+    </div>
+    <script type = "text/javascript">var post_id = "{{post.id}}"</script>
+    <script src="{% static 'js/pagination.js' %}"></script>
     <script src="{% static 'js/Q&A/Q&A_p.js' %}"></script>
 </body>
 
 </html>
 
 
-<!--수정사항: 반응형 css + 게시글내용/댓글 부분 영역 증감 + 댓글 수정하기 기능-->

@@ -31,7 +31,7 @@ def update_comment(request):
         comment.content = content
         comment.save()
 
-        return JsonResponse({})
+        return JsonResponse({"success":True})
 
 @login_required
 def delete_comment(request): # 댓글 삭제(ajax)
@@ -50,9 +50,9 @@ def create_reply(request):# 대댓글 쓰기(ajax)
         comment = Comment.objects.get(id = data["comment_id"])
         user = request.user
 
-        Reply.objects.create(content = content, comment = comment, userable = user)
+        reply = Reply.objects.create(content = content, comment = comment, userable = user)
 
-        return JsonResponse({})
+        return JsonResponse({"id":reply.id,"author" : reply.userable.name})
 
 @login_required
 def update_reply(request):# 대댓글 쓰기(ajax)

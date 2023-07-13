@@ -13,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="{% static 'css/post/postCheck.css' %}"/>        
+    <link type="text/css" rel="stylesheet" href="{% static 'css/post/postCheck.css' %}"/>
 
     </script>
     <title>게시글 확인 페이지</title>
@@ -77,11 +77,19 @@
 <div class="contentBoxDown"></div>
 
 <button class="goodButton" type="button" value="Button" onclick="toggleLike()">
-    <h2 class="goodText">{{post.like_set.count}}👍<br>좋아요</h2>
+    <h2 class="goodText">
+        <span class="likeCount">{{post.like_set.count}}</span>👍<br>
+        <span class="buttonLabel">좋아요</span>
+    </h2>
 </button>
 
-<button class="badButton" type="button" value="Button" onclick="toggleNotLike()">
-    <h2 class="badText">{{post.dislike_set.count}}👎<br>싫어요</h2>
+<button class="badButton" type="button" value="Button" onclick="toggleDislike()">
+
+    <h2 class="badText">
+        <span class="likeCount">{{post.dislike_set.count}}</span>👎<br>
+        <span class="buttonLabel">싫어요</span>
+    </h2>
+    
 </button>
 
 
@@ -96,13 +104,23 @@
     <div id="comment-list">
         {% for comment in post.comment_set.all %}
             <div id = "{{comment.id}}" class="comment"><p>[{{comment.userable.name}}]</p>
-                <p>{{comment.content}}</p>
+                <p class = "comment_content">{{comment.content}}</p>
                 <div class="comment-options">
-                    <button>대댓글 달기</button>
+                    <button class="recomment" onclick = "createReplyForm(this)">대댓글 달기</button>
                     <!--<button onclick = "location.href = '{% url 'job:update_job_post' post.id %}'">수정하기</button>-->
-                    <button class ="comment_update">수정하기</button>
+                    <button class ="comment_update" onclick = "updateComment(this)">수정하기</button>
                     <delete-button>삭제하기</delete-button>
                 </div>
+                {% for reply in comment.reply_set.all %}
+                <div id = "{{reply.id}}" class="reply">
+                    <p>└ RE: [{{reply.userable.name}}]</p>
+                    <p class = "reply_content">{{reply.content}}</p>
+                    <div class="comment-options">
+                        <button class="reply_update" onclick="updateReply(this)">수정하기</button>
+                        <delete-button onclick = "deleteReply(this)"> 삭제하기</delete-button>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         {% endfor %}
     </div>
@@ -141,6 +159,4 @@
 </html>
 
 <!--좋아요/싫어요 버튼 클릭 기능 구현 -->
-
-
 
