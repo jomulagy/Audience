@@ -66,8 +66,8 @@
 <h2 class="nickname">{{post.userable.name}}</h2>
 <h2 class="title">{{post.title}}</h2>
 {% if post.userable == request.user %}
-<a href="h" class="modifyText" href="{% url 'job:update_job_free_post' %}">수정하기</a>
-<a href="h" class="deleteText" href="{% url 'job:delete_job_free_post' %}">삭제하기</a>
+<a href="h" class="modifyText" href="#">수정하기</a>
+<a href="h" class="deleteText" href="#">삭제하기</a>
 {% else %}
 <h2 class="reportText">신고하기</h2>
 {% endif %}
