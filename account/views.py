@@ -17,6 +17,7 @@ class UserLoginView(View):
     template_name = 'login_error.html'
 
     def get(self, request):
+        print(1)
         return render(request, self.template_name)
 
     def post(self, request):
@@ -210,7 +211,7 @@ def my_page(request):
         detail_user = Applicant.objects.get(id=request.user.id)
     else:
         detail_user = Employer.objects.get(id=request.user.id)
-    return render(request, 'mypage_1.html', {'interest': interest, 'posts': post, 'detail_user': detail_user})
+    return render(request, 'mypage.html', {'interest': interest, 'posts': post, 'detail_user': detail_user})
 
 def my_posts_detail(request):
     if request.user.is_authenticated:
