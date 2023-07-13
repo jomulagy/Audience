@@ -135,6 +135,15 @@ input::placeholder{
     text-align: left;
     color: red;  
 }
+.able_message {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: blue;  
+}
 
 .input_img,
 .input_career {

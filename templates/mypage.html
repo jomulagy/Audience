@@ -53,25 +53,26 @@
             <div class="interesting">
                 <input type="text" class="infor_title" value="관심분야" disabled>
                 <div class="interest_table">
-                    <input type="checkbox" id="checkbox1" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox2" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox3" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox4" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox5" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox6" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox7" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox8" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox9" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox10" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox11" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox12" class="interest_button" name="interest"></input><input 
-                        type="checkbox" id="checkbox13" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox14" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox15" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox16" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox17" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox18" class="interest_button" name="interest"></input>
-                    <label for="checkbox1" id="old_label_1" class="change_label" onclick="button_2()"><span class="change_span">전기전자</span></label><label
+                    <input type="checkbox" id="checkbox1" class="interest_button" name="interest" value="전기전자"></input><input
+                        type="checkbox" id="checkbox2" class="interest_button" name="interest" value="조선업"></input><input
+                        type="checkbox" id="checkbox3" class="interest_button" name="interest" value="IT"></input><input
+                        type="checkbox" id="checkbox4" class="interest_button" name="interest" value="의료"></input><input
+                        type="checkbox" id="checkbox5" class="interest_button" name="interest" value="디지털"></input><input
+                        type="checkbox" id="checkbox6" class="interest_button" name="interest" value="기획전략"></input><input
+                        type="checkbox" id="checkbox7" class="interest_button" name="interest" value="의류산업"></input><input
+                        type="checkbox" id="checkbox8" class="interest_button" name="interest" value="교육"></input><input
+                        type="checkbox" id="checkbox9" class="interest_button" name="interest" value="금융"></input><input
+                        type="checkbox" id="checkbox10" class="interest_button" name="interest" value="상품기획/MD"></input><input
+                        type="checkbox" id="checkbox11" class="interest_button" name="interest" value="물류"></input><input
+                        type="checkbox" id="checkbox12" class="interest_button" name="interest" value="회계/재무"></input><input 
+                        type="checkbox" id="checkbox13" class="interest_button" name="interest" value="서비스"></input><input
+                        type="checkbox" id="checkbox14" class="interest_button" name="interest" value="공공복지"></input><input
+                        type="checkbox" id="checkbox15" class="interest_button" name="interest" value="미디어"></input><input
+                        type="checkbox" id="checkbox16" class="interest_button" name="interest" value="농림/어업"></input><input
+                        type="checkbox" id="checkbox17" class="interest_button" name="interest" value="건설/토목"></input><input
+                        type="checkbox" id="checkbox18" class="interest_button" name="interest" value="스포츠/레크레이션"></input>
+                        
+                        <label for="checkbox1" id="old_label_1" class="change_label" onclick="button_2()"><span class="change_span">전기전자</span></label><label
                         for="checkbox2" id="old_label_2" class="change_label" onclick="button_2()"><span class="change_span">조선업</span></label><label
                         for="checkbox3" id="old_label_3" class="change_label" onclick="button_2()"><span class="change_span">IT</span></label><label
                         for="checkbox4" id="old_label_4" class="change_label" onclick="button_2()"><span class="change_span">의료</span></label><label
@@ -100,12 +101,13 @@
             {% for post in post %}
                 <div class="notice" id="notice_1">
                     <a href="#" class="notice_title">{{post.title}}</a>
-                    <a href="#" class="hits">조회수 {{post.views}}회</a>
+                    <a href="#" class="views">조회수 {{post.views}}회</a>
                 </div>
             {% endfor %}
             </div>
         </div>
     </div>
+    <script>var interests = "{{interest_list|safe}}"</script>
     <script src="/static/js/mypage.js"></script>
 </body>
 {% endblock %}

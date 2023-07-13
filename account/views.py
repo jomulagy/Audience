@@ -236,14 +236,18 @@ def search_password(request):  # ajax로 변경(done)
 # 마이페이지
 @login_required
 def my_page(request):
-    interest = UserInterest.objects.filter(userable=request.user)
+    interests = UserInterest.objects.filter(userable=request.user)
+    interest_list=[]
+    for interest in interests:
+        interest_list.append(interest.interest.name)
+    print(interest_list)
     user_posts = Postable.objects.filter(userable=request.user)
     post = user_posts.order_by('-created_at')[:5]
     if request.user.type == "구직자":
         detail_user = Applicant.objects.get(id=request.user.id)
     else:
         detail_user = Employer.objects.get(id=request.user.id)
-    return render(request, 'mypage.html', {'interest': interest, 'posts': post, 'detail_user': detail_user})
+    return render(request, 'mypage.html', {'interest_list': interest_list, 'posts': post, 'detail_user': detail_user})
 
 def my_posts_detail(request):
     if request.user.is_authenticated:
