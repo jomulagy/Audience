@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-import json, re
+import json
+import re
+import string
+import random
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -212,7 +215,12 @@ def search_password(request):  # ajax로 변경(done)
     # 성공
     if Userable.objects.filter(username=username).exists():
         user = Userable.objects.get(username=username)
-        new_password = Userable.objects.make_random_password()
+
+        pw_candidate = string.ascii_letters + string.digits + string.punctuation
+        new_password = ""
+        for i in range(10):
+            new_password += random.choice(pw_candidate)
+
         user.set_password(new_password)
         user.save()
 
@@ -222,11 +230,10 @@ def search_password(request):  # ajax로 변경(done)
             [username],
             fail_silently=False,
         )
-        return JsonResponse({'success': True, 'username': username, 'password': user.password})
+        return JsonResponse({'success': True})
     # 실패
     else:
         return JsonResponse({'success': False, 'error': f'"{username}" does not exist.'})
-
 
 # 마이페이지
 @login_required
