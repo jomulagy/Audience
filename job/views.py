@@ -7,7 +7,7 @@ from util.views import add_hashtag, add_rating
 from util.models import Hashtag
 import json
 from django.http import JsonResponse
-from Audience.views import post list
+from Audience.views import post_list
 
 def job_post_detail(request,post_id): #게시물 상세(id)
     #회사
@@ -21,7 +21,7 @@ def job_post_detail(request,post_id): #게시물 상세(id)
         "likes": likes,
         "dislikes": dislikes
     }
-    return render(request, "postCheck.html", context)
+    return render(request, "Post/postCheck.html", context)
 
 def create_job_post(request): #구직글 작성
     #해시태그 저장 함수 utll에서 찾아서 사용
@@ -39,9 +39,9 @@ def create_job_post(request): #구직글 작성
 
             return redirect('job_post_detail', post.id)
         else:
-            return render(request, 'write_findwork.html')
+            return render(request, 'findwork_company_QnA/write_findwork.html')
     else:
-        return render(request, 'write_findwork.html')
+        return render(request, 'findwork_company_QnA/write_findwork.html')
 
 def update_job_post(request,id): #구직글 수정
     #해시태그 저장 함수 utls에서 찾아서 사용
@@ -52,15 +52,15 @@ def update_job_post(request,id): #구직글 수정
             form.save()
             return redirect('job_post_detail',post.id)
         else:
-            return render(request, 'write_findwork.html')
+            return render(request, 'findwork_company_QnA/write_findwork.html')
 
     else:
-        return render(request, 'write_findwork.html')
+        return render(request, 'findwork_company_QnA/write_findwork.html',{"post" : post})
 
 def delete_job_post(request,id): #구직글 삭제
     post = get_object_or_404(Postable, id=id)
     post.delete()
-    return redirect('post list')
+    return redirect('post_list')
 
 def job_free_post_detail(request,post_id):
     post = Freepost_j.objects.get(id=post_id)
@@ -73,7 +73,7 @@ def job_free_post_detail(request,post_id):
         "likes": likes,
         "dislikes": dislikes
     }
-    return render(request, "postFree.html", context)
+    return render(request, "Post/postFree.html", context)
 def create_job_free_post(request): #구직/자유소통 작성 #해시태그 저장 함수 utls에서 찾아서 사용
     if request.method == 'POST':
         form = FreePostForm_j(request.POST, request.FILES)
@@ -86,9 +86,9 @@ def create_job_free_post(request): #구직/자유소통 작성 #해시태그 저
 
             return redirect('job_free_post_detail', post.id)
         else:
-            return render(request, 'free_write.html')
+            return render(request, 'findwork_company_QnA/free_write.html',{"type" : "post_j"})
     else:
-        return render(request, 'free_write.html')
+        return render(request, 'findwork_company_QnA/free_write.html',{"type" : "post_j"})
 
 def update_job_free_post(request,id): #구직/자유소통 수정
     #해시태그 저장 함수 utls에서 찾아서 사용
@@ -99,15 +99,15 @@ def update_job_free_post(request,id): #구직/자유소통 수정
             form.save()
             return redirect('job_free_post_detail',post.id)
         else:
-            return render(request, 'free_write.html')
+            return render(request, 'findwork_company_QnA/free_write.html',{"type" : "post_j", "post":post})
 
     else:
-        return render(request, 'free_write.html')
+        return render(request, 'findwork_company_QnA/free_write.html',{"type" : "post_j", "post":post})
 #
 def delete_job_free_post(request,id): #구직/자유소통 삭제
     post = get_object_or_404(Postable, id=id)
     post.delete()
-    return redirect('post list')
+    return redirect('post_list')
 
 def report_create_j(request):
     if request.method == 'POST':

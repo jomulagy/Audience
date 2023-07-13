@@ -1,9 +1,10 @@
+{% load static %}
 <!--게시글 리스트 페이지 & 게시글 확인 페이지-->
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-    <link type="text/css" rel="stylesheet" href="..\..\static\css\Q&A\Q&A_p.css" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/Q&A/Q&A_p.css' %}" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,25 +17,33 @@
 </head>
 
 <body>
+{% include 'header2.html' %}
     <div class="backg"></div>
 
     <div class="rectangleBar">
-        <h2><a class="rectText1" href="https://google.com">모집공고</a></h2>
+        <h2><a class="rectText1" href="{% url 'employ:employ_post_detail' post.id %}">모집공고</a></h2>
         <div class="rectMiddle"></div>
-        <h2><a class="rectText2" href="https://google.com">Q&A</a></h2>
+        <h2><a class="rectText2" href="{% url 'employ:QA_list' post.id %}">Q&A</a></h2>
     </div>
     
 
     <div class="infoBox">
-        <h2 class="infoCondition">고용형태(인턴/정규직/비정규직)<br>[내용 입력]</h2>
-        <h2 class="infoEmployCount">채용자 수<br>[내용 입력]</h2>
-        <h2 class="infoEmployPrefer">우대조건<br>[내용 입력]</h2>
+        <h2 class="infoCondition">고용형태(인턴/정규직/비정규직)<br>[{{post.employ_shape}}]</h2>
+        <h2 class="infoEmployCount">채용자 수<br>[{{post.required_num}}]</h2>
+        <h2 class="infoEmployPrefer">우대조건<br>[{{post.prefer_condition}}]</h2>
     </div>
 
     <div class="infoBox2">
-        <h2 class="infoApplyMethod">지원 방법<br>[내용 입력]</h2>
-        <h2 class="infoApplySchedule">지원 일정<br>[내용 입력]</h2>
-        <h2 class="infoHashtag">해시태그<br>[내용 입력]</h2>    
+        <h2 class="infoApplyMethod">지원 방법<br>[{{post.apply_method}}]</h2>
+        <h2 class="infoApplySchedule">지원 일정<br>[{{post.start_date|date:'Y-m-d H:i'}} ~ {{post.end_date|date:'Y-m-d H:i'}}]</h2>
+        <h2 class="infoHashtag">해시태그<br>[
+            {% for hashtag in post.hashtag_set.all %}
+                {{hashtag}}
+                {% if not forloop.first %}
+                    ,&nbsp;
+                {% endif %}
+            {% endfor %}
+            ]</h2>
     </div>
 
 
@@ -43,7 +52,7 @@
     <div class="infoBoxLineMiddle"></div>
 
     <div class="searchBoxes">
-        <button class="searchBox" type="button" value="Button">질문 작성하기</button>
+        <button class="searchBox" type="button" value="Button" onclick = "location.href = '{% url 'employ:create_question' post.id %}'">질문 작성하기</button>
     </div>
 
     <h2 class="qnaText">Q&A 게시판</h2>
@@ -56,12 +65,16 @@
     <div class="qnaBoxUp"></div>
     <div class="qnaBoxDown"></div>
 
-    <h2 class="nickname">기업이름</h2>
-    <h2 class="title">게시글 제목</h2>
-    <h2 class="reportText">신고하기</h2>
-    <a href="h" class="modify">수정하기</a>
-    <a href="h" class="delete">삭제하기</a>
-    <h2 class="views">조회수 00회</h2>
+    <h2 class="nickname">{{post.userable.name}}</h2>
+    <h2 class="title">{{post.title}}</h2>
+    {% if post.userable == request.user %}
+        <a href="{% url 'employ:update_employ_post' post.id %}" class="modify">수정하기</a>
+        <a href="{% url 'employ:update_employ_post' post.id %}" class="delete">삭제하기</a>
+    {% else %}
+        <h2 class="reportText">신고하기</h2>
+    {% endif %}
+
+    <h2 class="views">조회수 {{post.views}}회</h2>
 
     <div class="reportMenu2" style="display: none;">
         <select id="reportReason2">
@@ -74,7 +87,7 @@
         <button id="report-submit2">신고</button>
       </div>
 
-    <script src="..\..\static\js\Q&A\Q&A_p.js"></script>
+    <script src="{% static 'js/Q&A/Q&A_p.js' %}"></script>
 </body>
 
 </html>

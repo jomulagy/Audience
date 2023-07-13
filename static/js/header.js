@@ -76,3 +76,24 @@ scrollEvent = function(){
 	}
 	this.ready();
 }
+
+
+
+//keyword input
+
+// onclick() + url
+document.addEventListener("DOMContentLoaded", function() {
+	document.getElementById("search-button").onclick = function() {
+		var keyword = document.getElementById("keyword-input").value;
+		var url = `/audience/search/${encodeURIComponent(keyword)}/all/all/all/all/`;
+		location.href=url
+  	};
+});
+
+
+
+
+
+
+  
+//버튼에 url 추가하기 

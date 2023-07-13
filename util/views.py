@@ -80,20 +80,15 @@ def add_rating(applicant, employer, rating):
 
 # 관심분야 set
 # 파이썬 함수처럼 만들어서 회원정보 수정에서 호출할 수 있도록 수정
-def update_interest(request, interest_list):
-    user = request.user
+def update_interest(user, interest_list):
     # 관심분야 clear
     UserInterest.objects.filter(userable=user).delete()
     # 다시 전부다 연결
     if len(interest_list) > 0:
         for interest in interest_list:
-            new_interest = Interest.objects.get(id=interest)
-            user.interest.add(new_interest)
-        success = True
-        return success
+            UserInterest.objects.create(userable=user, interest=interest)
     else:
-        success = False
-        return success
+        pass
 
 # 해시태그 생성(게시물 id)
 # 파이썬 함수처럼 만들기 게시글 생성 및 수정에서 호출할 수 있게

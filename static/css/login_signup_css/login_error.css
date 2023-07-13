@@ -6,6 +6,10 @@ input, button {
     border: none;
 }
 
+::placeholder{
+    color: black;
+}
+
 .login_error {
     display: flex;
     flex-direction: column;

@@ -1,54 +1,59 @@
+{% extends 'header.html' %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
+{% block static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/mypage_css/change_c_p.css">
+    <link rel="stylesheet" href="/static/css/mypage_css/change_c_p.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../static/js/signup_change.js"></script>
+    <script src="/static/js/signup_change.js"></script>
 
     <title>구직자 회원정보수정</title>
 </head>
-
+{% endblock %}
+{% block content %}
 <body>
     <h1 class="serviceName">청취자들</h1>
 
     <div class="change_p">
-        <form >
+        <form action="{% url 'update_account' %}" method="POST">
             <div class="id">
                 <h3 class="h3_id">아이디</h3>
-                <input type="text" class="user_id" value="mutsa123" disabled>
+                <input type="text" class="user_id" value="{{user.username}}" disabled>
             </div>
             <div class="pw">
                 <h3 class="h3_pw">비밀번호</h3>
-                <input type="button" class="change_pw" value="비밀번호 변경하기">
+                <input type="button" class="change_pw" value="비밀번호 변경하기" onclick="location.href='{% url 'update_password' %}'">
             </div>
-            <input type="password" class="user_pw" value="ajtwod" disabled></input>
+            <input type="password" class="user_pw" value="**********" disabled></input>
             <div class="name">
                 <h3 class="h3_name">이름</h3>
-                <input class="user_name" value="멋쟁이사자처럼"></input>
+                <input class="user_name" name="name" value="{{user.name}}"></input>
             </div>
             <div class="nickname">
                 <h3 class="h3_nickname">닉네임</h3>
-                <p class="user_nickname">멋사_교내해커톤</p>
+                <p class="user_nickname">{{detail_user.nickname}}</p>
                 
             </div>
             <div class="gender">
                 <h3 class="h3_gender">성별</h3>
                 <div class="user_gender">
-                    <input type="radio" id="gender_man" name="gender"></input>
+                    <input type="radio" id="gender_man" name="gender" value="man"></input>
                     <label for="gender_man" id="old_gender_label_1" class="change_label" onclick="button_1()"> <span class="change_span">남자</span> </label>
-                    <input type="radio" id="gender_woman" name="gender"></input>
+                    <input type="radio" id="gender_woman" name="gender" value="woman"></input>
                     <label for="gender_woman" id="old_gender_label_2" class="change_label" onclick="button_1()"><span class="change_span">여자</span></label>
-                    <input type="radio" id="gender_hide" name="gender"></input>
+                    <input type="radio" id="gender_hide" name="gender" value="none"></input>
                     <label for="gender_hide" id="old_gender_label_3" class="change_label" onclick="button_1()"><span class="change_span">밝히지않음</span></label>
                 </div>
             </div>
             <div class="age">
                 <h3 class="h3_age">나이</h3>
-                <input type="number" class="user_age" min="1" placeholder="나이를 입력해주세요"></input>
+                <input type="number" class="user_age" min="1" name="age" placeholder="나이를 입력해주세요"></input>
             </div>
             <div class="interesting">
                 <h3 class="h3_interest">관심분야</h3>
@@ -121,10 +126,10 @@
             </div>
         </form>
         <div class="delete">
-            <a href="#" class="move_delete_p">계정삭제하기</a>
+            <a href="{% url 'delete_account' %}" class="move_delete_p">계정삭제하기</a>
         </div>
     </div>
 
 </body>
-
+{% endblock %}
 </html>

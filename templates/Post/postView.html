@@ -1,9 +1,10 @@
+{% load static %}
 <!--게시글 리스트 페이지 & 게시글 확인 페이지-->
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-    <link type="text/css" rel="stylesheet" href="..\..\static\css\post\postView.css" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/post/postView.css' %}" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,25 +17,33 @@
 </head>
 
 <body>
+    {% include "header2.html" %}
     <div class="backg"></div>
 
     <div class="rectangleBar">
-        <h2><a class="rectText1" href="https://google.com">모집공고</a></h2>
+        <h2><a class="rectText1" href="{% url 'employ:employ_post_detail' post.id %}">모집공고</a></h2>
         <div class="rectMiddle"></div>
-        <h2><a class="rectText2" href="https://google.com">Q&A</a></h2>
+        <h2><a class="rectText2" href="{% url 'employ:QA_list' post.id %}">Q&A</a></h2>
     </div>
     
 
     <div class="infoBox">
-        <h2 class="infoCondition">고용형태(인턴/정규직/비정규직)<br>[내용 입력]</h2>
-        <h2 class="infoEmployCount">채용자 수<br>[내용 입력]</h2>
-        <h2 class="infoEmployPrefer">우대조건<br>[내용 입력]</h2>
+        <h2 class="infoCondition">고용형태(인턴/정규직/비정규직)<br>[{{post.employ_shape}}]</h2>
+        <h2 class="infoEmployCount">채용자 수<br>[{{post.required_num}}]</h2>
+        <h2 class="infoEmployPrefer">우대조건<br>[{{post.prefer_condition}}]</h2>
     </div>
 
     <div class="infoBox2">
-        <h2 class="infoApplyMethod">지원 방법<br>[내용 입력]</h2>
-        <h2 class="infoApplySchedule">지원 일정<br>[내용 입력]</h2>
-        <h2 class="infoHashtag">해시태그<br>[내용 입력]</h2>    
+        <h2 class="infoApplyMethod">지원 방법<br>[{{post.apply_method}}]</h2>
+        <h2 class="infoApplySchedule">지원 일정<br>[{{post.start_date|date:'Y-m-d H:i'}} ~ {{post.end_date|date:'Y-m-d H:i'}}]</h2>
+        <h2 class="infoHashtag">해시태그<br>[
+            {% for hashtag in post.hashtag_set.all %}
+                {{hashtag}}
+                {% if not forloop.first %}
+                    ,&nbsp;
+                {% endif %}
+            {% endfor %}
+            ]</h2>
     </div>
 
 
@@ -43,7 +52,7 @@
     <div class="infoBoxLineMiddle"></div>
 
     <h2 class="contentText">공고 내용</h2>
-    <div class="contentBox"></div>
+    <div class="contentBox">{{post.content}}</div>
     <div class="contentBoxUp"></div>
     <div class="contentBoxDown"></div>
 
@@ -55,10 +64,17 @@
             <h2>image</h2>
         </button>
        
-        <h2 class="companyWriter">작성자:</h2>
-        <h2 class="companyDate">업로드 일자:</h2>
-        <h2 class="companyName">회사명:</h2>
-        <h2 class="companyType">회사업종:</h2>
+        <h2 class="companyWriter">작성자:{{post.userable.name}}</h2>
+        <h2 class="companyDate">업로드 일자:{{post.userable.created_at}}</h2>
+        <h2 class="companyName">회사명:{{post.userable.name}}</h2>
+        <h2 class="companyType">회사업종:
+            {% for interest in post.userable.interest.all %}
+                {{interest.interest.name}}
+                {% if not forloop.first %}
+                    ,&nbsp;
+                {% endif %}
+            {% endfor %}
+        </h2>
     </div>
     <div class="companyBoxUp"></div>
     <div class="companyBoxDown"></div>
@@ -66,11 +82,11 @@
 
 
     <button class="goodButton" type="button" value="Button" onclick="toggleLike()">
-        <h2 class="goodText">00👍<br>좋아요</h2>
+        <h2 class="goodText">{{post.like_set.count}}👍<br>좋아요</h2>
     </button>
     
     <button class="badButton" type="button" value="Button" onclick="toggleNotLike()">
-        <h2 class="badText">00👎<br>싫어요</h2>
+        <h2 class="badText">{{post.dislike_set.count}}👎<br>싫어요</h2>
     </button>
 
         
@@ -94,7 +110,18 @@
         <button id="comment-submit">SEND</button>
     </div>
 
-    <div id="comment-list"></div>
+    <div id="comment-list">
+        {% for comment in post.comment_set.all %}
+            <div class="comment"><p>[{{comment.userable.name}}]</p>
+                <p>{{comment.content}}</p>
+                <div class="comment-options">
+                    <button>대댓글 달기</button>
+                    <button>수정하기</button>
+                    <delete-button> 삭제하기</delete-button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
     </div>
 
     <div class="commentBoxUp"></div>
@@ -102,13 +129,17 @@
 
 
 
-    <h2 class="nickname">기업이름</h2>
-    <h2 class="title">게시글 제목</h2>
-    <a href="h" class="modify">수정하기</a>
-    <a href="h" class="delete">삭제하기</a>
-    <h2 class="views">조회수 00회</h2>
+    <h2 class="nickname">{{post.userable.name}}</h2>
+    <h2 class="title">{{post.title}}</h2>
+    {% if post.userable == request.user %}
+        <a href="{% url 'employ:update_employ_post' post.id %}" class="modify">수정하기</a>
+        <a href="{% url 'employ:delete_employ_post' post.id %}" class="delete">삭제하기</a>
+    {% else %}
+        <h2 class="reportText">신고하기</h2>
+    {% endif %}
+    <h2 class="views">조회수 {{post.views}}회</h2>
 
-    <script src="..\..\static\js\post\postView.js"></script>
+    <script src="{% static 'js/post/postView.js' %}"></script>
 </body>
 
 </html>

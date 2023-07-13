@@ -6,6 +6,10 @@ input, button {
     border: none;
 }
 
+::placeholder{
+    color: black;
+}
+
 .form_find,
 .find_id_pw,
 .form_show_user

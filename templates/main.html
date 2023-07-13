@@ -1,13 +1,19 @@
+{% extends 'header.html' %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="kr">
+{% block static %}
 <head>
 	<meta name="code" charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes"/>
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-	<script src="/static/js/header.js"></script>
+	<script src="../../static/js/header.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/static/css/main_style.css"/>
+	<link rel="stylesheet" href="../../static/css/main_style.css"/>
 </head>
+{% endblock %}
+{% block content %}
 <body>
 	
 
@@ -19,9 +25,9 @@
 					<div class="visual-text">
 						<div class="sub-text">청년 취업을 하기위한 사람들</div>
 						<h1 class="title-text">청취자들</h1>
-						<a href="" class="golink">자세히 알아보기</a>
+						<a href="{% url 'intro_view' %}" class="golink">자세히 알아보기</a>
 					</div>
-					<div class="visual-img"><img src="/static/img/demo/demo-visual.png"></div>
+					<div class="visual-img"><img src="../../static/img/demo/demo-visual.png"></div>
 				</div>
 			</div>
 			<!-- main visual // -->
@@ -32,17 +38,14 @@
 						<div class="bbs-list-head">
 							<div class="bbs-list-title">실시간 구인 게시글</div>
 							<div class="bbs-list-tool">
-								<a href="">+더보기</a>
+								<a href="{% url 'main:post_list_page' '구인' 'all' 'all' 'all' %}">+더보기</a>
 							</div>
 						</div>
 						<div class="bbs-list-body">
 							<ul>
-								<li><a href=""><span class="bbs-subject">게시물 제목</span> <span class="bbs-date">23.07.04</span></a></li>
-								<li><a href=""><span class="bbs-subject">게시물 제목</span> <span class="bbs-date">23.07.04</span></a></li>
-								<li><a href=""><span class="bbs-subject">게시물 제목</span></a></li>
-								<li><a href=""><span class="bbs-subject">게시물 제목</span></a></li>
-								<li><a href=""><span class="bbs-subject">게시물 제목</span></a></li>
-								<li><a href=""><span class="bbs-subject">게시물 제목</span></a></li>
+								{% for post in employ_posts %}
+									<li><a href="{% url 'employ:employ_post_detail' post.id %}"><span class="bbs-subject">{{post.title}}</span> <span class="bbs-date">{{post.created_at|date:'y.m.d'}}</span></a></li>
+								{% endfor %}
 							</ul>
 						</div>
 					</div>
@@ -52,17 +55,14 @@
 						<div class="bbs-list-head">
 							<div class="bbs-list-title">실시간 구직 게시글</div>
 							<div class="bbs-list-tool">
-								<a href="">+더보기</a>
+								<a href="{% url 'main:post_list_page' '구직' 'all' 'all' 'all' %}">+더보기</a>
 							</div>
 						</div>
 						<div class="bbs-list-body">
 							<ul>
-								<li><a href=""><span class="bbs-subject">게시물 제목 왜 얘만 늘어나요</span> <span class="bbs-date">23.07.04</span></a></li>
-								<li><a href=""><span class="bbs-subject">게시물 제목</span> <span class="bbs-date">23.07.04</span></a></li>
-								<li><a href=""><span class="bbs-subject">게시물 제목</span></a></li>
-								<li><a href=""><span class="bbs-subject">게시물 제목</span></a></li>
-								<li><a href=""><span class="bbs-subject">게시물 제목</span></a></li>
-								<li><a href=""><span class="bbs-subject">게시물 제목</span></a></li>
+								{% for post in job_posts %}
+									<li><a href="{% url 'job:job_post_detail' post.id %}"><span class="bbs-subject">{{post.title}}</span> <span class="bbs-date">{{post.created_at|date:'y.m.d'}}</span></a></li>
+								{% endfor %}
 							</ul>
 						</div>
 					</div>
@@ -79,6 +79,7 @@
 		});
 	</script>
 </body>
+{% endblock %}
 </html>
 
 

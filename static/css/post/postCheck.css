@@ -6,11 +6,9 @@ a {
   width: 1000px;
   height: 2000px;
   background-color: rgb(247, 220, 225);
-  margin-left: 270px;
-  margin-right: 270px;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  position: relative;
+  top: 25%;
+  left: 18.5%;
+  position: absolute;
 }
 
 .contentText {
@@ -54,8 +52,8 @@ a {
 .nickname {
   font-size: 20px;
   position: absolute;
-  top: 185px;
-  left: 485px;
+  top: 35.5%;
+  left: 32.5%;
   transform: translate(-50%, -50%);
   color: rgb(0, 0, 0);
   text-align: center;
@@ -66,8 +64,8 @@ a {
   font-size: 40px;
   font-weight: bold;
   position: absolute;
-  top: 245px;
-  left: 525px;
+  top: 43.5%;
+  left: 32.5%;
   transform: translate(-50%, -50%);
   color: rgb(0, 0, 0);
   text-align: center;
@@ -126,8 +124,8 @@ a {
   width: 800px;
   height: 50px;
   background-color: rgb(210, 153, 164);
-  top: 298px;
-  left: 380px;
+  top: 50%;
+  left: 25.5%;
   position: absolute;
   border-radius: 5px;
 }
@@ -162,8 +160,8 @@ a {
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 373px;
-  left: 425.5px;
+  top: 60%;
+  left: 29.2%;
   position: absolute;
 }
 
@@ -171,8 +169,8 @@ a {
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 623px;
-  left: 425.5px;
+  top: 93.5%;
+  left: 29.2%;
   position: absolute;
 }
 
@@ -180,8 +178,8 @@ a {
   width: 2px;
   height: 220px;
   background-color: rgb(223, 179, 179);
-  top: 390px;
-  left: 775px;
+  top: 62%;
+  left: 52.2%;
   position: absolute;
 }
 
@@ -189,8 +187,8 @@ a {
   width: 700px;
   height: 250px;
   background-color: rgb(247, 239, 239);
-  top: 373px;
-  left: 425.5px;
+  top: 60%;
+  left: 29.2%;
   position: absolute;
 }
 
@@ -198,8 +196,8 @@ a {
   width: 350px;
   height: 250px;
   background-color: rgb(247, 239, 239);
-  top: 373px;
-  left: 775px;
+  top: 60%;
+  left: 53%;
   position: absolute;
 }
 

@@ -1,10 +1,11 @@
+{% load static %}
 <!--게시글 리스트 페이지 & 게시글 확인 페이지-->
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
     
-    <link rel="stylesheet" rel="stylesheet" href="..\..\static\css\post\postList.css" />
+    <link rel="stylesheet" rel="stylesheet" href="{% static 'css\post\postList.css' %}" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
 </head>
 
 <body>
+    {% include 'header2.html' %}
     <!--구직 커뮤니티-->
     <!--선택 박스-->
     <div class="searchBoxes">
@@ -63,7 +65,8 @@
         <div id="linePostList"></div>   <!--아래 줄 게시글-->
     </div>
     <div id="newPostContainer"></div>   <!--아래 실시간 게시물-->
-    <script src="..\..\static\js\post\postList.js"></script>
+    {% include 'pagination.html' %}
+    <script src="{% static 'js\post\postList.js' %}"></script>
 </body>
 
 </html>
