@@ -1,28 +1,26 @@
 body{
-    position: relative;
-    width: 1440px;
-    height: 100%;
+    width: 100vw; 
+    height: 100vh;
     margin: auto;
 }
 
 
 .container {
+    position: relative;
     min-height: 1750px;
     background-color: #FFE5E5;
     width: 1134.79px;
     height: 100%;
-    margin-top: 163.46px;
-    margin-left: 158.81px;
-    margin-right: 146.4px;
+    margin : auto;
     background-size: cover;
   }
 
 /*글제목*/
 
-#title {
+#title1 {
     position: absolute;
-    top: 69.54px; 
-    left: 223px;
+    top: 5%; 
+    left: 7.5%;
     width: 964px;
     max-width: 1000px;
     height: 28px;
@@ -34,8 +32,8 @@ body{
 
 #content {
     position: absolute;
-    top: 144.54px; 
-    left: 224.5px;
+    top: 10%;
+    left: 7.5%;
     width: 964px;
     height: 226px;
     font-size: 20px; 
@@ -45,8 +43,8 @@ body{
 
 #job_condition_text {
     position: absolute;
-    top: 406.54px; 
-    left: 229.5px; 
+    top: 23.25%; 
+    left: 7.5%; 
     width: 90px;
     height: 24px; 
     font-size: 20px; 
@@ -54,8 +52,8 @@ body{
 
 #intern_btn.active {
     position: absolute;
-    top: 446.54px; 
-    left: 223.5px; 
+    top: 25.5%; 
+    left: 7.5%; 
     background-color:#FFBDBD;
     color:black;
     border:none;
@@ -70,8 +68,8 @@ body{
 
 #intern_btn {
     position: absolute;
-    top: 446.54px; 
-    left: 223.5px; 
+    top: 25.5%; 
+    left: 7.5%; 
     background-color:white;
     color:black;
     border:none;
@@ -86,8 +84,8 @@ body{
 
 #permanent_btn.active {
     position: absolute;
-    top: 446.54px; 
-    left: 517.5px;
+    top: 25.5%; 
+    left: 32.5%;
     border:none; 
     background-color:#FFBDBD;
     color:black;
@@ -103,8 +101,8 @@ body{
 
 #permanent_btn {
     position: absolute;
-    top: 446.54px; 
-    left: 517.5px;
+    top: 25.5%; 
+    left: 32.5%;
     border:none; 
     background-color:white;
     color:black;
@@ -120,8 +118,8 @@ body{
 
 #temporary_btn.active {
     position: absolute;
-    top: 446.54px; 
-    left: 807.5px; 
+    top: 25.5%; 
+    left: 57.5%; 
     border:none;  
     background-color:#FFBDBD;
     color:black;
@@ -137,8 +135,8 @@ body{
 
 #temporary_btn {
     position: absolute;
-    top: 446.54px; 
-    left: 807.5px; 
+    top: 25.5%;
+    left: 57.5%; 
     border:none;  
     background-color:white;
     color:black;
@@ -158,8 +156,8 @@ body{
 
 #company_name_text {
     position: absolute;
-    top: 507.54px; 
-    left: 229.5px; 
+    top: 29.5%; 
+    left: 7.5%; 
     width: 90px;
     height: 24px; 
     font-size: 20px; 
@@ -167,8 +165,8 @@ body{
 
 #company_name {
     position: absolute;
-    top: 547.54px; 
-    left: 223.5px;
+    top: 31.5%; 
+    left: 7.5%;
     width: 257px;
     height: 28px;
     font-size: 15px; 
@@ -176,8 +174,8 @@ body{
 
 #grade_text {
     position: absolute;
-    top: 596.54px; 
-    left: 229.5px; 
+    top: 34%; 
+    left: 7.5%; 
     width: 90px;
     height: 24px; 
     font-size: 20px; 
@@ -185,8 +183,8 @@ body{
 
 #star_1 {
     position: absolute;
-    top: 627.79px; 
-    left: 223px; 
+    top: 35.75%; 
+    left: 7.5%; 
     width: 40px;
     height: 40px; 
     font-size: 40px; 
@@ -195,8 +193,8 @@ body{
 
 #star_2 {
     position: absolute;
-    top: 627.79px; 
-    left: 275px; 
+    top: 35.75%; 
+    left: 12%; 
     width: 40px;
     height: 40px; 
     font-size: 40px; 
@@ -204,8 +202,8 @@ body{
 
 #star_3 {
     position: absolute;
-    top: 627.79px; 
-    left: 327px; 
+    top: 35.75%;  
+    left: 16.5%; 
     width: 40px;
     height: 40px; 
     font-size: 40px; 
@@ -213,8 +211,8 @@ body{
 
 #star_4 {
     position: absolute;
-    top: 627.79px; 
-    left: 379px; 
+    top: 35.75%; 
+    left: 21%; 
     width: 40px;
     height: 40px; 
     font-size: 40px; 
@@ -222,8 +220,8 @@ body{
 
 #star_5 {
     position: absolute;
-    top: 627.79px; 
-    left: 431px; 
+    top: 35.75%; 
+    left: 25.5%; 
     width: 40px;
     height: 40px; 
     font-size: 40px; 
@@ -249,8 +247,8 @@ body{
 
 #certification_photo_text {
     position: absolute;
-    top: 691.45px; 
-    left: 229.5px; 
+    top: 39.5%; 
+    left: 7.5%; 
     width: 90px;
     height: 24px; 
     font-size: 20px; 
@@ -258,8 +256,8 @@ body{
 
 #certification_photo_space {
     position: absolute;
-    top : 725.86px;
-    left: 223.5px;
+    top : 42%;
+    left: 7.5%;
     width: 964px;
     height: 600px;
     background-color: white;
@@ -269,8 +267,8 @@ body{
 .upload-button {
     display: inline-block;
     position: absolute;
-    top: 691.45px; 
-    left: 1048px; 
+    top: 39.5%; 
+    left: 80%;
     width: 140.03px;
     height: 23.37px; 
     background-color:#FFBDBD;
@@ -287,11 +285,11 @@ body{
   
   #preview-image {
     position: absolute;
-    top: 1025.34px;
-    left: 48%;
-    transform: translate(-50%, -50%);
-    max-width: 944px;
-    max-height: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    max-width: 894px;
+    max-height: 550px;
   }
 
 #upload-input {
@@ -300,15 +298,17 @@ body{
 
   #hashtag_text {
     position: absolute;
-    top: 1336.37px; 
-    left: 229.5px; 
+    top: 76.5%; 
+    left: 7.5%; 
     width: 90px;
     height: 24px; 
     font-size: 20px;
   }
   
   .tag-container {
-    position: relative;
+    position: absolute;
+    top: 77.9%;
+    left: 20%;
     display: flex;
     flex-wrap: nowrap;
     max-width: 700px;
@@ -320,8 +320,8 @@ body{
     border: none;
     cursor: pointer;
     position: relative;
-    top: 1363.87px; 
-    left: 225.69px;
+    top: 0%; 
+    left: 0%;
     width: auto; /* 자동으로 크기 조정 */
     height: 28px;
     font-size: 20px;
@@ -330,8 +330,8 @@ body{
   
   .input-container {
     position: absolute;
-    top: 1375.87px; 
-    left: 225.69px;
+    top: 78.5%; 
+    left: 7.5%;
     width: 134px;
     height: 28px;
   }
@@ -342,12 +342,11 @@ body{
     border: none;
   }
   
-  
 
 #upload_btn {
     position: absolute;
-    top: 1657.85px; 
-    left: 535.2px; 
+    top: 90%; 
+    left: 33%; 
     background-color:#FFBDBD;
     color:black;
     border:none;
