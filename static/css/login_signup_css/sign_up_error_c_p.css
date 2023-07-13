@@ -39,6 +39,7 @@ input, button {
     letter-spacing: 0em;
     text-align: left;
     padding: 0 0 0 10px;
+    color: black;
 }
 
 /* .id_check { */
@@ -71,6 +72,7 @@ input, button {
     letter-spacing: 0em;
     text-align: left;
     padding: 0 0 0 10px;
+    color: black;
 }
 
 .interest_table,
