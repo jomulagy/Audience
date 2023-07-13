@@ -90,29 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
   	};
 });
 
-function calculateTotalPages(url) {
-	$.ajax({
-		url: "http://127.0.0.1:8000/audience/total_pages/",
-		type: "POST",
-		contentType: "application/json",
-		dataType: "json",
-		data: JSON.stringify({
-				"total_pages": 1
 
-		})
-	})
-		.done(function(data) {
-			var totalPages = data.total_pages;
-			goToFirstPage(totalPages);
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.log("Error:", errorThrown);
-		});
-}
-
-function goToFirstPage(totalPages) {
-	//첫번째 페이지로? 페이지네이션으로?
-}
 
 
 

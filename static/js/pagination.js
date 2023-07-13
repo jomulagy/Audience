@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', (event) => {
     const buttonContainer = document.getElementById('buttonContainer');
 
-
+    
     const buttonCount = 5;
     const buttonSize = 30;
 
