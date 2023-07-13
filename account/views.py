@@ -7,7 +7,7 @@ import random
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.contrib.auth.hashers import check_password
 from django.views.generic import View
 
@@ -134,7 +134,6 @@ def create_employer(request):
         if password1 != password2:
             context["error"] = 'no_same_password_error'
             return render(request, 'sign_up_error_c.html', context)
-
         password_pattern = r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$'
         if not re.match(password_pattern, password1):
             context["error"] = 'wrong_password_error'
@@ -224,12 +223,11 @@ def search_password(request):  # ajax로 변경(done)
         user.set_password(new_password)
         user.save()
 
-        send_mail(
-            f'임시 비밀번호: {new_password}',
-            'audience_likelion@naver.com',  # 임시 계정 만들기
-            [username],
-            fail_silently=False,
-        )
+        subject = "From Audience"
+        to = [username]
+        from_email = "audience_likelion@naver.com"
+        message = f'임시 비밀번호: {new_password}'
+        EmailMessage(subject=subject, body=message, to=to, from_email=from_email).send()
         return JsonResponse({'success': True})
     # 실패
     else:
@@ -353,8 +351,11 @@ def update_account(request):
 @login_required
 def delete_account(request):
     if request.method == 'POST':
-        if request.POST.get('password1') == request.POST.get('password2'):
-            if request.POST.get('password1') == request.user.password:
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+
+        if password1 == password2:
+            if check_password(password2, request.user.password):
                 request.user.delete()
                 return redirect('account_login')
             else:
