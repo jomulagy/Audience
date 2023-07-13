@@ -17,7 +17,6 @@ class UserLoginView(View):
     template_name = 'login_error.html'
 
     def get(self, request):
-        print(1)
         return render(request, self.template_name)
 
     def post(self, request):
@@ -31,7 +30,7 @@ class UserLoginView(View):
             return redirect('main:main_view')
         # 실패
         else:
-            return render(request, 'login_error.html', {'error': True})
+            return render(request, 'login_error.html', {'error': True, 'username': username})
 
 # 로그아웃
 class UserLogOutView(View):
@@ -54,7 +53,8 @@ def create_applicant(request):
         gender = request.POST.get('gender')
         age = request.POST.get('age')
         interest = request.POST.getlist('interest')
-        career = request.POST.get('career')
+        school = request.POST.get('school')
+        career = request.FILES('career')
 
         email_pattern = r'^[\w\.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         if not re.match(email_pattern, username):
@@ -89,8 +89,17 @@ def create_applicant(request):
         applicant = Applicant.objects.create_user(
             username=username, password=password1,
             name=name, nickname=nickname, gender=gender,
-            age=age, career=career, type='구직자'
+            age=age, school=school, type='구직자'
         )
+
+        if career:
+            file_path = 'applicant_career/' + career.name
+            with open(file_path, 'wb') as f:
+                for chunk in career.chunks():
+                    f.write(chunk)
+
+            applicant.profile_pic = file_path
+
         update_interest(applicant, interest)
         applicant.save()
         return render(request, 'signup_fin.html', {'id': applicant.username})
@@ -108,7 +117,7 @@ def create_employer(request):
         name = request.POST.get('name')
         company = request.POST.get('company')
         interest = request.POST.getlist('interest')
-        image = request.POST.get('image')
+        image = request.FILES('image')
 
         email_pattern = r'^[\w\.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         if not re.match(email_pattern, username):
@@ -142,9 +151,17 @@ def create_employer(request):
 
         employer = Employer.objects.create_user(
             username=username, password=password1,
-            name=name, company=company, image=image, type='구인자'
+            name=name, company=company, type='구인자'
         )
         update_interest(employer, interest)
+        if image:
+            file_path = 'company_profile/' + image.name
+            with open(file_path, 'wb') as f:
+                for chunk in image.chunks():
+                    f.write(chunk)
+
+            employer.profile_pic = file_path
+
         employer.save()
         return render(request, 'signup_fin.html', {'id': employer.username})
 
