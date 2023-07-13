@@ -52,21 +52,26 @@ function show_pw_result(){
 }
 
 //json
+//아이디 찾기
 var namee = $('#name').val();
-var nickname = $('#nickname').val();
+var subname = $('#subname').val();
 var email = $('#id').val();
 $.ajax({
     type : 'POST',
     url : "/account/username/search/",
     data: JSON.stringify({
-        "email" : email,
-        "name" : namee
+        "name" : namee,
+        "subname" : subname
     }),
     success : function(data){
         show_id_result();
+        var id_result = document.createElement("div");//show_box
+        var p_id = document.createElement("p_id");//아이디를 보여줄 p태그
+        id_result.appendChild(p_id);
     }
 })
 
+//비밀번호 찾기
 $.ajax({
     type : 'POST',
     url : "/account/password/search/",
