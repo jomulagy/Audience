@@ -7,14 +7,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/login_signup_css/sign_up_error_c_p.css">
+    <link rel="stylesheet" href=" {% static 'css/login_signup_css/sign_up_error_c_p.css' %} ">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/static/js/signup_change.js"></script>
+    <script src="{% static 'js/signup_change.js' %}"></script>
 
     <title>구직자 회원가입</title>
+
+    {% endblock %}
 </head>
-{% endblock %}
 {% block content %}
 <body>
     <h1 class="serviceName">청취자들</h1>
@@ -23,7 +24,7 @@
         <form class="form_signup" action="{% url 'create_applicant' %}" method="POST">
             <div class="id">
                 <h3 class="h3_id">아이디</h3>
-                <input type="text" class="input_id_nickname" name="username" placeholder="이메일을 입력해주세요">
+                <input type="text" class="input_id_nickname" name="username" value="{{username}}" placeholder="이메일을 입력해주세요">
                 <input type="button" class="check_button" value="중복확인">
                 {% if error == 'username_duplicate_error' %}
                     <p class="error_message">이미 존재하는 아이디입니다.</p>
@@ -34,28 +35,28 @@
             </div>
             <div class="pw">
                 <h3 class="h3_pw">비밀번호</h3>
-                <input type="text" class="input_box" name="password1" placeholder="비밀번호를 입력해주세요">
+                <input type="text" class="input_box" name="password1" value="{{password1}}" placeholder="비밀번호를 입력해주세요">
                 {% if error == 'wrong_password_error' %}
                     <p class="error_message">영문+숫자+특수문자를 포함한 8-20자리를 입력해주세요</p>
                 {% endif %}
             </div>
             <div class="pw_check">
                 <h3 class="h3_pw_check">비밀번호 확인</h3>
-                <input type="text" class="input_box" name="password2" placeholder="비밀번호를 입력해주세요">
+                <input type="text" class="input_box" name="password2" value="{{password2}}" placeholder="비밀번호를 입력해주세요">
                 {% if error == 'no_same_password_error' %}
                     <p class="error_message">비밀번호가 일치하지 않습니다.</p>
                 {% endif %}
             </div>
             <div class="name">
                 <h3 class="h3_name">이름</h3>
-                <input type="text" class="input_box" name="name" placeholder="이름을 입력해주세요">
+                <input type="text" class="input_box" name="name" value="{{name}}" placeholder="이름을 입력해주세요">
                 {% if error == 'no_name_error' %}
                     <p class="error_message">이름은 필수 입력값입니다.</p>
                 {% endif %}
             </div>
             <div class="nickname">
                 <h3 class="h3_nickname">닉네임</h3>
-                <input type="text" class="input_id_nickname" name="nickname" placeholder="닉네임을 입력해주세요">
+                <input type="text" class="input_id_nickname" name="nickname" value="{{nickname}}" placeholder="닉네임을 입력해주세요">
                 <input type="button" class="check_button" value="중복확인">
                 {% if error == 'nickname_duplicate_error' %}
                     <p class="error_message">이미 존재하는 닉네임입니다.</p>
@@ -76,29 +77,28 @@
             </div>
             <div class="age">
                 <h3 class="h3_age">나이</h3>
-                <input type="number" min="1" class="input_box" name="gender" placeholder="나이를 입력해주세요(숫자)">
+                <input type="number" min="1" class="input_box" name="gender" value="{{nickname}}" placeholder="나이를 입력해주세요(숫자)">
             </div>
-            <div class="interesting">
                 <h3 class="h3_interest">관련분야</h3>
                 <div class="interest_table">
                     <input type="checkbox" id="checkbox1" class="interest_button" name="interest" value="전기전자"></input><input
                         type="checkbox" id="checkbox2" class="interest_button" name="interest" value="조선업"></input><input
-                        type="checkbox" id="checkbox3" class="interest_button" name="interest" value="IT"></input><input
+                        type="checkbox" id="checkbox3" class="interest_button" name="interest" value="it"></input><input
                         type="checkbox" id="checkbox4" class="interest_button" name="interest" value="의료"></input><input
                         type="checkbox" id="checkbox5" class="interest_button" name="interest" value="디지털"></input><input
                         type="checkbox" id="checkbox6" class="interest_button" name="interest" value="기획전략"></input><input
                         type="checkbox" id="checkbox7" class="interest_button" name="interest" value="의류산업"></input><input
                         type="checkbox" id="checkbox8" class="interest_button" name="interest" value="교육"></input><input
                         type="checkbox" id="checkbox9" class="interest_button" name="interest" value="금융"></input><input
-                        type="checkbox" id="checkbox10" class="interest_button" name="interest" value="상품기획/MD"></input><input
+                        type="checkbox" id="checkbox10" class="interest_button" name="interest" value="상품기획md"></input><input
                         type="checkbox" id="checkbox11" class="interest_button" name="interest" value="물류"></input><input
-                        type="checkbox" id="checkbox12" class="interest_button" name="interest" value="회계/재무"></input><input
+                        type="checkbox" id="checkbox12" class="interest_button" name="interest" value="회계재무"></input><input
                         type="checkbox" id="checkbox13" class="interest_button" name="interest" value="서비스"></input><input
                         type="checkbox" id="checkbox14" class="interest_button" name="interest" value="공공복지"></input><input
                         type="checkbox" id="checkbox15" class="interest_button" name="interest" value="미디어"></input><input
-                        type="checkbox" id="checkbox16" class="interest_button" name="interest" value="농림/어업"></input><input
-                        type="checkbox" id="checkbox17" class="interest_button" name="interest" value="건설/토목"></input><input
-                        type="checkbox" id="checkbox18" class="interest_button" name="interest" value="스포츠/레크레이션"></input>
+                        type="checkbox" id="checkbox16" class="interest_button" name="interest" value="농림어업"></input><input
+                        type="checkbox" id="checkbox17" class="interest_button" name="interest" value="건설토목"></input><input
+                        type="checkbox" id="checkbox18" class="interest_button" name="interest" value="스포츠레크레이션"></input>
                     <label for="checkbox1" id="old_label_1" class="change_label" onclick="button_2()"><span class="change_span">전기전자</span></label><label
                         for="checkbox2" id="old_label_2" class="change_label" onclick="button_2()"><span class="change_span">조선업</span></label><label
                         for="checkbox3" id="old_label_3" class="change_label" onclick="button_2()"><span class="change_span">IT</span></label><label
