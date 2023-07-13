@@ -117,14 +117,18 @@ def report_create_j(request):
 
         return JsonResponse({})
 
+
 def search_company(request):
     if request.method == "POST":
         data = json.loads(request.body)
         name = data["name"]
-        companies = list(Employer.objects.filter(name__contains = name).values("name"))
+        companies = list(Employer.objects.filter(name__contains=name).values("name"))
         context = {
-            "companies" : companies
+            "companies": companies
         }
         return JsonResponse(context)
+    
+    else:
+        return render(request,"findwork_company_QnA/companyname.html")
 
 

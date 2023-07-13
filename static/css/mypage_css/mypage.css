@@ -57,7 +57,13 @@ input {
     max-width: 100%;
     height: auto;
     display: block;
+    background-color: #ffffff;
     }
+
+.profile_nickname_wrap {
+    display: flex;
+    justify-content: center;
+}
 
 .mypage_buttons {
     display: flex;

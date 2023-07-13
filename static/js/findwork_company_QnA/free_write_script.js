@@ -1,4 +1,4 @@
-
+  
 
 var fileInput = document.getElementById('upload-input');
 var previewContainer = document.getElementById('preview-container');

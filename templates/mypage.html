@@ -21,12 +21,22 @@
 <body>
     <div class="profile"> <!--js에 의해 바뀌지 않는 프로필 상단-->
         <div class="profile_box">
-            <img src="" alt="#">
-            {% if user_type == '구직자' %}
-                <input type="text" class="profile_nickname" value="{{detail_user.nickname}}" disabled>
-            {% elif user_type == '구인자' %}
-                <input type="text" class="profile_nickname" value="{{detail_user.company}}" disabled>
+            {% if detail_user.type == '구직자' %}
+                {% if detail_user.career %}
+                    <img src="{{ detail_user.career.url }}" alt="#">
+                {% endif %}
+            {% else %}
+                {% if detail_user.image %}
+                    <img src="{{ detail_user.image.url }}" alt="#">
+                {% endif %}
             {% endif %}
+        </div>
+        <div class="profile_nickname_wrap">
+        {% if detail_user.type == '구직자' %}
+        <input type="text" class="profile_nickname" value="{{detail_user.nickname}}">
+        {% elif detail_user.type == '구인자' %}
+        <input type="text" class="profile_nickname" value="{{detail_user.company}}">
+        {% endif %}
         </div>
         <div class="mypage_buttons">
             <input type="button" class="mypage_button" id="mypage_button_1" value="개인정보 관리" onclick="show_mypage1()">
@@ -53,43 +63,11 @@
             <div class="interesting">
                 <input type="text" class="infor_title" value="관심분야" disabled>
                 <div class="interest_table">
-
-                    <input type="checkbox" id="checkbox1" class="interest_button" name="interest" value="전기전자" checked="true">
-                    <input type="checkbox" id="checkbox2" class="interest_button" name="interest" value="조선업" checked="true">
-                    <input type="checkbox" id="checkbox3" class="interest_button" name="interest" value="it" checked="true">
-                    <input type="checkbox" id="checkbox4" class="interest_button" name="interest" value="의료" checked="true">
-                    <input type="checkbox" id="checkbox5" class="interest_button" name="interest" value="디지털">
-                    <input type="checkbox" id="checkbox6" class="interest_button" name="interest" value="기획전략">
-                    <input type="checkbox" id="checkbox7" class="interest_button" name="interest" value="의류산업">
-                    <input type="checkbox" id="checkbox8" class="interest_button" name="interest" value="교육">
-                    <input type="checkbox" id="checkbox9" class="interest_button" name="interest" value="금융">
-                    <input type="checkbox" id="checkbox10" class="interest_button" name="interest" value="상품기획">
-                    <input type="checkbox" id="checkbox11" class="interest_button" name="interest" value="물류">
-                    <input type="checkbox" id="checkbox12" class="interest_button" name="interest" value="회계재무">
-                    <input type="checkbox" id="checkbox13" class="interest_button" name="interest" value="서비스">
-                    <input type="checkbox" id="checkbox14" class="interest_button" name="interest" value="공공복지">
-                    <input type="checkbox" id="checkbox15" class="interest_button" name="interest" value="미디어">
-                    <input type="checkbox" id="checkbox16" class="interest_button" name="interest" value="농림어업">
-                    <input type="checkbox" id="checkbox17" class="interest_button" name="interest" value="건설토목">
-                    <input type="checkbox" id="checkbox18" class="interest_button" name="interest" value="스포츠레크레이션">
-                    <label for="checkbox1" id="old_label_1" class="change_label" onclick="button_2()"><span class="change_span">전기전자</span></label>
-                    <label for="checkbox2" id="old_label_2" class="change_label" onclick="button_2()"><span class="change_span">조선업</span></label>
-                    <label for="checkbox3" id="old_label_3" class="change_label" onclick="button_2()"><span class="change_span">IT</span></label>
-                    <label for="checkbox4" id="old_label_4" class="change_label" onclick="button_2()"><span class="change_span">의료</span></label>
-                    <label for="checkbox5" id="old_label_5" class="change_label" onclick="button_2()"><span class="change_span">디지털</span></label>
-                    <label for="checkbox6" id="old_label_6" class="change_label" onclick="button_2()"><span class="change_span">기획전략</span></label>
-                    <label for="checkbox7" id="old_label_7" class="change_label" onclick="button_2()"><span class="change_span">의류산업</span></label>
-                    <label for="checkbox8" id="old_label_8" class="change_label" onclick="button_2()"><span class="change_span">교육</span></label>
-                    <label for="checkbox9" id="old_label_9" class="change_label" onclick="button_2()"><span class="change_span">금융</span></label>
-                    <label for="checkbox10" id="old_label_10" class="change_label" onclick="button_2()"><span class="change_span">상품기획/MD</span></label>
-                    <label for="checkbox11" id="old_label_11" class="change_label" onclick="button_2()"><span class="change_span">물류</span></label>
-                    <label for="checkbox12" id="old_label_12" class="change_label" onclick="button_2()"><span class="change_span">회계/재무</span></label>
-                    <label for="checkbox13" id="old_label_13" class="change_label" onclick="button_2()"><span class="change_span">서비스</span></label>
-                    <label for="checkbox14" id="old_label_14" class="change_label" onclick="button_2()"><span class="change_span">공공복지</span></label>
-                    <label for="checkbox15" id="old_label_15" class="change_label" onclick="button_2()"><span class="change_span">미디어</span></label>
-                    <label for="checkbox16" id="old_label_16" class="change_label" onclick="button_2()"><span class="change_span">농림/어업</span></label>
-                    <label for="checkbox17" id="old_label_17" class="change_label" onclick="button_2()"><span class="change_span">건설/토목</span></label>
-                    <label for="checkbox18" id="old_label_18" class="change_label" onclick="button_2()"><span class="change_span">스포츠/레크레이션</span></label>
+                    {% for interest in interest_list %}
+                        <input type="checkbox" id="checkbox1" class="interest_button" name="interest" value="{{interest}}" checked="true">
+                        <label for="checkbox1" id="old_label_1" class="change_label" onclick="button_2()"><span class="change_span">{{interest}}</span></label>
+                        {% endfor %}
+                    
                 </div>
             </div>
         </div>
@@ -98,9 +76,9 @@
         <a class="move_text" href="{% url 'my_posts_detail' %}">내가 작성한 글 ></a>
         <hr>
         <div class="notice_table">
-            {% for post in post %}
+            {% for post in posts %}
                 <div class="notice" id="notice_1">
-                    <a href="#" class="notice_title">{{post.title}}</a>
+                    <a href="/p" class="notice_title">{{post.title}}</a>
                     <a href="#" class="views">조회수 {{post.views}}회</a>
                 </div>
             {% endfor %}

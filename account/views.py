@@ -12,7 +12,8 @@ from django.contrib.auth.hashers import check_password
 from django.views.generic import View
 
 from .models import Userable, Applicant, Employer
-from employ.models import Postable
+from employ.models import Postable, Employ_post, Freepost_e
+from job.models import Job_post, Freepost_j
 from util.views import update_interest
 from util.models import UserInterest
 # 로그인
@@ -170,7 +171,7 @@ def signup_finish(request):
     return render(request, 'signup_finish.html')
 
 def search_id_pw(request):
-    return render(request, 'find_id_pw.html', {'type': request.user.type})
+    return render(request, 'find_id_pw.html')
 
 # 아이디 찾기 tested
 def search_username(request):  # ajax로 받기 (done)
@@ -245,7 +246,7 @@ def my_page(request):
 def my_posts_detail(request):
     user = request.user
     posts = list(Postable.objects.filter(userable=user).values("id", "title", "views"))
-    return JsonResponse({'posts': posts})
+    return
 
 # 비밀번호 확인
 def check_user_password(request):
@@ -304,6 +305,7 @@ def change_password(request):
         if check_password(password, user.password):
             if re.match(password_pattern, new_password):
                 user.set_password(new_password)
+                user.save()
                 return render(request, 'changepw_complete.html')
             else:
                 return render(request, 'changepw_error.html', {'error': 'wrong_password_error'})
@@ -333,12 +335,15 @@ def update_account(request):
             age = request.POST.get('age')
             interest = request.POST.getlist('interest')
             school = request.POST.get('school')
+            career = request.FILES.get('career')
 
             applicant.name = name
             applicant.gender = gender
             applicant.age = age
             applicant.school = school
             update_interest(applicant, interest)
+            if career:
+                applicant.career = career
             applicant.save()
 
             return render(request, 'change_complete.html')
@@ -381,4 +386,29 @@ def delete_account(request):
     else:
         return render(request, 'delete_error.html')
 
+def create_post_view(request):
+    if request.method == "POST":
+        category = request.POST.get('category')
+        user = request.user
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        company = request.POST.get('company')
+
+        if category == '1':
+            post = Job_post.objects.create(title=title, content=content)
+        elif category == '2':
+            post = Freepost_j.objects.create(title=title, content=content)
+        elif category == '3':
+            post = Employ_post.objects.create(title=title, content=content, career='경력')
+        elif category == '4':
+            post = Employ_post.objects.create(title=title, content=content, career='신입')
+        else:
+            post = Freepost_e.objects.create(title=title, content=content)
+
+        post.userable = user
+        post.save()
+
+        return redirect('employ:employ_free_post_detail', post.id)
+    else:
+        return render(request, 'create_post_view.html')
 
