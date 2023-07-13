@@ -8,7 +8,7 @@ body {
     border: none;
 } */
 
-a {
+a.move_text {
     margin: 3%;
     width: 169px;
     height: 30px;
@@ -87,6 +87,9 @@ input {
 
 .mypage_1,
 .mypage_2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     margin-bottom: 8%;
     padding-top: 15px;
     width: 832px;
