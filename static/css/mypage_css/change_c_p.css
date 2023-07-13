@@ -50,8 +50,8 @@ input, button {
     line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
-    color: #4D4949;
     padding: 0 0 0 10px;
+    color: black;
 }
 
 .pw {
@@ -193,7 +193,7 @@ input, button {
     justify-content: center;
 }
 
-a {
+a.move_delete_p {
     font-family: Inter;
     font-size: 12px;
     font-weight: 400;

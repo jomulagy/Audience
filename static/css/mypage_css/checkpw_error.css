@@ -40,13 +40,15 @@ input, button {
     text-align: left;
     background: #FFE5E5;
     padding: 0 0 0 10px;
+    color: black;
+}
+
+.button_change_mypage_wrap{
+    display: flex;
+    justify-content: center;
 }
 
 .button_change_mypage {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-
     width: 382px;
     height: 50px;
     border-radius: 3px;
