@@ -1,5 +1,6 @@
 h1 {
     text-align: center;
+    margin-top: 8%;
 }
 
 input, button {
@@ -15,7 +16,7 @@ input, button {
     flex-direction: column;
     flex-wrap: wrap; 
     align-content: center;
-    margin: 8%;
+    margin: 6%;
     /* 아이템이 넘쳐야 align-content로 정렬이 되는거같음
     flex-wrap: nowrap이 때문에 로그인박스
     이후 아이템들이 왼쪽정렬이 안됐었음*/
@@ -44,6 +45,7 @@ input, button {
     line-height: 24px;
     letter-spacing: 0em;
     text-align: left;
+    padding-left: 10px;
 }
 
 .pw{
@@ -58,6 +60,7 @@ input, button {
     line-height: 24px;
     letter-spacing: 0em;
     text-align: left;
+    padding: 0 0 0 10px;
 }
 
 .login_button {
@@ -65,8 +68,12 @@ input, button {
     width: 115px;
     height: 171px;
     border-radius: 3px;
-
     background-color: #FF94948F;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
 }
 
 .login_error_message {
