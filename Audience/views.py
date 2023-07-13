@@ -931,11 +931,76 @@ def search_posts(request):
                         ranks = [d for d in ranks if frozenset(d.items()) not in seen and not seen.add(frozenset(d.items()))]
             else:
                 posts_hashtag = []
+                if Hashtag.objects.filter(name=keyword).exists():
+                    hashtag = Hashtag.objects.get(name=keyword)
+                    for post in hashtag.postable.all():
+
+                        if Freepost_e.objects.filter(id=post.id).exists():
+                            free = Freepost_e.objects.get(id=post.id)
+
+                            posts_hashtag.append({
+                                "id": free.id,
+                                "title": free.title,
+                                "views": free.views,
+                                "created_at": free.created_at,
+                            })
+                    posts_hashtag = sorted(posts_hashtag, key=lambda x: x['created_at'], reverse=True)
+                    posts_hashtag = [{key: value for key, value in dictionary.items() if key != "created_at"} for dictionary in
+                             posts_hashtag]
+                    ranks_hashtag = sorted(posts_hashtag, key=lambda x: x['views'], reverse=True)
+                    total = {
+                            "제목": {
+                                "posts" : list(Freepost_e.objects.filter(title__icontains=keyword).order_by("created_at").values("id","title","views")),
+                                "ranks" : list(Freepost_e.objects.filter(title__icontains=keyword).order_by("-views").values("id","title","views"))[0:4]
+                            },
+                            "내용": {
+                                "posts" : list(Freepost_e.objects.filter(content__icontains=keyword).order_by("created_at").values("id","title","views")),
+                                "ranks" : list(Freepost_e.objects.filter(content__icontains=keyword).order_by("-views").values("id","title","views"))[0:4]
+                            },
+                            "제목+내용": {
+                                "posts" : list(
+                                            Freepost_e.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("created_at").values("id","title","views")),
+                                "ranks" : list(Freepost_e.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("-views").values("id","title","views"))[0:4]
+                            },
+                            "해시태그": {
+                                "posts" : posts_hashtag,
+                                "ranks" : ranks_hashtag
+                            },
+
+                    }
+                    if search_type == "제목":
+                        posts = total["제목"]["posts"]
+                        ranks = total["제목"]["ranks"]
+                    elif search_type == "내용":
+                        posts = total["내용"]["posts"]
+                        ranks = total["내용"]["ranks"]
+                    elif search_type == "제목+내용":
+                        posts = total["제목+내용"]["posts"]
+                        ranks = total["제목+내용"]["ranks"]
+                    elif search_type == "해시태그":
+                        print(total["해시태그"])
+                        posts = total["해시태그"]["posts"]
+                        ranks = total["해시태그"]["ranks"]
+                    else:
+                        posts = total["제목"]["posts"] + total["내용"]["posts"] + total["제목+내용"]["posts"] + total["해시태그"][
+                            "posts"]
+                        seen = set()
+                        posts = [d for d in posts if
+                                 frozenset(d.items()) not in seen and not seen.add(frozenset(d.items()))]
+                        seen = set()
+                        ranks = total["제목"]["ranks"] + total["내용"]["ranks"] + total["제목+내용"]["ranks"] + total["해시태그"][
+                            "ranks"]
+                        ranks = [d for d in ranks if
+                                 frozenset(d.items()) not in seen and not seen.add(frozenset(d.items()))]
+
+        else:
+            posts_hashtag = []
+            if Hashtag.objects.filter(name=keyword).exists():
                 hashtag = Hashtag.objects.get(name=keyword)
                 for post in hashtag.postable.all():
 
-                    if Freepost_e.objects.filter(id=post.id).exists():
-                        free = Freepost_e.objects.get(id=post.id)
+                    if Postable.objects.filter(id=post.id).exists():
+                        free = Postable.objects.get(id=post.id)
 
                         posts_hashtag.append({
                             "id": free.id,
@@ -945,114 +1010,51 @@ def search_posts(request):
                         })
                 posts_hashtag = sorted(posts_hashtag, key=lambda x: x['created_at'], reverse=True)
                 posts_hashtag = [{key: value for key, value in dictionary.items() if key != "created_at"} for dictionary in
-                         posts_hashtag]
+                                 posts_hashtag]
                 ranks_hashtag = sorted(posts_hashtag, key=lambda x: x['views'], reverse=True)
                 total = {
-                        "제목": {
-                            "posts" : list(Freepost_e.objects.filter(title__icontains=keyword).order_by("created_at").values("id","title","views")),
-                            "ranks" : list(Freepost_e.objects.filter(title__icontains=keyword).order_by("-views").values("id","title","views"))[0:4]
-                        },
-                        "내용": {
-                            "posts" : list(Freepost_e.objects.filter(content__icontains=keyword).order_by("created_at").values("id","title","views")),
-                            "ranks" : list(Freepost_e.objects.filter(content__icontains=keyword).order_by("-views").values("id","title","views"))[0:4]
-                        },
-                        "제목+내용": {
-                            "posts" : list(
-                                        Freepost_e.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("created_at").values("id","title","views")),
-                            "ranks" : list(Freepost_e.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by("-views").values("id","title","views"))[0:4]
-                        },
-                        "해시태그": {
-                            "posts" : posts_hashtag,
-                            "ranks" : ranks_hashtag
-                        },
+                    "제목": {
+                        "posts": list(
+                            Postable.objects.filter(title__icontains=keyword).order_by("created_at").values("id", "title",
+                                                                                                              "views")),
+                        "ranks": list(
+                            Postable.objects.filter(title__icontains=keyword).order_by("-views").values("id", "title",
+                                                                                                          "views"))[0:4]
+                    },
+                    "내용": {
+                        "posts": list(
+                            Postable.objects.filter(content__icontains=keyword).order_by("created_at").values("id",
+                                                                                                                "title",
+                                                                                                                "views")),
+                        "ranks": list(
+                            Postable.objects.filter(content__icontains=keyword).order_by("-views").values("id", "title",
+                                                                                                            "views"))[0:4]
+                    },
+                    "제목+내용": {
+                        "posts": list(
+                            Postable.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by(
+                                "created_at").values("id", "title", "views")),
+                        "ranks": list(
+                            Postable.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by(
+                                "-views").values("id", "title", "views"))[0:4]
+                    },
+                    "해시태그": {
+                        "posts": posts_hashtag,
+                        "ranks": ranks_hashtag
+                    },
 
                 }
-                if search_type == "제목":
-                    posts = total["제목"]["posts"]
-                    ranks = total["제목"]["ranks"]
-                elif search_type == "내용":
-                    posts = total["내용"]["posts"]
-                    ranks = total["내용"]["ranks"]
-                elif search_type == "제목+내용":
-                    posts = total["제목+내용"]["posts"]
-                    ranks = total["제목+내용"]["ranks"]
-                elif search_type == "해시태그":
-                    print(total["해시태그"])
-                    posts = total["해시태그"]["posts"]
-                    ranks = total["해시태그"]["ranks"]
-                else:
-                    posts = total["제목"]["posts"] + total["내용"]["posts"] + total["제목+내용"]["posts"] + total["해시태그"][
-                        "posts"]
-                    seen = set()
-                    posts = [d for d in posts if
-                             frozenset(d.items()) not in seen and not seen.add(frozenset(d.items()))]
-                    seen = set()
-                    ranks = total["제목"]["ranks"] + total["내용"]["ranks"] + total["제목+내용"]["ranks"] + total["해시태그"][
-                        "ranks"]
-                    ranks = [d for d in ranks if
-                             frozenset(d.items()) not in seen and not seen.add(frozenset(d.items()))]
 
-        else:
-            posts_hashtag = []
-            hashtag = Hashtag.objects.get(name=keyword)
-            for post in hashtag.postable.all():
-
-                if Postable.objects.filter(id=post.id).exists():
-                    free = Postable.objects.get(id=post.id)
-
-                    posts_hashtag.append({
-                        "id": free.id,
-                        "title": free.title,
-                        "views": free.views,
-                        "created_at": free.created_at,
-                    })
-            posts_hashtag = sorted(posts_hashtag, key=lambda x: x['created_at'], reverse=True)
-            posts_hashtag = [{key: value for key, value in dictionary.items() if key != "created_at"} for dictionary in
-                             posts_hashtag]
-            ranks_hashtag = sorted(posts_hashtag, key=lambda x: x['views'], reverse=True)
-            total = {
-                "제목": {
-                    "posts": list(
-                        Postable.objects.filter(title__icontains=keyword).order_by("created_at").values("id", "title",
-                                                                                                          "views")),
-                    "ranks": list(
-                        Postable.objects.filter(title__icontains=keyword).order_by("-views").values("id", "title",
-                                                                                                      "views"))[0:4]
-                },
-                "내용": {
-                    "posts": list(
-                        Postable.objects.filter(content__icontains=keyword).order_by("created_at").values("id",
-                                                                                                            "title",
-                                                                                                            "views")),
-                    "ranks": list(
-                        Postable.objects.filter(content__icontains=keyword).order_by("-views").values("id", "title",
-                                                                                                        "views"))[0:4]
-                },
-                "제목+내용": {
-                    "posts": list(
-                        Postable.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by(
-                            "created_at").values("id", "title", "views")),
-                    "ranks": list(
-                        Postable.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by(
-                            "-views").values("id", "title", "views"))[0:4]
-                },
-                "해시태그": {
-                    "posts": posts_hashtag,
-                    "ranks": ranks_hashtag
-                },
-
-            }
-
-            posts = total["제목"]["posts"] + total["내용"]["posts"] + total["제목+내용"]["posts"] + total["해시태그"][
-                "posts"]
-            seen = set()
-            posts = [d for d in posts if
-                     frozenset(d.items()) not in seen and not seen.add(frozenset(d.items()))]
-            seen = set()
-            ranks = total["제목"]["ranks"] + total["내용"]["ranks"] + total["제목+내용"]["ranks"] + total["해시태그"][
-                "ranks"]
-            ranks = [d for d in ranks if
-                     frozenset(d.items()) not in seen and not seen.add(frozenset(d.items()))]
+                posts = total["제목"]["posts"] + total["내용"]["posts"] + total["제목+내용"]["posts"] + total["해시태그"][
+                    "posts"]
+                seen = set()
+                posts = [d for d in posts if
+                         frozenset(d.items()) not in seen and not seen.add(frozenset(d.items()))]
+                seen = set()
+                ranks = total["제목"]["ranks"] + total["내용"]["ranks"] + total["제목+내용"]["ranks"] + total["해시태그"][
+                    "ranks"]
+                ranks = [d for d in ranks if
+                         frozenset(d.items()) not in seen and not seen.add(frozenset(d.items()))]
 
         return JsonResponse({'posts': posts[5*(page_num-1):5*page_num-1], 'ranks': ranks})
 
