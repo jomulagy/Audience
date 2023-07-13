@@ -243,7 +243,8 @@ def my_page(request):
         detail_user = Applicant.objects.get(id=request.user.id)
     else:
         detail_user = Employer.objects.get(id=request.user.id)
-    return render(request, 'mypage.html', {'interest': interest, 'posts': post, 'detail_user': detail_user})
+    return render(request, 'mypage.html', {'interest': interest, 'posts': post,
+                                           'user_type': request.user.type, 'detail_user': detail_user})
 
 def my_posts_detail(request):
     if request.user.is_authenticated:
@@ -269,16 +270,25 @@ def check_duplicate_username(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         if Applicant.objects.filter(username=username).exists():
-            return JsonResponse({'error': 'username_duplicate_error'})
+            return JsonResponse({'success': True})
         else:
-            return JsonResponse({'error': 'no_duplicate_name'})
+            return JsonResponse({'success': False})
+
 def check_duplicate_nickname(request):
     if request.method == 'POST':
         nickname = request.POST.get('nickname')
-        if Applicant.objects.filter(nickname=nickname):
-            return JsonResponse({'error': 'nickname_duplicate_error'})
+        if Applicant.objects.filter(nickname=nickname).exists():
+            return JsonResponse({'success': True})
         else:
-            return JsonResponse({'error': 'no_duplicate_name'})
+            return JsonResponse({'success': False})
+
+def check_duplicate_company(request):
+    if request.method == 'POST':
+        company = request.POST.get('company')
+        if Employer.objects.filter(company=company).exists:
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False})
 
 # 비면번호 변경
 # render 사용해서 틀렸을 때 context에 error(key값으로 두 개) 넣어서 같은 페이지로 이동 (done)
