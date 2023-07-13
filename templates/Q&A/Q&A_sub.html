@@ -82,7 +82,7 @@
 
     {% if post.userable == request.user %}
         <a href="{% url 'employ:update_employ_post' post.id %}" class="modifyText">수정하기</a>
-        <a href="{% url 'employ:update_employ_post' post.id %}" class="deleteText">삭제하기</a>
+        <a href="{% url 'employ:delete_employ_post' post.id %}" class="deleteText">삭제하기</a>
     {% else %}
         <h2 class="reportText">신고하기</h2>
     {% endif %}

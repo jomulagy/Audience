@@ -44,7 +44,7 @@
 						<div class="bbs-list-body">
 							<ul>
 								{% for post in employ_posts %}
-									<li><a href="{% url 'employ:employ_post_detail' post.id %}"><span class="bbs-subject">{{post.title}}</span> <span class="bbs-date">{{post.created_at|date:'y.m.d'}}</span></a></li>
+									<li><a href="{% url 'employ:post_detail' post.id %}"><span class="bbs-subject">{{post.title}}</span> <span class="bbs-date">{{post.created_at|date:'y.m.d'}}</span></a></li>
 								{% endfor %}
 							</ul>
 						</div>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import QuestionForm, AnswerForm, FreePostForm_e, EPostForm
 from .models import Employ_post, Freepost_e, Question, Postable, Answer
-from job.models import report
+from job.models import report, Freepost_j, Job_post
 from account.models import Employer
 from django.http import JsonResponse
 from util.views import add_hashtag
@@ -33,7 +33,7 @@ def create_employ_post(request):  # 구인글 작성
             post = form.save()
             # 해시태그들을 list로 바꾸기
             add_hashtag()
-            return redirect('employ_post_detail', post.id, "recruitment")
+            return redirect('post_detail', post.id, "recruitment")
 
         else:
             return render(request, 'findwork_company_QnA/write_company.html')
@@ -48,7 +48,7 @@ def update_employ_post(request, id):  # 구인글 수정 #해시태그 저장 �
         form = EPostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('employ_post_detail', id, "recruitment")
+            return redirect('post_detail', id, "recruitment")
         else:
             return render(request, 'findwork_company_QnA/write_company.html')
 
@@ -85,7 +85,7 @@ def create_employ_free_post(request):  # 구직/자유소통 작성 #해시태�
             # 해시태그들을 list로 바꾸기
             add_hashtag()
 
-            return redirect('employ_free_post_detail', post.id)
+            return redirect('post_detail', post.id)
         else:
             return render(request, 'findwork_company_QnA/free_write.html', {"type": "post_e"})
     else:
@@ -99,7 +99,7 @@ def update_employ_free_post(request, id):  # 구직/자유소통 수정
         form = FreePostForm_e(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('employ_free_post_detail', id)
+            return redirect('post_detail', id)
         else:
             return render(request, 'findwork_company_QnA/free_write.html', {"type": "post_e", "post": post})
 
@@ -145,12 +145,26 @@ def create_question(request, post_id):  # Q&A 질문 작성(게시물 id)
             question.userable = request.user
             question.progress = "답변대기중"
             question.save()
-            return redirect('question_detail', post_id, question.id)
+            return redirect('post_detail', post_id, question.id)
         else:
             print(form.errors)
             return render(request, 'findwork_company_QnA/QnA_question_w.html',{"post":post})
     else:
         return render(request, 'findwork_company_QnA/QnA_question_w.html',{"post":post})
+
+def update_question(request, id):
+    # 해시태그 저장 함수 utls에서 찾아서 사용
+    post = get_object_or_404(Postable, id=id)
+    if request.method == 'POST':
+        form = QuestionForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', id)
+        else:
+            return render(request, 'findwork_company_QnA/QnA_question_w.html', {"post": post})
+
+    else:
+        return render(request, 'findwork_company_QnA/QnA_question_w.html', {"post": post})
 
 
 def delete_question(request, question_id):  # Q&A 질문 삭제(질문 id)
@@ -169,7 +183,7 @@ def question_detail(request, post_id, question_id):
         "question": question,
         "answers": answers
     }
-    return render(request, "Q&A/Q&A_sub.html", context)
+    return render(request, "Q&A/Q&A_before.html", context)
 
 
 def create_answer(request, post_id, question_id):  # Q&A 답변 작성(질문 id)
@@ -189,12 +203,26 @@ def create_answer(request, post_id, question_id):  # Q&A 답변 작성(질문 id
             answer.save()
             question.progress = "답변완료"
             question.save()
-            return redirect('question_detail', post_id, question.id)
+            return render(request,'Q&A_sub.html', context)
         else:
             return render(request, 'findwork_company_QnA/QnA_answer_w.html',context)
     else:
 
         return render(request, 'findwork_company_QnA/QnA_answer_w.html',context)
+
+def update_answer(request, id):
+    # 해시태그 저장 함수 utls에서 찾아서 사용
+    post = get_object_or_404(Postable, id=id)
+    if request.method == 'POST':
+        form = AnswerForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return render(request, 'Q&A_sub.html', {"post": post})
+        else:
+            return render(request, 'findwork_company_QnA/QnA_answer_w.html', {"post": post})
+
+    else:
+        return render(request, 'findwork_company_QnA/QnA_answer_w.html', {"post": post})
 
 
 def delete_answer(request, answer_id):  # Q&A 답변 삭제?(답변 id)
@@ -211,3 +239,17 @@ def report_create_e(request):
         new = report.objects.create(content=content, postable=post)
 
         return JsonResponse({})
+    
+def post_detail(request, post_id):
+    if Employ_post.objects.filter(id=post_id).exists():
+        return redirect('employ_post_detail', post_id)
+    elif Job_post.objects.filter(id=post_id).exists():
+        return redirect('job_post_detail', post_id)
+    elif Freepost_e.objects.filter(id=post_id).exists():
+        return redirect('employ_free_post_detail', post_id)
+    elif Freepost_j.objects.filter(id=post_id).exists():
+        return redirect('job_free_post_detail', post_id)
+    elif Question.objects.filter(id=post_id).exists():
+        return redirect('question_detail', post_id)
+
+    "{{% url 'employ:post_detail post_id' %}}"

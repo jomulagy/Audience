@@ -8,9 +8,10 @@ from util.models import Hashtag
 import json
 from django.http import JsonResponse
 from Audience.views import post_list
+from employ.views import post_detail
 
 def job_post_detail(request,post_id): #게시물 상세(id)
-    #회사
+    #회사4
     post = Job_post.objects.get(id=post_id) #구직글
     post.views += 1
     post.save()
@@ -37,7 +38,7 @@ def create_job_post(request): #구직글 작성
             # 평점 추가하기   add_rating
 
 
-            return redirect('job_post_detail', post.id)
+            return redirect(' post_detail', post.id)
         else:
             return render(request, 'findwork_company_QnA/write_findwork.html')
     else:
@@ -50,7 +51,7 @@ def update_job_post(request,id): #구직글 수정
         form = JPostForm(request.POST, request.FILES ,instance = post)
         if form.is_valid():
             form.save()
-            return redirect('job_post_detail',post.id)
+            return redirect('post_detail',post.id)
         else:
             return render(request, 'findwork_company_QnA/write_findwork.html')
 
@@ -84,7 +85,7 @@ def create_job_free_post(request): #구직/자유소통 작성 #해시태그 저
             # 해시태그들을 list로 바꾸기
             add_hashtag()
 
-            return redirect('job_free_post_detail', post.id)
+            return redirect('post_detail', post.id)
         else:
             return render(request, 'findwork_company_QnA/free_write.html',{"type" : "post_j"})
     else:
@@ -97,7 +98,7 @@ def update_job_free_post(request,id): #구직/자유소통 수정
         form = FreePostForm_j(request.POST, request.FILES ,instance = post)
         if form.is_valid():
             form.save()
-            return redirect('job_free_post_detail',post.id)
+            return redirect('post_detail',post.id)
         else:
             return render(request, 'findwork_company_QnA/free_write.html',{"type" : "post_j", "post":post})
 
