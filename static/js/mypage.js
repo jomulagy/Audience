@@ -43,13 +43,13 @@ function show_mypage2() {
 // function button_2() {
 //     $('input[name="interest"]').change(function () {
 //       $('input[name="interest"]').each(function () {
-//         var checked = $(this).prop("checked"); 
-//         // var checked = $(this).attr('checked');   
+//         var checked = $(this).prop("checked");
+//         // var checked = $(this).attr('checked');
 //         // var checked = $(this).is('checked');
 //         var label1 = $(this).next().next().next().next().next().next();
 //         var label2 = $(label1).next().next().next().next().next().next();
 //         var $label = $(label2).next().next().next().next().next().next();
-  
+
 //         if (checked) $label.css("background-color", "#FFBDBD");
 //         else $label.css("background-color", "#FFE5E5");
 //       });
