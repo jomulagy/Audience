@@ -25,9 +25,10 @@
             <div class="id">
                 <h3 class="h3_id">아이디</h3>
                 <input type="text" class="input_id_nickname" name="username" value="{{username}}" placeholder="이메일을 입력해주세요">
-                <input type="button" class="check_button" value="중복확인">
+                <input type="button" class="check_button" value="중복확인" onclick="checkagain()">
                 {% if error == 'username_duplicate_error' %}
-                    <p class="error_message">이미 존재하는 아이디입니다.</p>
+                <p class="error_message"><!--이미 존재하는 아이디입니다.--></p>
+                <p class="able_message"><!--사용 가능한 아이디입니다.--></p>
                 {% endif %}
                 {% if error == 'wrong_username_error' %}
                     <p class="error_message">아이디가 email 형식이 아닙니다.</p>
@@ -59,10 +60,11 @@
             </div>
             <div class="nickname">
                 <h3 class="h3_nickname">닉네임</h3>
-                <input type="text" class="input_id_nickname" name="nickname" value="{{nickname}}" placeholder="닉네임을 입력해주세요">
-                <input type="button" class="check_button" value="중복확인">
+                <input type="text" class="input_id_nickname" name="subname" value="{{nickname}}" placeholder="닉네임을 입력해주세요">
+                <input type="button" class="check_button" value="중복확인" onclick="checkagain()">
                 {% if error == 'nickname_duplicate_error' %}
-                    <p class="error_message">이미 존재하는 닉네임입니다.</p>
+                <p class="error_message"><!--이미 존재하는 닉네임입니다.--></p>
+                <p class="able_message"><!--사용 가능한 닉네임입니다.--></p>
                 {% elif error == 'no_nickname_error' %}
                     <p class="error_message">닉네임은 필수 입력값입니다.</p>
                 {% endif %}
@@ -80,7 +82,7 @@
             </div>
             <div class="age">
                 <h3 class="h3_age">나이</h3>
-                <input type="number" min="1" class="input_box" name="gender" value="{{nickname}}" placeholder="나이를 입력해주세요(숫자)">
+                <input type="number" min="1" class="input_box" name="age" value="{{age}}" placeholder="나이를 입력해주세요(숫자)">
             </div>
                 <h3 class="h3_interest">관련분야</h3>
                 <div class="interest_table">

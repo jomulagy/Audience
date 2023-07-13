@@ -24,9 +24,10 @@
             <div class="id">
                 <h3 class="h3_id">아이디</h3>
                 <input type="text" class="input_id_nickname" name="username" value="{{username}}" placeholder="이메일을 입력해주세요">
-                <input type="button" class="check_button" value="중복확인">
+                <input type="button" class="check_button" value="중복확인" onclick="checkagain()">
                 {% if error == 'username_duplicate_error' %}
-                    <p class="error_message">이미 존재하는 아이디입니다.</p>
+                    <p class="error_message"><!--이미 존재하는 아이디입니다.--></p>
+                    <p class="able_message"><!--사용 가능한 아이디입니다.--></p>
                 {% endif %}
                 {% if error == 'wrong_username_error' %}
                     <p class="error_message">아이디가 email 형식이 아닙니다.</p>
@@ -55,9 +56,12 @@
             </div>
             <div class="company">
                 <h3 class="h3_company">회사이름</h3>
-                <input type="text" class="input_box" name="company" placeholder="회사이름을 입력해주세요">
+                <input type="text" class="input_id_nickname" name="company" placeholder="회사이름을 입력해주세요">
+                <input type="button" class="check_button" value="중복확인" onclick="checkagain()">
                 {% if error == 'no_company_error' %}
                     <p class="error_message">회사 이름은 필수 입력값입니다.</p>
+                    <p class="error_message"><!--이미 존재하는 회사이름입니다.--></p>
+                    <p class="able_message"><!--사용 가능한 회사이름입니다.--></p>
                 {% elif error == 'company_duplicate_error' %}
                     <p class="error_message">이미 존재하는 회사 이름입니다.</p>
                 {% endif %}

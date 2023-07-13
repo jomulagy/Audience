@@ -2,12 +2,17 @@
 // const mypageButton2 = document.getElementById("mypage_button_2");
 // 스타일 변경
 // mypageButton1.style.backgroundColor = "#FFDCDC";
+console.log(interests)
 
 function show_mypage1() {
     $("#mypage_1").show();
     $("#mypage_2").hide();
     $("#mypage_button_1").css("background-color", "#FFDCDC");
     $("#mypage_button_2").css("background-color", "#FFFFFF");
+    for (var i=0; i < interests;i++){
+        console.log(interests[i]);
+        $("label[value='" + interests[i] + "']").css("background-color", "#FFBDBD");
+    }
 }
 
 function show_mypage2() {
@@ -19,15 +24,16 @@ function show_mypage2() {
     // $("<a>").text(data.views).class("views").id(data.id).appendTo(notice);     
     $.ajax({
         type : 'GET',
-        url : "/account/posts/",
+        url : "/account/posts/detail/",
         data: JSON.stringify({
 
         }),
-        succes : function(data){
-            console.log("111");
+        success : function(data){
+            // console.log("111");
             var notice = document.querySelector('.notice');
-            $("<a></a>").text(data.title).class("notice_title").id(data.id).appendTo(notice);
-            $("<a></a>").text(data.views).class("views").id(data.id).appendTo(notice);            
+            var posts = data.posts;
+            $("a.notice_title").text(posts[1]).id(posts[0]).text(posts[1]).appendTo(notice);
+            $("a.views").text(posts[1]).id(posts[0]).text(posts[2] + "회").appendTo(notice);            
         }
     })
        

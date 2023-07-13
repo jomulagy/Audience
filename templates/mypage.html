@@ -53,6 +53,7 @@
             <div class="interesting">
                 <input type="text" class="infor_title" value="관심분야" disabled>
                 <div class="interest_table">
+
                     <input type="checkbox" id="checkbox1" class="interest_button" name="interest" value="전기전자" checked="true">
                     <input type="checkbox" id="checkbox2" class="interest_button" name="interest" value="조선업" checked="true">
                     <input type="checkbox" id="checkbox3" class="interest_button" name="interest" value="it" checked="true">
@@ -100,12 +101,13 @@
             {% for post in post %}
                 <div class="notice" id="notice_1">
                     <a href="#" class="notice_title">{{post.title}}</a>
-                    <a href="#" class="hits">조회수 {{post.views}}회</a>
+                    <a href="#" class="views">조회수 {{post.views}}회</a>
                 </div>
             {% endfor %}
             </div>
         </div>
     </div>
+    <script>var interests = "{{interest_list|safe}}"</script>
     <script src="/static/js/mypage.js"></script>
 </body>
 {% endblock %}
