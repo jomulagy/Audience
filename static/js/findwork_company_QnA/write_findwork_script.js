@@ -1,5 +1,5 @@
 function openNewWindow() {
-  window.open("companyname.html", "새 창", "width=400,height=300");
+  window.open("/job/company/search/", "새 창", "width=400,height=300");
 }
 
 function receiveValue(value) {
