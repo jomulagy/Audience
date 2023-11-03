@@ -13,7 +13,7 @@ class Employ_post(Postable):
     end_date = models.DateTimeField(max_length=20, null=True)
     prefer_condition = models.CharField(max_length=30, null=True)
     image = models.ImageField(upload_to='post/employ/', null=True)
-    CAREER_CHOICES = (('경력', '경력'), ('경력', '신입'))
+    CAREER_CHOICES = (('경력', '경력'), ('신입', '신입'))
     career = models.CharField(max_length=100, default='a', choices=CAREER_CHOICES, null=True)
     EMPLOY_SHAPE_CHOICES = (('인턴','인턴'),('정규직','정규직'),('비정규직','비정규직'))
     employ_shape = models.CharField(max_length=100, default='a', choices=EMPLOY_SHAPE_CHOICES , null=True)

@@ -25,6 +25,7 @@
         {% endif %}
     {% endif %}
         <div class="container">
+            <b id= "certification_photo_text">제목</b>
             <input type="text" style="border:0 solid black" id="title5" name="title" value = "{{post.title}}" placeholder="제목을 입력해주세요">
             
             <div class="certification_photo">
@@ -38,7 +39,7 @@
                 <label for="upload-input" class="upload-button">사진 불러오기</label>
          
             </div>
-    
+            <b id= "certification_photo_text">내용</b>
             <textarea id="content" style="border:0 solid black" name="content" placeholder="내용을 입력해주세요">{{post.content}}</textarea>
     
             <b id="hashtag_text">해시태그</b>

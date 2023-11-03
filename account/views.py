@@ -12,6 +12,7 @@ from django.contrib.auth.hashers import check_password
 from django.views.generic import View
 
 from .models import Userable, Applicant, Employer
+from .utils import send_email
 from employ.models import Postable, Employ_post, Freepost_e
 from job.models import Job_post, Freepost_j
 from util.views import update_interest
@@ -65,6 +66,7 @@ def create_applicant(request):
         email_pattern = r'^[\w\.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         if not re.match(email_pattern, username):
             context["error"] = 'wrong_username_error'
+
             return render(request, 'sign_up_error_p.html', context)
 
         if password1 != password2:
@@ -90,7 +92,7 @@ def create_applicant(request):
 
         if not nickname:
             context["error"] = 'no_nickname_error'
-            return render(request, 'sign_up_error_p', context)
+            return render(request, 'sign_up_error_p.html', context)
 
         applicant = Applicant.objects.create_user(
             username=username, password=password1,
@@ -213,12 +215,7 @@ def search_password(request):  # ajax로 변경(done)
 
         user.set_password(new_password)
         user.save()
-
-        subject = "From Audience"
-        to = [username]
-        from_email = "audience_likelion@naver.com"
-        message = f'임시 비밀번호: {new_password}'
-        EmailMessage(subject=subject, body=message, to=to, from_email=from_email).send()
+        send_email(user.username,new_password)
         return JsonResponse({'success': True})
     # 실패
     else:
@@ -267,6 +264,10 @@ def check_duplicate_username(request):
     username = data['username']
 
     if request.method == 'POST':
+        email_pattern = r'^[\w\.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+        if not re.match(email_pattern, username):
+            return JsonResponse({'success': 'Invalid email format'})
+
         if Userable.objects.filter(username=username).exists():
             return JsonResponse({'success': 'exist_username'})
         else:
@@ -285,9 +286,9 @@ def check_duplicate_nickname(request):
 def check_duplicate_company(request):
     data = json.loads(request.body)
     company = data['company']
-
+    print(Employer.objects.filter(company=company))
     if request.method == 'POST':
-        if Employer.objects.filter(company=company).exists:
+        if Employer.objects.filter(company=company).exists():
             return JsonResponse({'success': 'exist_company'})
         else:
             return JsonResponse({'success': 'no_exist_company'})
@@ -412,3 +413,21 @@ def create_post_view(request):
     else:
         return render(request, 'create_post_view.html')
 
+def get_user_info(request):
+    if request.method=="GET":
+        if Applicant.objects.filter(userable_ptr = request.user).exists():
+            user = Applicant.objects.get(userable_ptr = request.user)
+            gender = user.gender
+            school = user.school
+        elif Employer.objects.filter(userable_ptr = request.user).exists():
+            user = Employer.objects.get(userable_ptr = request.user)
+            gender = None
+            school = None
+        interests = UserInterest.objects.filter(userable = user)
+
+        context = {
+            "gender":gender,
+            "interests":list(interests.values_list("interest__name",flat=True)),
+            "school":school
+        }
+        return JsonResponse(context)

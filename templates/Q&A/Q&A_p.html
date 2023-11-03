@@ -64,7 +64,7 @@
     </div>
     <div class="qnaBoxUp"></div>
     <div class="qnaBoxDown"></div>
-
+    {% include "Q&A/pagination.html" %}
     <h2 class="nickname">{{post.userable.name}}</h2>
     <h2 class="title">{{post.title}}</h2>
     {% if post.userable == request.user %}
@@ -86,11 +86,9 @@
         </select>
         <button id="report-submit2">신고</button>
       </div>
-    <div class="container">
-        <div class="button-container" id="buttonContainer"></div>
-    </div>
+    
+    
     <script type = "text/javascript">var post_id = "{{post.id}}"</script>
-    <script src="{% static 'js/pagination.js' %}"></script>
     <script src="{% static 'js/Q&A/Q&A_p.js' %}"></script>
 </body>
 

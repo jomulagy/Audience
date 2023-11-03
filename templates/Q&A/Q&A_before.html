@@ -4,6 +4,7 @@
 <html lang="ko">
 
 <head>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/Post/postView.css' %}"><meta charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="{% static 'css/Q&A/Q&A_before.css' %}"><meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,87 +18,104 @@
 
 <body>
     {% include 'header2.html' %}
-    <div class="backg"></div>
-
-    <div class="rectangleBar">
-        <h2><a class="rectText1" href="{% url 'employ:employ_post_detail' post.id %}">모집공고</a></h2>
-        <div class="rectMiddle"></div>
-        <h2><a class="rectText2" href="{% url 'employ:QA_list' post.id %}">Q&A</a></h2>
-    </div>
-    
-
-    <div class="infoBox">
-        <h2 class="infoCondition">고용형태(인턴/정규직/비정규직)<br>[{{post.employ_shape}}]</h2>
-        <h2 class="infoEmployCount">채용자 수<br>[{{post.required_num}}]</h2>
-        <h2 class="infoEmployPrefer">우대조건<br>[{{post.prefer_condition}}]</h2>
-    </div>
-
-    <div class="infoBox2">
-        <h2 class="infoApplyMethod">지원 방법<br>[{{post.apply_method}}]</h2>
-        <h2 class="infoApplySchedule">지원 일정<br>[{{post.start_date|date:'Y-m-d H:i'}} ~ {{post.end_date|date:'Y-m-d H:i'}}]</h2>
-        <h2 class="infoHashtag">해시태그<br>[
-            {% for hashtag in post.hashtag_set.all %}
-                {{hashtag}}
-                {% if not forloop.first %}
-                    ,&nbsp;
+    <div class="backg">
+        <div id = "header">
+            <div id = "title-wrap">
+                <h2 class="nickname">{{post.userable.name}}</h2>
+                <h2 class="title">{{post.title}}</h2>
+            </div>
+            <div id = "inform-wrap">
+                {% if post.userable == request.user %}
+                    <a href="{% url 'employ:update_employ_post' post.id %}" class="modifyText">수정하기</a>
+                    <a href="{% url 'employ:delete_employ_post' post.id %}" class="deleteText">삭제하기</a>
+                {% else %}
+                    <h2 class="reportText">신고하기</h2>
                 {% endif %}
-            {% endfor %}
-            ]</h2>
-    </div>
+                <h2 class="views">조회수 {{post.views}}회</h2>
+                <div class="reportMenu2" style="display: none;">
+                    <select id="reportReason2">
+                    <option value="">사유를 선택하세요</option>
+                    <option value="사칭/사기">사칭/사기</option>
+                    <option value="욕설/비하">욕설/비하</option>
+                    <option value="상업적 광고 및 판매">상업적 광고 및 판매</option>
+                    <option value="기타">기타</option>
+                    </select>
+                    <button id="report-submit2">신고</button>
+                </div>
 
-
-    <div class="infoBoxLineUp"></div>
-    <div class="infoBoxLineDown"></div>
-    <div class="infoBoxLineMiddle"></div>
-
-
-
-    <div class="contentBox">
-        <h2 class="questiontitle">질문 제목: {{question.title}}</h2>
-        <button class="searchBox" type="button" value="Button" onclick = "location.href = '{% url 'employ:create_answer' post.id %}'">답변 작성하기</button>
-        <div class="questionContent">
-            <h2 class="questionText">[내용]<br>{{question.content}}</h2>
+            </div>
         </div>
-    </div>
-    <div class="contentBoxUp"></div>
-    <div class="contentBoxDown"></div>
-    {% if answers %}
-<!--
-        {% for answer in answers %}
-            <div class="contentReBox">
-                <h2 class="answertitle">답변: RE: [{{question.title}}] </h2>
-                <div class="answerContent">
-                    <h2 class="answerText">[내용]<br>{{answer.title}}</h2>
+        <div class="rectangleBar">
+            <h2 class="rectText1"><a  href="{% url 'employ:employ_post_detail' post.id %}">모집공고</a></h2>
+            <div class="rectMiddle"></div>
+            <h2 class="rectText2"><a  href="{% url 'employ:QA_list' post.id %}">Q&A</a></h2>
+        </div>
+        
+        <div id = "infoBox-wrap">
+            <div class="infoBoxLineUp"></div>
+            <div id = "infoBox-content">
+                <div class="infoBox">
+                    <h2 class="infoCondition">고용형태(인턴/정규직/비정규직)<br>[{{post.employ_shape}}]</h2>
+                    <h2 class="infoEmployCount">채용자 수<br>[{{post.required_num}}]</h2>
+                    <h2 class="infoEmployPrefer">우대조건<br>[{{post.prefer_condition}}]</h2>
+                </div>
+                <div class="infoBoxLineMiddle"></div>
+                <div class="infoBox2">
+                    <h2 class="infoApplyMethod">지원 방법<br>[{{post.apply_method}}]</h2>
+                    <h2 class="infoApplySchedule">지원 일정<br>[{{post.start_date|date:'Y-m-d H:i'}} ~ {{post.end_date|date:'Y-m-d H:i'}}]</h2>
+                    <h2 class="infoHashtag">해시태그<br>[
+                        {% for hashtag in hashtags %}
+                            
+                            {% if not forloop.first %}
+                                ,&nbsp;
+                            {% endif %}
+                            {{hashtag}}
+                        {% endfor %}
+                        ]</h2>
                 </div>
             </div>
-        {% endfor %}
-        <div class="contentReBoxUp"></div>
-        <div class="contentReBoxDown"></div>
-    {% endif %} -->
+            <div class="infoBoxLineDown"></div>
+        </div>
+        <div class="contentBoxUp"></div>
+        <div class="contentBox">
+            <div id = "question-title-wrap">
+                <h2 class="questiontitle">질문 제목: {{question.title}}</h2>
+                <button class="searchBox" type="button" value="Button" onclick = "location.href = '{% url 'employ:create_answer' post.id question.id %}'">답변 작성하기</button>
+            </div>
+            
+            <div class="questionContent">
+                <h2 class="questionText">[내용]<br></h2>
+                <img id = "question-img" src = "{{question.image.url}}">
+                <h2 class="questionText">{{question.content}}</h2>
+            </div>
+        </div>
+        
+        {% if answers %}
+    
+            {% for answer in answers %}
+                <div class="contentReBoxUp"></div>
+                <div class="contentReBox">
+                    <h2 class="answertitle">답변: RE: [{{question.title}}] </h2>
+                    <div class="answerContent">
+                        <h2 class="answerText">[내용]<br>{{answer.content}}</h2>
+                    </div>
+                </div>
+                <div class="contentReBoxDown"></div>
+            {% endfor %}
+            
+            
+        {% endif %}
+    
+    
+        
+        
+    
+        
 
+    </div>
 
     
-    <h2 class="nickname">{{post.userable.name}}</h2>
-    <h2 class="title">{{post.title}}</h2>
-
-    {% if post.userable == request.user %}
-        <a href="{% url 'employ:update_employ_post' post.id %}" class="modifyText">수정하기</a>
-        <a href="{% url 'employ:delete_employ_post' post.id %}" class="deleteText">삭제하기</a>
-    {% else %}
-        <h2 class="reportText">신고하기</h2>
-    {% endif %}
-    <div class="reportMenu2" style="display: none;">
-        <select id="reportReason2">
-          <option value="">사유를 선택하세요</option>
-          <option value="사칭/사기">사칭/사기</option>
-          <option value="욕설/비하">욕설/비하</option>
-          <option value="상업적 광고 및 판매">상업적 광고 및 판매</option>
-          <option value="기타">기타</option>
-        </select>
-        <button id="report-submit2">신고</button>
-      </div>
-
-    <script src="..\..\static\js\Q&A\Q&A_before.js"></script>
+    <script src="{% static 'js/Q&A/Q&A_before.js' %}"></script>
 </body>
 
 </html>

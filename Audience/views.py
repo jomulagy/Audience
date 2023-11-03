@@ -25,10 +25,13 @@ def main_view(request):
 # 뷰만 띄움
 def search_page(request, keyword, category, board_type, post_type, search_type):
 
-    return render(request, 'Post/postList.html')
+    return render(request, 'Post/search.html')
 
 def post_list_page(request, category, board_type, post_type, search_type):
-    return render(request, 'Post/postList.html')
+    context = {
+        "category" : category + "자"
+    }
+    return render(request, 'Post/postList.html',context)
 
 # 검색 결과
 # 매개변수로 검색어랑 카테고리 pk로 받아서 검색
@@ -38,6 +41,7 @@ def post_list_page(request, category, board_type, post_type, search_type):
 def total_page(request):
     if request.method == "POST":
         data = json.loads(request.body)
+        print(data)
         if "my_page" in data:
             if request.user.is_authenticated:
                 posts = Postable.objects.order_by('-created_at')
@@ -97,6 +101,7 @@ def total_page(request):
                     }
                     if search_type == "제목":
                         posts = total["제목"]["posts"]
+                        print(posts)
                     elif search_type == "내용":
                         posts = total["내용"]["posts"]
                     elif search_type == "제목+내용":
@@ -389,6 +394,7 @@ def total_page(request):
                         }
                         if search_type == "제목":
                             posts = total["제목"]["posts"]
+                            print(posts)
                         elif search_type == "내용":
                             posts = total["내용"]["posts"]
                         elif search_type == "제목+내용":
@@ -546,6 +552,7 @@ def total_page(request):
 def search_posts(request):
     if request.method == "POST":
         data = json.loads(request.body)
+        print(data)
         keyword = data['keyword']
         category = data['category']
         board_type = data['board_type']

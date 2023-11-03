@@ -23,28 +23,30 @@
         <form class="form_signup" action="{% url 'create_employer' %}" method="POST" enctype="multipart/form-data">
             <div class="id">
                 <h3 class="h3_id">아이디</h3>
-                <input type="text" class="input_id_nickname" name="username" value="{{username}}" placeholder="이메일을 입력해주세요">
-                <input type="button" class="check_button" value="중복확인" onclick="checkagain()">
+                <input id = "id_input" type="text" class="input_id_nickname" name="username" value="{{username}}" placeholder="이메일을 입력해주세요">
+                <input id = "email_check" type="button" class="check_button" value="중복확인" onclick="checkagain('email')">
+                <p id = "id_err" class="error_message"><!--이미 존재하는 아이디입니다.--></p>
+                <p id = "id_msg" class="able_message"><!--사용 가능한 아이디입니다.--></p>
+
                 {% if error == 'username_duplicate_error' %}
-                    <p class="error_message"><!--이미 존재하는 아이디입니다.--></p>
-                    <p class="able_message"><!--사용 가능한 아이디입니다.--></p>
+                    <p class="error_message">이미 존재하는 아이디입니다.</p>
                 {% endif %}
                 {% if error == 'wrong_username_error' %}
-                    <p class="error_message">아이디가 email 형식이 아닙니다.</p>
+                <p id = "id-format-err" class="error_message">아이디가 email 형식이 아닙니다.</p>
                 {% endif %}
             </div>
             <div class="pw">
                 <h3 class="h3_pw">비밀번호</h3>
                 <input type="password" class="input_box" name="password1" placeholder="비밀번호를 입력해주세요">
                 {% if error == 'wrong_password_error' %}
-                    <p class="error_message">영문+숫자+특수문자를 포함한 8-20자리를 입력해주세요</p>
+                <p id = "pw-invalid" class="error_message">영문+숫자+특수문자를 포함한 8-20자리를 입력해주세요</p>
                 {% endif %}
             </div>
             <div class="pw_check">
                 <h3 class="h3_pw_check">비밀번호 확인</h3>
                 <input type="password" class="input_box" name="password2" placeholder="비밀번호를 입력해주세요">
                 {% if error == 'no_same_password_error' %}
-                    <p class="error_message">비밀번호가 일치하지 않습니다.</p>
+                <p id = "pw-missmatch" class="error_message">비밀번호가 일치하지 않습니다.</p>
                 {% endif %}
             </div>
             <div class="name">
@@ -56,14 +58,15 @@
             </div>
             <div class="company">
                 <h3 class="h3_company">회사이름</h3>
-                <input type="text" class="input_id_nickname" name="company" placeholder="회사이름을 입력해주세요">
-                <input type="button" class="check_button" value="중복확인" onclick="checkagain()">
+                <input id = "company-input" type="text" class="input_id_nickname" name="company" placeholder="회사이름을 입력해주세요">
+                <input type="button" class="check_button" value="중복확인" onclick="checkagain('company')">
+                <p id = "company-err" class="error_message">이미 존재하는 회사이름입니다.</p>
+                <p id = "company-msg"class = "able_message">사용 가능한 회사이름입니다.</p>
                 {% if error == 'no_company_error' %}
-                    <p class="error_message">회사 이름은 필수 입력값입니다.</p>
-                    <p class="error_message"><!--이미 존재하는 회사이름입니다.--></p>
-                    <p class="able_message"><!--사용 가능한 회사이름입니다.--></p>
+                    <p id = "company-required" class="error_message">회사 이름은 필수 입력값입니다.</p>
+                    
                 {% elif error == 'company_duplicate_error' %}
-                    <p class="error_message">이미 존재하는 회사 이름입니다.</p>
+                    <p id = "company-err" class="error_message">이미 존재하는 회사 이름입니다.</p>
                 {% endif %}
             </div>
             <div class="interesting">

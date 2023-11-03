@@ -1,4 +1,39 @@
+$(document).ready(function(){
+  //image미리보기
+  var imageUrl = $("#upload-input").attr('src');
+  if(imageUrl){
+    var fileInput = document.getElementById('upload-input');
+    var previewContainer = document.getElementById('preview-container');
+    var previewImage = document.createElement('img');
+    previewImage.id = 'preview-image';
+    
+    previewImage.src = imageUrl;
+    previewContainer.appendChild(previewImage);
+  }
+  
+  // 고용형태
+  var employ_shape = $("#employ_shape").val();
+  if(employ_shape){
+    var job_shape = $(".job_shape")
+    for(const btn of job_shape){
+      if($(btn).text()===employ_shape){
+        $(btn).trigger("click");
+      }
+    }
+  }
 
+  // 경력
+  var career = $("#career").val();
+  if(career){
+    var careers = $(".career")
+    for(const btn of careers){
+      if($(btn).text()===career){
+        $(btn).trigger("click");
+      }
+    }
+  }
+
+})
 // 버튼 요소 가져오기
 var button1 = document.getElementsByClassName('intern_btn');
 
@@ -131,6 +166,7 @@ function createTagInput(tag) {
   input.type = "text";
   input.value = "#" + tag;
   input.className = "tag-input";
+  input.name = "hashtag"
   input.onclick = function() {
     var newTag = prompt("해시태그 수정:", tag);
     if (newTag !== null) {
@@ -166,5 +202,23 @@ function adjustInputWidth(input) {
 }
 
 document.getElementById("tag-input").addEventListener("keydown", handleKeyDown);
+
+$(".job_shape").click(function(){
+  var job_shape = $(".job_shape")
+  for(const btn of job_shape){
+    $(btn).removeClass("active")
+  }
+  $(this).addClass("active")
+  $("#employ_shape").val($(this).text())
+})
+
+$(".career").click(function(){
+  var job_shape = $(".career")
+  for(const btn of job_shape){
+    $(btn).removeClass("active")
+  }
+  $(this).addClass("active")
+  $("#career").val($(this).text())
+})
 
 

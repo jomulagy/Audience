@@ -18,17 +18,20 @@
 
     {% endif %}
             <div class="container">
+                <b id="job_condition_text">제목</b>
                 <input type="text" style="border:0 solid black" id="title1" name="title" value = "{{post.title}}" placeholder="제목을 입력해주세요">
+                <b id="job_condition_text">내용</b>
                 <textarea id="content" style="border:0 solid black" name="content" placeholder="내용을 입력해주세요">{{post.content}}</textarea>
                 <b id="job_condition_text">지원조건</b>
                 <div class="job_btn">
-                    <label class="intern_btn" id="intern_btn">인턴</label>
-                    <label class="permanent_btn" id="permanent_btn">정규직</label>
-                    <label class="temporary_btn" id="temporary_btn">비정규직</label>
-
+                    <input type="text" id="employ_shape" name = "employ_shape" value="{{post.employ_shape}}">
+                    <label class="job_shape" id="intern_btn">인턴</label>
+                    <label class="job_shape" id="permanent_btn">정규직</label>
+                    <label class="job_shape" id="temporary_btn">비정규직</label>
                 </div>
 
-                    <b id="company_name_text">회사 이름</b>
+                <b id="company_name_text">회사 이름</b>
+                <input id = "search-company" name = "search_company" type = "text" name = "name" placeholder="회사 검색하기">
 
 
                 <b id="grade_text">평점</b>
@@ -40,9 +43,9 @@
                     <span class="star" id="star_4" data-value="4" onclick="setRating(4)">★</span>
                     <span class="star" id="star_5" data-value="5" onclick="setRating(5)">★</span>
                 </div>
-
+                <b id="certification_photo_text">인증사진</b>
                 <div class="certification_photo">
-                    <b id="certification_photo_text">인증사진</b>
+                    
 
                     <div id="certification_photo_space">
                         <div id="preview-container"></div>
@@ -66,7 +69,22 @@
                 </div>
 
                 <input type="submit" id="upload_btn" value="업로드하기">
+                
             </div>
+
         </form>
+        <div class="search_wrapper">
+            <div class="mid_wrapper">
+              <!-- 검색창 -->
+              <input type="text" id="name" autocomplete="off" placeholder="회사명을 검색하세요">
+              <!-- 검색버튼 -->
+              <input type="button" id="submit_button" value="🔍"> 
+            </div>
+            <!-- 추천창 -->
+            <div id="suggestion_box" class="invisible">
+            </div>
+          </div>
     <script src="{% static 'js\findwork_company_QnA\write_findwork_script.js' %}"></script>
+    <script src="{% static 'js/findwork_company_QnA/companyname.js' %}"></script>
+
 </body>

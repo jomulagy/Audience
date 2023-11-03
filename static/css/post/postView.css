@@ -6,39 +6,64 @@ h2 {
   color: black;
 }
 
+#header{
+  width: 100%;
+  height: 7%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:3%
+}
+#title-wrap{
+  width:55%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  margin-left: 15%;
+}
+#inform-wrap{
+  width:25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left:5%
 
+}
 .backg {
   width: 1000px;
-  height: 2500px;
   background-color: rgb(247, 220, 225);
-  top: 10%;
-  left: 18.5%;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left:22%;
 }
 
 .contentText {
   font-weight: bold;
   font-size: 23px;
-  position: absolute;
-  top: 95%;
-  left: 28%;
+  margin-top: 3%;
+  margin-left:-60%
 }
 
 
 .companyText {
   font-weight: bold;
   font-size: 23px;
-  position: absolute;
-  top: 210%;
-  left: 28%;
+  margin-top: 3%;
+  margin-left:-60%
 }
 
 .commentText {
   font-weight: bold;
   font-size: 23px;
-  position: absolute;
-  top: 280%;
-  left: 28%;
+  margin-top: 3%;
+  margin-left:-60%
 }
 
 
@@ -49,10 +74,7 @@ h2 {
   font-size: 16px;
   text-underline-offset: 2px;
   color: rgb(248, 74, 74);
-  top: 30.5%;
-  left: 72.5%;
   text-decoration: underline;
-  position: absolute;
 }
 
 .replyForm {
@@ -93,10 +115,6 @@ background-color: rgb(221, 150, 136);
 
 .nickname {
 font-size: 20px;
-position: absolute;
-top: 27.5%;
-left: 30.5%;
-transform: translate(-50%, -50%);
 color: rgb(0, 0, 0);
 text-align: center;
 }
@@ -105,12 +123,9 @@ text-align: center;
 .title {
 font-size: 40px;
 font-weight: bold;
-position: absolute;
-top: 33.5%;
-left: 46.5%;
-transform: translate(-50%, -50%);
 color: rgb(0, 0, 0);
 text-align: center;
+
 }
 
 
@@ -121,10 +136,7 @@ padding: 0;
 font-size: 16px;
 text-underline-offset: 2px;
 color: rgb(0, 0, 0);
-top: 218px;
-left: 1100px;
 text-decoration: underline;
-position: absolute;
 }
 
 .delete {
@@ -134,19 +146,13 @@ padding: 0;
 font-size: 16px;
 text-underline-offset: 2px;
 color: rgb(255, 53, 53);
-top: 188px;
-left: 1100px;
 text-decoration: underline;
-position: absolute;
 }
 
 .views {
 font-size: 18px;
 text-underline-offset: 2px;
 color: rgb(27, 27, 27);
-top: 34.5%;
-left: 71.5%;
-position: absolute;
 }
 
 
@@ -154,36 +160,35 @@ position: absolute;
 width: 800px;
 height: 50px;
 background-color: rgb(210, 153, 164);
-top: 298px;
-left: 380px;
-position: absolute;
 border-radius: 5px;
+display: flex;
+justify-content: center;
 }
 
 
 .rectText1 {
   font-weight: bold;
   font-size: 22px;
-  margin-top: 10px;
-  margin-left: 220px;
   color: #ffffff;
+  width:50%;
+  text-align: center;
+  align-self: center;
 }
 
 .rectMiddle {
   width: 2px;
-  height: 40px;
+  height: 100%;
   background-color: rgb(255, 255, 255);
-  top: 10%;
-  left: 49%;
-  position: absolute;
+
 }
 
 .rectText2 {
   color: black;
   font-size: 22px;
-  margin-top: -27px;
-  margin-left: 480px;
-  position: absolute;
+  width:50%;
+  text-align: center;
+  align-self: center;
+
 }
 
 .rectText1:hover {
@@ -206,48 +211,47 @@ border-radius: 5px;
 
 
 .infoBoxLineUp {
-width: 700px;
+  width:100%;
 height: 1.5px;
 background-color: rgb(0, 0, 0);
-top: 373px;
-left: 425.5px;
-position: absolute;
 }
 
 .infoBoxLineDown {
-width: 700px;
+  width:100%;
 height: 1.5px;
 background-color: rgb(0, 0, 0);
-top: 623px;
-left: 425.5px;
-position: absolute;
 }
 
 .infoBoxLineMiddle {
 width: 2px;
-height: 220px;
+height: 100%;
 background-color: rgb(223, 179, 179);
-top: 390px;
-left: 775px;
-position: absolute;
 }
 
+#infoBox-wrap{
+  display: flex;
+  flex-direction: column;
+  width:70%;
+  height: 283px;
+}
+
+#infoBox-content{
+  display: flex;
+  width:100%;
+  height: 280px;
+}
 .infoBox {
-width: 700px;
-height: 250px;
+width: 50%;
+height: 100%;
 background-color: rgb(247, 239, 239);
-top: 373px;
-left: 425.5px;
-position: absolute;
+
 }
 
 .infoBox2 {
-width: 350px;
-height: 250px;
+width: 50%;
+height: 100%;
 background-color: rgb(247, 239, 239);
-top: 373px;
-left: 775px;
-position: absolute;
+
 }
 
 
@@ -292,65 +296,60 @@ position: absolute;
 
 .contentBox {
   width: 700px;
-  height: 750px;
+  min-height: 750px;
   background-color: rgb(247, 239, 239);
-  top: 747.5px;
-  left: 425.5px;
-  padding: 5%;
-  position: absolute;
+  padding: 3%;
 }
-
+#contentImg{
+  position:relative;
+  width:100%;
+}
+#text-wrap{
+  margin-top:3%;
+}
 .contentBoxUp {
+  margin-top:3%;
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 747.5px;
-  left: 425.5px;
-  position: absolute;
+
 }
 
 .contentBoxDown {
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 1497.5px;
-  left: 425.5px;
-  position: absolute;
+
 }
 
 .companyBox {
   width: 700px;
   height: 250px;
   background-color: rgb(247, 239, 239);
-  top: 1603px;
-  left: 425.5px;
-  position: absolute;
+  display: flex;
 }
 
 .companyBoxUp {
+  margin-top: 3%;
+
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 1603px;
-  left: 425.5px;
-  position: absolute;
 }
 
 .companyBoxDown {
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 1853px;
-  left: 425.5px;
-  position: absolute;
 }
 
 .companyImage {
-  width: 120px;
+  width: 18%;
   height: 120px;
   background-color: rgb(199, 199, 199);
   margin-top: 70px;
   margin-left: 80px;
+  border:0;
 }
 
 .companyImageText {
@@ -364,35 +363,31 @@ position: absolute;
 .companyWriter {
   color: #535353;
   font-size: 20px;
-  top: 30%;
-  left: 30%;
-  position: absolute;
+
 }
 
 .companyDate {
   color: #535353;
   font-size: 20px;
-  top: 42%;
-  left: 30%;
-  position: absolute;
+
 }
 
 .companyName {
   color: #535353;
   font-size: 20px;
-  top: 54%;
-  left: 30%;
-  position: absolute;
+
 }
 
 .companyType {
   color: #535353;
   font-size: 20px;
-  top: 66%;
-  left: 30%;
-  position: absolute;
 }
-
+#company-text-wrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 3%;
+}
 
 .goodCircle {
   width: 100px;
@@ -407,10 +402,6 @@ position: absolute;
 
 .goodText {
   font-size: 17.5px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
   text-align: center;
   
 }
@@ -419,34 +410,30 @@ position: absolute;
 .badCircle {
   width: 100px;
   height: 100px;
-  top: 255%;
-  left: 53%;
   background-color: rgb(255, 255, 255);
   border: 2px solid rgb(236, 143, 143);
   border-radius: 50%;
-  position: absolute;
 }
 
 .badText {
   font-size: 17.5px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
   text-align: center;
   
 }
 
+#button-wrap{
+  margin-top:3%;
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
 
 .goodButton {
   width: 100px;
   height: 100px;
-  top: 1900px;
-  left: 650px;
   background-color: rgb(255, 255, 255);
   border: 2px solid rgb(236, 143, 143);
   border-radius: 50%;
-  position: absolute;
   cursor: pointer;
 }
 
@@ -457,12 +444,10 @@ position: absolute;
 .badButton {
   width: 100px;
   height: 100px;
-  top: 1900px;
-  left: 800px;
+  margin-left:5%;
   background-color: rgb(255, 255, 255);
   border: 2px solid rgb(236, 143, 143);
   border-radius: 50%;
-  position: absolute;
   cursor: pointer;
 }
 
@@ -478,29 +463,22 @@ position: absolute;
 
 .commentBox {
   width: 700px;
-  height: 300px;
+  min-height: 200px;
   background-color: rgb(247, 239, 239);
-  top: 2125px;
-  left: 425.5px;
-  position: absolute;
+
 }
 
 .commentBoxUp {
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 2125px;
-  left: 425.5px;
-  position: absolute;
+  margin-top: 3%;
 }
 
 .commentBoxDown {
   width: 700px;
   height: 1.5px;
   background-color: rgb(0, 0, 0);
-  top: 2425px;
-  left: 425.5px;
-  position: absolute;
 }
 
 .commentId {
@@ -732,22 +710,29 @@ margin-right: 10px;
   margin-bottom: 10px;
 }
 
+#comment-list{
+  width:100%;
+  min-height:55%;
+}
 .comment-input-container {
   display: flex;
-  margin-bottom: 10px;
-  position: absolute;
-  top: 200px;
-  left: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10%;
+  width:100%;
+  height:27%;
 }
 
 #comment-input {
   width: 500px;
   max-height: 5em;
   min-height: 5em;
+  position:relative;
 }
 
 #comment-submit {
   width: 90px;
+  height: 5em;
   padding: 10px 10px;
   margin-left: 10px;
   cursor: pointer;

@@ -13,5 +13,4 @@ urlpatterns = [
     path('freepost/delete/<int:id>/', views.delete_job_free_post, name='delete_job_free_post'),
     path("report/create/", views.report_create_j, name="report_create_j"),
     path("company/search/", views.search_company, name="search_company"),
-
 ]

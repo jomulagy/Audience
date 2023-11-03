@@ -30,18 +30,13 @@
         {% endif %}
     </div>
     
-    <div class="searchBoxes">
-        <button class="searchBox" type="button" value="Button">관심분야</button>
-        <button class="searchBox" type="button" value="Button">경력</button>
-        <button class="searchBox" type="button" value="Button">신입</button>
-      </div>
     <!--검색기능 + 옵션 => 분류: 제목, 내용, 제목+내용, 해시태그, 회사명-->
     <div class="searchContainer">
 		<div class="row">
             <form action="index/search" method="GET"></form>
 				<table class="pull-right">
 					<tr>
-						<td><select class="form-control" name="searchField">
+						<td><select id = "search-type" class="form-control" name="searchField">
 								<option value="all">분류</option>
 								<option value="제목">제목</option>
 								<option value="내용">내용</option>
@@ -57,14 +52,9 @@
 			</form>
 		</div>
 	</div>
-    
+
     <div id = "post-wrap">
-        <!--게시글(박스) 누르면 다음 페이지로 이동 => 링크는 js에서 임의로 설정-->
-        <div id="postList"></div>
-        <!--위 박스 게시글 (조회수순)-->
-    
-        <div id = "subTitle"><h2 class="posting">실시간 게시글<hr></h2></div>
-        
+        <h2 class="posting"><hr /></h2>
 
         <div id="linePostListContainer">
             <!--게시글(줄) 누르면 다음 페이지로 이동 => 링크는 js에서 임의로 설정-->
@@ -74,7 +64,7 @@
     
     <div class="button-container" id="buttonContainer"></div>
     <script src="{% static 'js\pagination.js' %}"></script>
-    <script src="{% static 'js\post\postList.js' %}"></script>
+    <script src="{% static 'js\post\search.js' %}"></script>
     
 
 </body>

@@ -71,23 +71,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # RDS
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'audience',
-        'USER': 'root',
-        'PASSWORD': 'qortmddn',     # 백승우 영어로
-        'HOST': 'audience.ccil2xcrid7z.ap-southeast-2.rds.amazonaws.com',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-# email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.naver.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'audience_likelion@naver.com'
-EMAIL_HOST_PASSWORD = 'cjdcnlwkemf'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

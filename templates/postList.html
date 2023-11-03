@@ -50,24 +50,20 @@
 			</form>
 		</div>
 	</div>
-{% include 'pagination.html' %}
-
-    <h2 id="searchResultHeading" style="display: none;"></h2>
-    <div id="searchResults"></div>
-    
-    
-    <!--게시글(박스) 누르면 다음 페이지로 이동 => 링크는 js에서 임의로 설정-->
-    <div id="postList"></div>
-       <!--위 박스 게시글 (조회수순)-->
-    
-
-    <h2 class="posting">실시간 게시글<hr /></h2>
-
-    <div id="linePostListContainer">
-        <!--게시글(줄) 누르면 다음 페이지로 이동 => 링크는 js에서 임의로 설정-->
-        <div id="linePostList"></div>   <!--아래 줄 게시글-->
+    <div id = "post-wrap">
+        <div id="postList"></div>
+        <!--위 박스 게시글 (조회수순)-->
+     
+ 
+     <h2 class="posting">실시간 게시글<hr /></h2>
+ 
+     <div id="linePostListContainer">
+         <!--게시글(줄) 누르면 다음 페이지로 이동 => 링크는 js에서 임의로 설정-->
+         <div id="linePostList"></div>   <!--아래 줄 게시글-->
+     </div>
     </div>
-    <div id="newPostContainer"></div>   <!--아래 실시간 게시물-->
+       
+    {% include 'pagination.html' %}
     <script src="..\static\js\postList.js"></script>
 </body>
 {% endblock %}

@@ -18,9 +18,9 @@ contentBoxUpElement.classList.add("contentBoxUp");
 var contentBoxDownElement = document.createElement("div");
 contentBoxDownElement.classList.add("contentBoxDown");
 
-parentElement.appendChild(contentBoxElement);
-parentElement.appendChild(contentBoxUpElement);
-parentElement.appendChild(contentBoxDownElement);
+// parentElement.appendChild(contentBoxElement);
+// parentElement.appendChild(contentBoxUpElement);
+// parentElement.appendChild(contentBoxDownElement);
 
 
 
@@ -61,3 +61,9 @@ reportSubmitButton2.addEventListener('click', () => {
       console.log('신고 실패:', error);
     });
 });
+
+var fileInput = document.getElementById('upload-input');
+var previewContainer = document.getElementById('preview-container');
+var previewImage = document.createElement('img');
+previewImage.id = 'preview-image';
+

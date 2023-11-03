@@ -4,14 +4,21 @@ body{
   margin: auto;
 }
 
-
+form{
+  width:100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .container {
-  position: relative;
-  min-height: 1750px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
   background-color: #FFE5E5;
-  width: 1134.79px;
-  height: 100%;
-  margin : auto;
+  width: 80%;
+  margin-top : 5%;
+  margin-bottom: 5%;
   background-size: cover;
 }
 
@@ -19,9 +26,8 @@ body{
 /*글제목*/
 
 #title5 {
-  position: absolute;
-  top: 5%; 
-  left: 7.5%;
+  margin-top: 3%;
+  margin-left: 5%;
   width: 964px;
   max-width: 1000px;
   height: 28px;
@@ -29,19 +35,18 @@ body{
   box-sizing: border-box;
 }
 
+.certification_photo{
+  margin-top: 3%;
+}
 #certification_photo_text {
-  position: absolute;
-  top: 7%;
-  left: 7.5%; 
-  width: 90px;
-  height: 24px; 
+  margin-top: 3%;
+  margin-left: 5%;
   font-size: 20px; 
 }
 
 #certification_photo_space {
-  position: absolute;
-  top : 9%;
-  left: 7.5%;
+  margin-top: 3%;
+  margin-left: 5%;
   width: 964px;
   height: 600px;
   background-color: white;
@@ -49,10 +54,9 @@ body{
 
 
 .upload-button {
+  margin-top: 3%;
+  margin-left: 36%;
   display: inline-block;
-  position: absolute;
-  top: 7%; 
-  left: 80%; 
   width: 140.03px;
   height: 23.37px; 
   background-color:#FFBDBD;
@@ -63,17 +67,15 @@ body{
 }
 
 #preview-container {
-  margin-top: 20px;
   position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 #preview-image {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  max-width: 894px;
-  max-height: 550px;
+    width:100%;
+    height: 100%;
 }
 
 #upload-input {
@@ -83,9 +85,8 @@ body{
 /*내용*/
 
 #content {
-  position: absolute;
-  top: 46%; 
-  left: 7.5%;
+  margin-top: 3%;
+  margin-left: 5%;
   width: 964px;
   height: 226px;
   font-size: 20px; 
@@ -93,9 +94,8 @@ body{
 }
 
 #hashtag_text {
-  position: absolute;
-  top: 60%; 
-  left: 7.5%; 
+  margin-top: 3%;
+  margin-left: 5%;
   width: 90px;
   height: 24px; 
   font-size: 20px; 
@@ -103,9 +103,6 @@ body{
 
 
 .tag-container {
-  position: absolute;
-  top: 61.4%;
-  left: 20%;
   display: flex;
   flex-wrap: nowrap; 
   max-width: 700px; 
@@ -113,13 +110,11 @@ body{
 
 
 .tag-input {
-margin: 10px;
+  margin-top: 3%;
+  margin-left: 5%;
 background-color: #FFBDBD;
 border: none;
 cursor: pointer;
-position: relative;
-top: 0%; 
-left: 0%;
 width: 134px;
 height: 28px;
 font-size: 20px;
@@ -127,9 +122,8 @@ text-align: center;
 }
 
 .input-container {
-position: absolute;
-top: 62%; 
-left: 7.5%;
+  margin-top: 3%;
+    margin-left: 5%;
 width: 134px;
 height: 28px; 
 }
@@ -141,9 +135,9 @@ border: none;
 }
 
 #upload_btn {
-  position: absolute;
-  top: 76%; 
-  left: 33%; 
+  margin-top: 3%;
+  margin-left: 35%;
+  margin-bottom: 3%;  
   background-color:#FFBDBD;
   color:black;
   border:none;

@@ -133,7 +133,7 @@ input::placeholder{
     line-height: 15px;
     letter-spacing: 0em;
     text-align: left;
-    color: red;  
+    color: red;
 }
 .able_message {
     font-family: Inter;
@@ -142,9 +142,11 @@ input::placeholder{
     line-height: 15px;
     letter-spacing: 0em;
     text-align: left;
-    color: blue;  
+    color: blue;
 }
-
+#id_msg, #id_err, #nickname-msg, #nickname-err, #company-err, #company-msg{
+    display: none;
+}
 .input_img,
 .input_career {
     width: 152px;

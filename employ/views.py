@@ -30,14 +30,19 @@ def employ_post_detail(request, post_id):  # 게시물 상세(id, 모집공고/Q
 def create_employ_post(request):  # 구인글 작성
     # 해시태그 저장 함수 utls에서 찾아서 사용
     if request.method == 'POST':
+        print(1)
         form = EPostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save()
             # 해시태그들을 list로 바꾸기
-            add_hashtag()
-            return redirect('post_detail', post.id, "recruitment")
+            hashtags = request.POST.getlist("hashtag")
+            add_hashtag(hashtags,post.id)
+            post.userable = request.user
+            post.save()
+            return redirect('employ:employ_post_detail', post.id)
 
         else:
+            print(form.errors)
             return render(request, 'findwork_company_QnA/write_company.html')
 
     else:
@@ -49,19 +54,24 @@ def update_employ_post(request, id):  # 구인글 수정 #해시태그 저장 �
     if request.method == 'POST':
         form = EPostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
-            form.save()
-            return redirect('post_detail', id, "recruitment")
+            post = form.save(commit=False)
+            hashtags = request.POST.getlist("hashtag")
+            add_hashtag(hashtags,post.id)
+            post.save()
+            return redirect('employ:employ_post_detail', id)
         else:
             return render(request, 'findwork_company_QnA/write_company.html')
 
     else:
-        return render(request, 'findwork_company_QnA/write_company.html', {"post": post})
+
+        hashtags = list(Hashtag.objects.filter(postable=post).values_list("name",flat = True))
+        return render(request, 'findwork_company_QnA/write_company.html', {"post": post, "hashtags":hashtags})
 
 
 def delete_employ_post(request, id):  # 구인글 삭제
     post = get_object_or_404(Postable, id=id)
     post.delete()
-    return redirect('post_list')
+    return redirect('main:post_list')
 
 
 def employ_free_post_detail(request, post_id):
@@ -85,9 +95,11 @@ def create_employ_free_post(request):  # 구직/자유소통 작성 #해시태�
             post = form.save()
             post.userable = request.user
             # 해시태그들을 list로 바꾸기
-            add_hashtag()
+            hashtags = request.POST.getlist("hashtag")
+            add_hashtag(hashtags,post.id)
+            post.save()
 
-            return redirect('post_detail', post.id)
+            return redirect('employ:employ_free_post_detail', post.id)
         else:
             return render(request, 'findwork_company_QnA/free_write.html', {"type": "post_e"})
     else:
@@ -118,10 +130,11 @@ def delete_employ_free_post(request, id):  # 구직/자유소통 삭제
 def QA_list_data(request):
     if request.method == 'POST':
         data = json.loads(request.body)
+        print(data)
         post = Employ_post.objects.get(id=data['post_id'])
         QA_list = post.question_set.all()
         page_num = int(data["page_num"])
-        QA_list = list(QA_list[5 * (page_num - 1):5 * page_num - 1].values("id", "title", "views"))
+        QA_list = list(QA_list[5 * (page_num - 1):5 * page_num - 1].values("id", "title", "created_at"))
 
         context = {
             "QA_List": QA_list
@@ -147,7 +160,7 @@ def create_question(request, post_id):  # Q&A 질문 작성(게시물 id)
             question.userable = request.user
             question.progress = "답변대기중"
             question.save()
-            return redirect('post_detail', post_id, question.id)
+            return redirect('employ:question_detail', post_id, question.id)
         else:
             print(form.errors)
             return render(request, 'findwork_company_QnA/QnA_question_w.html',{"post":post})
@@ -176,14 +189,15 @@ def delete_question(request, question_id):  # Q&A 질문 삭제(질문 id)
 
 
 def question_detail(request, post_id, question_id):
-    post = Postable.objects.get(id=post_id)
+    post = Employ_post.objects.get(id=post_id)
     question = Question.objects.get(id=question_id)
     answers = question.answer_set.all()
-
+    hashtags = list(Hashtag.objects.filter(postable=post).values_list("name",flat = True))
     context = {
         "post": post,
         "question": question,
-        "answers": answers
+        "answers": answers,
+        "hashtags" :hashtags
     }
     return render(request, "Q&A/Q&A_before.html", context)
 
@@ -197,7 +211,9 @@ def create_answer(request, post_id, question_id):  # Q&A 답변 작성(질문 id
     }
     if request.method == 'POST':
 
-        form = AnswerForm(request.POST, request.FILES)
+        form = AnswerForm(request.POST)
+        print(request.POST)
+        print(request.FILES)
         if form.is_valid():
             answer = form.save(commit=False)
             answer.question_ref = question
@@ -205,8 +221,9 @@ def create_answer(request, post_id, question_id):  # Q&A 답변 작성(질문 id
             answer.save()
             question.progress = "답변완료"
             question.save()
-            return render(request,'Q&A_sub.html', context)
+            return redirect("employ:question_detail",post_id,question_id)
         else:
+            print(form.errors)
             return render(request, 'findwork_company_QnA/QnA_answer_w.html',context)
     else:
 

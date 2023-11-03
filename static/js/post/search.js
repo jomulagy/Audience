@@ -1,38 +1,10 @@
-$("#create-btn").click(function () {
-  var url = location.href
-  var urlParts = url.split("/")
-  console.log(urlParts)
-  if(decodeURIComponent(urlParts[5])==="구직"){
-    if(decodeURIComponent(urlParts[6])==="구직"){
-      location.href = "/job/create/"
-    }
-    else if(decodeURIComponent(urlParts[6])==="free"){
-      location.href = "/job/freepost/create/"
-    }
-  }
-  if(decodeURIComponent(urlParts[5])==="구인"){
-    if(decodeURIComponent(urlParts[6])==="구인"){
-      location.href = "/employ/create/"
-    }
-    else if(decodeURIComponent(urlParts[6])==="free"){
-      location.href = "/employ/freepost/create/"
-    }
-  }
-})
-
 $("#search-btn").click(function(){
   var keyword = $("#keyword").val()
   var search_type = $('select[name="searchField"]').val();
   var url = location.href
   var urlParts = url.split("/")
-  location.href = "/audience/search/"+keyword+"/"+urlParts[5]+"/"+urlParts[6]+"/"+urlParts[7]+"/"+search_type+"/"
+  location.href = "/audience/search/"+keyword+"/"+urlParts[6]+"/"+urlParts[7]+"/"+urlParts[8]+"/"+search_type+"/"
 
-})
-
-$(".searchBox").click(function(){
-  var url = location.href
-  var urlParts = url.split("/")
-  location.href = "/audience/search/"+urlParts[5]+"/"+urlParts[6]+"/"+$(this).text()+"/"+urlParts[8]+"/"
 })
 // 사각형; 게시글 데이터 (예시)
 function truncateContentName(content) {
@@ -42,46 +14,6 @@ function truncateContentName(content) {
     return content;
   }
 }
-
-function showPosts(posts) {
-  var postList = document.getElementById("postList");
-  postList.innerHTML = "";
-  for (var i = 0; i < 4 && i < posts.length; i++) {
-    var post = posts[i];
-    var postElement = document.createElement("div");
-    postElement.classList.add("post");
-
-    var contentElement = document.createElement("h3");
-    contentElement.classList.add("post-content");
-    contentElement.textContent = truncateContentName(post.content);
-
-    var titleElement = document.createElement("h3");
-    titleElement.classList.add("post-title");
-    titleElement.textContent = post.title;
-
-    var viewsElement = document.createElement("p");
-    viewsElement.classList.add("post-views");
-    viewsElement.textContent = "조회수: " + post.views;
-
-    var linkElement = document.createElement("a");
-    linkElement.href = post.link;
-    linkElement.target = "_blank";
-
-    linkElement.appendChild(titleElement);
-    linkElement.appendChild(contentElement);
-    linkElement.appendChild(viewsElement);
-
-    postElement.appendChild(linkElement);
-
-    postList.appendChild(postElement);
-  }
-}
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   showPosts();
-// });
-
-
 // 검색 기능 ---> ajax,,,
 function searchPosts(target) {
 
@@ -116,11 +48,15 @@ function addNewPost(target){
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  var url = location.href
+  var urlParts = url.split("/")
+  $(".posting").text(decodeURIComponent(urlParts[5])+" 에 대한 검색결과")
+  $("#search-type").val(decodeURIComponent(urlParts[9]))
+  $("#keyword").val(decodeURIComponent(urlParts[5]))
   function checkPosts() {
     if (typeof posts !== "undefined") {
       // "posts"가 정의되면 원하는 작업을 수행
       console.log("success : ",posts)
-      showPosts(posts);
       lineShowPosts(posts);
       // searchPosts();
     } else {
@@ -170,19 +106,19 @@ function lineShowPosts(linePosts) {
 function getLink(id){
   var url = location.href
   var urlParts = url.split("/")
-  if(decodeURIComponent(urlParts[5])==="구직"){
-    if(decodeURIComponent(urlParts[6])==="구직"){
+  if(decodeURIComponent(urlParts[6])==="구직"){
+    if(decodeURIComponent(urlParts[7])==="구직"){
       return "/job/"+id+"/"
     }
     else if(decodeURIComponent(urlParts[6])==="free"){
       return "/job/freepost/"+id+"/"
     }
   }
-  if(decodeURIComponent(urlParts[5])==="구인"){
-    if(decodeURIComponent(urlParts[6])==="구인"){
+  if(decodeURIComponent(urlParts[6])==="구인"){
+    if(decodeURIComponent(urlParts[7])==="구인"){
       return "/employ/"+id+"/"
     }
-    else if(decodeURIComponent(urlParts[6])==="free"){
+    else if(decodeURIComponent(urlParts[7])==="free"){
       return "/employ/freepost/"+id+"/"
     }
   }

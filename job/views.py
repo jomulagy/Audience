@@ -15,10 +15,13 @@ def job_post_detail(request,post_id): #게시물 상세(id)
     post = Job_post.objects.get(id=post_id) #구직글
     post.views += 1
     post.save()
+    hashtags = list(Hashtag.objects.filter(postable=post).values_list("name",flat = True))
+    print(hashtags)
     likes = post.like_set.all().count()
     dislikes = post.dislike_set.all().count()
     context = {
         "post": post,
+        "hashtags" : hashtags,
         "likes": likes,
         "dislikes": dislikes
     }
@@ -27,17 +30,22 @@ def job_post_detail(request,post_id): #게시물 상세(id)
 def create_job_post(request): #구직글 작성
     #해시태그 저장 함수 utll에서 찾아서 사용
     if request.method == 'POST':
+        print(request.POST)
         form = JPostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit = False)
-            post.userable = Employer.objects.get(name = request.POST.get("name"))# 회사 선택하기
+            print(request.POST.get("name"))
+            post.userable = Employer.objects.get(company = request.POST.get("search_company"))# 회사 선택하기
             post.save()
             # 해시태그들을 list로 바꾸기
-            add_hashtag ()
-            hashtags = list(Hashtag.objects.filter(name__contains=add_hashtag).values("name"))
+            hashtags = request.POST.getlist("hashtag")
+            add_hashtag(hashtags,post.id)
+            post.save()
             # 평점 추가하기   add_rating
-            return redirect(' post_detail', post.id)
+
+            return redirect('job:job_post_detail', post.id)
         else:
+            print(form.errors)
             return render(request, 'findwork_company_QnA/write_findwork.html')
     else:
         return render(request, 'findwork_company_QnA/write_findwork.html')
@@ -81,9 +89,10 @@ def create_job_free_post(request): #구직/자유소통 작성 #해시태그 저
             post.userable = request.user
             post.save()
             # 해시태그들을 list로 바꾸기
-            add_hashtag()
+            hashtags = list(Hashtag.objects.filter(name__contains=add_hashtag).values("name"))
+            add_hashtag(hashtags,post.id)
 
-            return redirect('post_detail', post.id)
+            return redirect('job:job_free_post_detail', post.id)
         else:
             return render(request, 'findwork_company_QnA/free_write.html',{"type" : "post_j"})
     else:
@@ -122,10 +131,12 @@ def search_company(request):
     if request.method == "POST":
         data = json.loads(request.body)
         name = data["name"]
-        companies = list(Employer.objects.filter(name__contains=name).values("name"))
+        print(name)
+        companies = list(Employer.objects.filter(company__contains=name).values_list("company",flat = True))
         context = {
             "companies": companies
         }
+        print(companies)
         return JsonResponse(context)
     
     else:

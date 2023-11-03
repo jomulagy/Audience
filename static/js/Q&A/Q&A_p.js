@@ -1,93 +1,43 @@
-// 줄; 게시글 데이터 (예시)
-/*
-var linePosts = [
-  {
-    lineTitle: "게시물 제목(답변 대기중)",
-    lineDate: "2023.01.01",
-    link: "https://www.google.com"
-  },
-  {
-    lineTitle: "게시물 제목(답변 대기중)",
-    lineDate: "2023.01.01",
-    link: "https://www.naver.com"
-  },
-  {
-    lineTitle: "게시물 제목(답변 대기중)",
-    lineDate: "2023.01.01",
-    link: "https://www.naver.com/222"
-  },
-  {
-    lineTitle: "게시물 제목(답변 완료)",
-    lineDate: "2023.01.01",
-    link: "https://www.naver.com/777"
-  },
-  {
-    lineTitle: "게시물 제목(답변 완료)",
-    lineDate: "2023.01.01",
-    link: "https://www.naver.com/000"
-  }
-];
+var linePosts;
+var url = location.href
+var urlParts = url.split("/")
 
+function dateFormat(dateString){
+  // Date 객체로 변환
+  var date = new Date(dateString);
 
-function lineShowPosts() {
-  var linePostList = document.getElementById("linePostList");
-  linePostList.innerHTML = "";
+  // 연, 월, 일 추출
+  var year = date.getFullYear();
+  var month = (date.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+  var day = date.getDate().toString().padStart(2, '0');
 
-  for (var i = 0; i < 5 && i < linePosts.length; i++) {
-    var linePost = linePosts[i];
-    var linePostElement = document.createElement("div");
-    linePostElement.classList.add("linePost");
-
-    var lineTitleElement = document.createElement("h2");
-    lineTitleElement.classList.add("linePost-title");
-    lineTitleElement.textContent = linePost.lineTitle;
-
-    var lineDateElement = document.createElement("h3");
-    lineDateElement.classList.add("linePost-date");
-    lineDateElement.textContent = linePost.lineDate;
-
-    var linkElement = document.createElement("a");
-    linkElement.href = linePost.link;
-    linkElement.target = "_blank"; 
-    linkElement.appendChild(lineTitleElement);
-    linkElement.appendChild(lineDateElement);
-
-    linePostElement.appendChild(linkElement);
-
-    linePostList.appendChild(linePostElement);
-  }
+  // 연, 월, 일을 조합하여 원하는 형식으로 표시
+  var formattedDate = year + '.' + month + '.' + day;
+  return formattedDate;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  lineShowPosts();
-});
-*/
 
-function loadQAList() {
-  $.ajax({
-    url: 'http://127.0.0.1:8000/employ/question/list/',
-    type: 'POST',
-    dataType: 'json',
-    data: JSON.stringify({
-      post_id: 3,
-      page_num: 1
-    }),
-    contentType: 'application/json',
-    success: function(response) {
-      var qaList = response.QA_List;
-      
-      console.log('Q&A 리스트:', qaList);
-    },
-    error: function(xhr, textStatus, error) {
-      console.log('Q&A 리스트 불러오기 에러:', error);
-    }
-  });
-}
 
-document.addEventListener("DOMContentLoaded", function () {
-  lineShowPosts();
-  loadQAList();
-});
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   loadQAList();
+//   function checkPosts() {
+//     if (typeof linePosts !== "undefined") {
+//       // "posts"가 정의되면 원하는 작업을 수행
+//       console.log("success : ",posts)
+//       lineShowPosts();
+//       // searchPosts();
+//     } else {
+//       // "posts"가 아직 정의되지 않았으면 재귀적으로 확인
+//       setTimeout(checkPosts, 1000); // 1초마다 확인
+//       console.log("failed")
+//     }
+//   }
+
+//   // 최초 확인 시작
+//   checkPosts();
+  
+// });
 
 
 

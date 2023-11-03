@@ -18,7 +18,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             segmentList.push(segment);
         }
     });
-
     if(segmentList.length == 9){
         var data = {
             "keyword" : segmentList[4],
@@ -28,7 +27,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             "search_type" : segmentList[8]
         }
     }
-    else{
+    else {
         var data = {
             "keyword" : null,
             "category" : segmentList[4],
@@ -37,6 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             "search_type" : segmentList[7]
         } 
     }
+
     $.ajax({
         type: "POST",
         dataType: "json",    
@@ -125,6 +125,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 "search_type": segmentList[8],
                 "page_num": number
               };
+
+              $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/audience/search/posts/keyword/",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function(data) {
+                  posts = data.ranks;
+                  linePosts = data.posts;
+                },
+                error: function(err) {
+                  console.log("Error occurred: " + err);
+                }
+              });
             } else {
               data = {
                 "keyword": null,
@@ -134,25 +149,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 "search_type": segmentList[7],
                 "page_num": number
               };
+
+              $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/audience/search/posts/",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function(data) {
+                  posts = data.ranks;
+                  linePosts = data.posts;
+                },
+                error: function(err) {
+                  console.log("Error occurred: " + err);
+                }
+              });
             }
           
-            $.ajax({
-              type: "POST",
-              dataType: "json",
-              url: "/audience/search/posts/",
-              data: JSON.stringify(data),
-              contentType: "application/json",
-              success: function(data) {
-                posts = data.ranks;
-                linePosts = data.posts;
-                console.log(1);
-                showPosts(posts)
-                lineShowPosts(linePosts)
-              },
-              error: function(err) {
-                console.log("Error occurred: " + err);
-              }
-            });
+            
           }
           
 

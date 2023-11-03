@@ -38,15 +38,14 @@ def add_like(request):
 # 싫어요 tested
 def add_dislike(request):
     data = json.loads(request.body)
-    # user = request.user
-    user = Userable.objects.get(id = 3)
+    user = request.user
 
     post_id = int(data['post_id'])
     post = Postable.objects.get(id=post_id)
 
     is_liked = Like.objects.filter(userable=user, postable=post).exists()
     is_disliked = Dislike.objects.filter(userable=user, postable=post).exists()
-
+    print(is_liked,is_disliked)
     if is_disliked:
         dislike = Dislike.objects.get(userable=user, postable=post)
         dislike.delete()
@@ -87,6 +86,7 @@ def update_interest(user, interest_list):
     # 다시 전부다 연결
     if len(interest_list) > 0:
         for interest in interest_list:
+            print(interest)
             user_interest = UserInterest.objects.create(userable=user, interest=Interest.objects.get(name=interest))
             user_interest.save()
     else:
@@ -98,7 +98,7 @@ def add_hashtag(hashtag_list, post_id):
     post = Postable.objects.get(id=post_id)
     # 기존 해시태그 삭제
     Hashtag.objects.filter(postable=post_id).delete()
-
+    print(hashtag_list,post)
     for post_hashtag in hashtag_list:
         # 없으면 추가
         hashtag, created = Hashtag.objects.get_or_create(name=post_hashtag)

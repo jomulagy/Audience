@@ -37,6 +37,7 @@ def update_comment(request):
 def delete_comment(request): # 댓글 삭제(ajax)
     if request.method == 'POST':
         data = json.loads(request.body)
+        print(data["comment_id"])
         comment = Comment.objects.get(id = data['comment_id'])
         comment.delete()
 
@@ -47,7 +48,8 @@ def create_reply(request):# 대댓글 쓰기(ajax)
     if request.method == 'POST':
         data = json.loads(request.body)
         content = data['content']
-        comment = Comment.objects.get(id = data["comment_id"])
+
+        comment = Comment.objects.get(id = int(data["comment_id"]))
         user = request.user
 
         reply = Reply.objects.create(content = content, comment = comment, userable = user)

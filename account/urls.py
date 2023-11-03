@@ -20,5 +20,7 @@ urlpatterns = [
     path('username/check/', views.check_duplicate_username, name='check_duplicate_username'),
     path('nickname/check/', views.check_duplicate_nickname, name='check_duplicate_nickname'),
     path('company/check/', views.check_duplicate_company, name='check_duplicate_company'),
-    path('create/post/', views.create_post_view, name='create_post_view')
+    path('create/post/', views.create_post_view, name='create_post_view'),
+    path("info/",views.get_user_info),
+
 ]

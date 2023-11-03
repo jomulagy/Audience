@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="..\..\static\css\findwork_company_QnA\companyname.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/findwork_company_QnA/companyname.css' %}">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="search_wrapper">
@@ -17,6 +19,6 @@
       </div>
     </div>
     <input type="text" style="border:0 solid black" id="company_name" name="name" placeholder="회사 검색하기" onclick="openNewWindow()">
-  <script src="..\..\static\js\findwork_company_QnA\companyname.js"></script>
+  <script src="{% static 'js/findwork_company_QnA/companyname.js' %}"></script>
 </body>
 </html>

@@ -18,6 +18,7 @@
 {% endblock %}
 {% block content %}
 <body>
+    
     <h1 class="serviceName">청취자들</h1>
 
     <div class="change_p">
@@ -43,39 +44,39 @@
             <div class="gender">
                 <h3 class="h3_gender">성별</h3>
                 <div class="user_gender">
-                    <input type="radio" id="gender_man" name="gender" value="man"></input>
-                    <label for="gender_man" id="old_gender_label_1" class="change_label" onclick="button_1()"> <span class="change_span">남자</span> </label>
-                    <input type="radio" id="gender_woman" name="gender" value="woman"></input>
-                    <label for="gender_woman" id="old_gender_label_2" class="change_label" onclick="button_1()"><span class="change_span">여자</span></label>
-                    <input type="radio" id="gender_hide" name="gender" value="none"></input>
-                    <label for="gender_hide" id="old_gender_label_3" class="change_label" onclick="button_1()"><span class="change_span">밝히지않음</span></label>
+                    <input type="radio" id="gender_1" name="gender" value="남자"></input>
+                    <label for="gender_1" id="old_gender_label_1" class="change_label" onclick="button_1()"> <span class="change_span">남자</span> </label>
+                    <input type="radio" id="gender_2" name="gender" value="여자"></input>
+                    <label for="gender_2" id="old_gender_label_2" class="change_label" onclick="button_1()"><span class="change_span">여자</span></label>
+                    <input type="radio" id="gender_3" name="gender" value="밝히지 않음"></input>
+                    <label for="gender_3" id="old_gender_label_3" class="change_label" onclick="button_1()"><span class="change_span">밝히지않음</span></label>
                 </div>
             </div>
             <div class="age">
                 <h3 class="h3_age">나이</h3>
-                <input type="number" class="user_age" min="1" name="age" placeholder="나이를 입력해주세요"></input>
+                <input type="number" class="user_age" min="1" name="age" placeholder="나이를 입력해주세요" value = "{{user.applicant.age}}"></input>
             </div>
             <div class="interesting">
                 <h3 class="h3_interest">관심분야</h3>
                 <div class="interest_table">
-                    <input type="checkbox" id="checkbox1" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox2" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox3" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox4" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox5" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox6" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox7" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox8" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox9" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox10" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox11" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox12" class="interest_button" name="interest"></input><input 
-                        type="checkbox" id="checkbox13" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox14" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox15" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox16" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox17" class="interest_button" name="interest"></input><input
-                        type="checkbox" id="checkbox18" class="interest_button" name="interest"></input>
+                    <input type="checkbox" id="checkbox1" class="interest_button" name="interest" value = "전기전자"></input><input
+                        type="checkbox" id="checkbox2" class="interest_button" name="interest" value = "조선업"></input><input
+                        type="checkbox" id="checkbox3" class="interest_button" name="interest" value = "it"></input><input
+                        type="checkbox" id="checkbox4" class="interest_button" name="interest" value = "의료"></input><input
+                        type="checkbox" id="checkbox5" class="interest_button" name="interest" value = "디지털"></input><input
+                        type="checkbox" id="checkbox6" class="interest_button" name="interest" value = "기획전략"></input><input
+                        type="checkbox" id="checkbox7" class="interest_button" name="interest" value = "의류산업"></input><input
+                        type="checkbox" id="checkbox8" class="interest_button" name="interest" value = "교육"></input><input
+                        type="checkbox" id="checkbox9" class="interest_button" name="interest" value = "금융"></input><input
+                        type="checkbox" id="checkbox10" class="interest_button" name="interest" value = "상품기획"></input><input
+                        type="checkbox" id="checkbox11" class="interest_button" name="interest" value = "물류"></input><input
+                        type="checkbox" id="checkbox12" class="interest_button" name="interest" value = "회계재무"></input><input 
+                        type="checkbox" id="checkbox13" class="interest_button" name="interest" value = "서비스"></input><input
+                        type="checkbox" id="checkbox14" class="interest_button" name="interest" value = "공공복지"></input><input
+                        type="checkbox" id="checkbox15" class="interest_button" name="interest" value = "미디어"></input><input
+                        type="checkbox" id="checkbox16" class="interest_button" name="interest" value = "농림어업"></input><input
+                        type="checkbox" id="checkbox17" class="interest_button" name="interest" value = "건설토목"></input><input
+                        type="checkbox" id="checkbox18" class="interest_button" name="interest" value = "스포츠레크레이션"></input>
                     <label for="checkbox1" id="old_label_1" class="change_label" onclick="button_2()"><span class="change_span">전기전자</span></label><label
                         for="checkbox2" id="old_label_2" class="change_label" onclick="button_2()"><span class="change_span">조선업</span></label><label
                         for="checkbox3" id="old_label_3" class="change_label" onclick="button_2()"><span class="change_span">IT</span></label><label

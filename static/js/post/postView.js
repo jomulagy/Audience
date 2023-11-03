@@ -8,8 +8,9 @@ function toggleLike() {
     dataType: 'json',
     data: JSON.stringify({"post_id" : post_id }),
     success: function (response) {
-      $(".goodText").text(response.likes_count+'👍'+"\r좋아요")
-      //$(".badText").text(response.likes_count+"👎"+"싫어요")
+      $(".goodText").html(response.likes_count+'👍'+"<br>좋아요")
+      $(".badText").html(response.dislikes_count+"👎"+"<br>싫어요")
+      console.log(response)
     },
     error: function (xhr, textStatus, error) {
       console.log('좋아요 클릭 에러:', error);
@@ -24,8 +25,9 @@ function toggleDislike() {
     dataType: 'json',
     data: JSON.stringify({"post_id" : post_id }),
     success: function (response) {
-      //$(".goodText").text(response.likes_count+'👍'+"좋아요")
-      $(".badText").text(response.likes_count+"👎"+"\r싫어요")
+      $(".goodText").html(response.likes_count+'👍'+"<br>좋아요")
+      $(".badText").html(response.dislikes_count+"👎"+"<br>싫어요")
+      console.log(response)
     },
     error: function (xhr, textStatus, error) {
       console.log('싫어요 클릭 에러:', error);
@@ -39,10 +41,12 @@ function toggleDislike() {
 // 신고하기 (게시글)
 const reportButton2 = document.querySelector('.reportText');
 const reportMenu2 = document.querySelector('.reportMenu2');
+if(reportButton2){
+  reportButton2.addEventListener('click', () => {
+    reportMenu2.style.display = 'block';
+  });
+}
 
-reportButton2.addEventListener('click', () => {
-  reportMenu2.style.display = 'block';
-});
 
 const reportSubmitButton2 = document.getElementById('report-submit2');
 reportSubmitButton2.addEventListener('click', () => {
@@ -104,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
           const comment = createCommentElement(commentContent, data.id);
           console.log(comment)
-          commentList.insertBefore(comment, commentList.firstChild);
+          commentList.appendChild(comment);
           commentInput.value = "";
         })
         .catch(error => {
@@ -178,7 +182,6 @@ document.addEventListener("DOMContentLoaded", function() {
     deleteButton.addEventListener("click", function () {
       console.log(comment.id)
       comment.remove(); // 댓글 삭제
-      adjustCommentBoxHeight();
 
       // Ajax
       const requestData = {
@@ -248,8 +251,9 @@ document.addEventListener("DOMContentLoaded", function() {
         })
           .then(response => response.json())
           .then(data => {
-            const reply = createReplyElement(data.content);
-            replyForm.parentNode.insertBefore(reply, replyForm.nextSibling);
+            const reply = createReplyElement(data,replyContent);
+            console.log(reply)
+            replyForm.parentNode.appendChild(reply);
             replyForm.parentNode.removeChild(replyForm);
             replyButton.style.display = "block";
           })
@@ -270,13 +274,14 @@ document.addEventListener("DOMContentLoaded", function() {
     return replyForm;
   }
 
-  function createReplyElement(content) {
+  function createReplyElement(data,content) {
     const reply = document.createElement("div");
     reply.classList.add("reply");
+    reply.id = data.id
 
     const replyRe = document.createElement("p");
     //replyRe.textContent = "└ RE: [아이디]";
-    replyRe.textContent = "└ RE: [" + user + "]";
+    replyRe.textContent = "└ RE: [" + data.author + "]";
 
 
     const replyContent = document.createElement("p");
@@ -292,11 +297,12 @@ document.addEventListener("DOMContentLoaded", function() {
     editButton.textContent = "수정하기";
     editButton.addEventListener("click", function () {
       const newContent = prompt("대댓글을 수정하세요", replyContent.textContent);
+      var reply_id = reply.id
       if (newContent !== null) {
         // Ajax
         const requestData = {
-          "reply_id": replyId,
-          "content": newRelyContent
+          "reply_id": reply_id,
+          "content": newContent
         };
 
         fetch('http://127.0.0.1:8000/comment/reply/update/', {
@@ -308,13 +314,11 @@ document.addEventListener("DOMContentLoaded", function() {
         })
           .then(response => response.json())
           .then(data => {
-            replyContent.textContent = data.content;
+            replyContent.textContent = newContent;
           })
           .catch(error => {
             console.log('대댓글 수정 실패:', error);
           });
-
-        replyContent.textContent = `${newContent}`;
       }
     });
 
@@ -324,7 +328,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // Ajax
       const requestData = {
-        "reply_id": replyId
+        "reply_id": reply.id
       };
 
       fetch('http://127.0.0.1:8000/comment/reply/delete/', {
@@ -388,89 +392,20 @@ document.addEventListener("DOMContentLoaded", function() {
         commentInput.style.top = 200 + commentHeight + "px";
       });*/
 });
-document.addEventListener("DOMContentLoaded", function () {
-  const commentList = document.getElementById("comment-list");
-  const commentSubmit = document.getElementById("comment-submit");
-  const commentBox = document.querySelector(".commentBox");
-  const commentBoxDown = document.querySelector(".commentBoxDown");
-  const backg = document.querySelector(".backg");
-  const commentInput = document.querySelector(".comment-input-container");
 
-  commentSubmit.addEventListener("click", function () {
-    const commentHeight = commentList.offsetHeight;
-    const newCommentBoxHeight = 300 + commentHeight;
-
-    commentBox.style.height = newCommentBoxHeight + "px";
-    commentBoxDown.style.top = 2126 + commentHeight + "px";
-    backg.style.height = 2500 + commentHeight + "px";
-    commentInput.style.top = 200 + commentHeight + "px";
-  });
-
-  commentList.addEventListener("click", function (event) {
-    if (event.target.classList.contains("delete-button")) {
-      const comment = event.target.closest(".comment");
-      const commentHeight = comment.offsetHeight;
-
-      comment.remove(); // 댓글 삭제
-      adjustCommentBoxHeight();
-      const newCommentBoxHeight = parseInt(commentBox.style.height) - commentHeight;
-      commentBox.style.height = newCommentBoxHeight + "px";
-    }
-  });
-});
-
-// document.addEventListener("DOMContentLoaded", function () {
-// const commentList = document.getElementById("comment-list");
-// const commentSubmit = document.getElementById("comment-submit");
-// const commentBox = document.querySelector(".commentBox");
-// const commentBoxDown = document.querySelector(".commentBoxDown");
-// const backg = document.querySelector(".backg");
-// const commentInput = document.querySelector(".comment-input-container");
-
-function adjustCommentBoxHeight() {
-  const commentList = document.getElementById("comment-list");
-  const commentHeight = commentList.offsetHeight;
-  const newCommentBoxHeight = 300 + commentHeight;
-
-  const commentBox = document.querySelector(".commentBox");
-  const commentBoxDown = document.querySelector(".commentBoxDown");
-  const backg = document.querySelector(".backg");
-  const commentInput = document.querySelector(".comment-input-container");
-  commentBox.style.height = newCommentBoxHeight + "px";
-  commentBoxDown.style.top = 2126 + commentHeight + "px";
-  backg.style.height = 2500 + commentHeight + "px";
-  commentInput.style.top = 200 + commentHeight + "px";
-}
-/*
-commentSubmit.addEventListener("click", function () {
- adjustCommentBoxHeight();
-});
- 
-commentList.addEventListener("click", function (event) {
- if (event.target.classList.contains("delete-button")) {
-   const comment = event.target.closest(".comment");
-   const commentHeight = comment.offsetHeight;
- 
-   comment.remove(); 
- 
-   adjustCommentBoxHeight();
- }
-});
-});*/
 
 /*-----------------------삭제하기-------------------------------*/
 $(document).on('click', 'delete-button', function () {
   var comment = $(this).parent().parent();
   var comment_id = comment.attr("id");
   comment.remove(); // 댓글 삭제
-  adjustCommentBoxHeight();
 
   // Ajax
   const requestData = {
     "comment_id": comment_id
   };
 
-  fetch('/comment/delete/', {
+  fetch('/comment/reply/delete/', {
     method: 'POST',
     headers: {
       contentType: 'application/json'
@@ -499,7 +434,6 @@ function updateComment(button) {
   var commentContent = $(comment).find('p:first-child + p').text();
   const newContent = prompt("댓글을 수정하세요", commentContent.textContent);
   console.log(newContent)
-  adjustCommentBoxHeight();
 
   // AJAX
   const requestData = {
@@ -667,6 +601,7 @@ function createReplyElement(content, user) {
 function updateReply(button) {
   var reply = button.parentNode.parentNode;
   var replyId = button.parentNode.parentNode.id
+  console.log(replyId)
   var replyContent = $(reply).find('p:first-child + p').text();
   console.log(replyContent)
   const newRelyContent = prompt("대댓글을 수정하세요", replyContent.textContent);
@@ -688,6 +623,7 @@ function updateReply(button) {
       .then(response => response.json())
       .then(data => {
         //replyContent.textContent = data.content;
+        
         $(reply).find('.reply_content').text(newRelyContent);
 
       })

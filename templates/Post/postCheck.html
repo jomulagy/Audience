@@ -12,151 +12,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="{% static 'css/post/postCheck.css' %}"/>
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/post/postView.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/post/postCheck.css' %}" />
 
     </script>
     <title>게시글 확인 페이지</title>
-</head>postCheck
+</head>
 
 <body>
-{% include "header2.html" %}
-<div class="backg"></div>
-
-<div class="rectangleBar"></div>
-
-<div class="infoBox">
-    <h2 class="infoCondition">지원조건({{post.employ_shape}})<br>[내용 입력]</h2>
-    <h2 class="infoStar">평점
-        <br>
-        <div class="star-rating space-x-4 mx-auto">
-            <span class="star pr-4" id="1-star" value="1">★</span>
-            <span class="star" id="2-star" value="2">★</span>
-            <span class="star" id="3-star" value="3">★</span>
-            <span class="star" id="4-star" value="4">★</span>
-            <span class="star" id="5-star" value="5">★</span>
-            <!--
-            <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" disabled />
-            <label for="5-stars" class="star pr-4">★</label>
-            <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" disabled />
-            <label for="4-stars" class="star">★</label>
-            <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" disabled />
-            <label for="3-stars" class="star">★</label>
-            <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" disabled />
-            <label for="2-stars" class="star">★</label>
-            <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" disabled />
-            <label for="1-star" class="star">★</label> -->
-        </div>
-    </h2>
-    <h2 class="infoHashtag">해시태그<br>[
-        {% for hashtag in post.hashtag_set %}
-            {{hashtag}}
-            {% if not forloop.first %}
-                ,&nbsp;
-            {% endif %}
-        {% endfor %}
-        ]</h2>
-</div>
-
-<div class="infoBox2">
-    <h2 class="infoCompany">회사명<br>[{{post.userable.name}}]</h2>
-    <h2 class="infoPhoto">인증사진<br>
-        <button class="infoImageBox" type="button" value="Button"><h2 class="infoImageText">image</button>
-    </h2>
-    </button></h2>
-</div>
-
-
-<div class="infoBoxLineUp"></div>
-<div class="infoBoxLineDown"></div>
-<div class="infoBoxLineMiddle"></div>
-
-<h2 class="contentText">게시글 내용</h2>
-<div class="contentBox">{{post.content}}</div>
-<div class="contentBoxUp"></div>
-<div class="contentBoxDown"></div>
-
-<button class="goodButton" type="button" value="Button" onclick="toggleLike()">
-    <h2 class="goodText">
-        <span class="likeCount">{{post.like_set.count}}</span>👍<br>
-        <span class="buttonLabel">좋아요</span>
-    </h2>
-</button>
-
-<button class="badButton" type="button" value="Button" onclick="toggleDislike()">
-
-    <h2 class="badText">
-        <span class="likeCount">{{post.dislike_set.count}}</span>👎<br>
-        <span class="buttonLabel">싫어요</span>
-    </h2>
-    
-</button>
-
-
-<h2 class="commentText">댓글</h2>
-
-<div class="commentBox">
-    <div class="comment-input-container">
-        <textarea id="comment-input" placeholder="댓글을 작성하세요"></textarea>
-        <button id="comment-submit">SEND</button>
-    </div>
-
-    <div id="comment-list">
-        {% for comment in post.comment_set.all %}
-            <div id = "{{comment.id}}" class="comment"><p>[{{comment.userable.name}}]</p>
-                <p class = "comment_content">{{comment.content}}</p>
-                <div class="comment-options">
-                    <button class="recomment" onclick = "createReplyForm(this)">대댓글 달기</button>
-                    <!--<button onclick = "location.href = '{% url 'job:update_job_post' post.id %}'">수정하기</button>-->
-                    <button class ="comment_update" onclick = "updateComment(this)">수정하기</button>
-                    <delete-button>삭제하기</delete-button>
+    {% include "header2.html" %}
+        <div class="backg">
+            <div id="header">
+                <div id="title-wrap">
+                    <h3 class="nickname">{{post.userable.name}}</h3>
+                    <h2 class="title">{{post.title}}</h2>
                 </div>
-                {% for reply in comment.reply_set.all %}
-                <div id = "{{reply.id}}" class="reply">
-                    <p>└ RE: [{{reply.userable.name}}]</p>
-                    <p class = "reply_content">{{reply.content}}</p>
-                    <div class="comment-options">
-                        <button class="reply_update" onclick="updateReply(this)">수정하기</button>
-                        <delete-button onclick = "deleteReply(this)"> 삭제하기</delete-button>
+                <div id="inform-wrap">
+                    {% if post.userable == request.user %}
+                    <a href="{% url 'employ:update_employ_post' post.id %}" class="modify">수정하기</a>
+                    <a href="{% url 'employ:delete_employ_post' post.id %}" class="delete">삭제하기</a>
+                    {% else %}
+
+                    <p class="reportText">신고하기</p>
+                    {% endif %}
+                    <div class="reportMenu2" style="display: none;">
+                        <select id="reportReason2">
+                            <option value="">사유를 선택하세요</option>
+                            <option value="사칭/사기">사칭/사기</option>
+                            <option value="욕설/비하">욕설/비하</option>
+                            <option value="상업적 광고 및 판매">상업적 광고 및 판매</option>
+                            <option value="기타">기타</option>
+                        </select>
+                        <button id="report-submit2">신고</button>
                     </div>
+                    <h2 class="views">조회수 {{post.views}}회</h2>
+                </div>
+            </div>
+
+            <div class="rectangleBar"></div>
+            <div id = "infoBox-wrap">
+                <div class="infoBoxLineUp"></div>
+                <div id = "infoBox-content">
+                    <div class="infoBox">
+                        <h2 class="infoCondition">지원조건({{post.employ_shape}})</h2>
+                        <h2 class="infoCondition">평점
+                            <br>
+                            <div class="star-rating space-x-4 mx-auto">
+                                {% if 1 <= post.rating %}
+                                <span class="star" id="1-star" value="1">★</span>
+                                {% else %}
+                                <span class="star" id="1-star" value="1">&#9734;</span>
+                                {% endif %}
+                                {% if 2 <= post.rating %}
+                                <span class="star" id="2-star" value="2">★</span>
+                                {% else %}
+                                <span class="star" id="2-star" value="2">&#9734;</span>
+                                {% endif %}
+                                {% if 3 <= post.rating %}
+                                <span class="star" id="3-star" value="3">★</span>
+                                {% else %}
+                                <span class="star" id="3-star" value="3">&#9734;</span>
+                                {% endif %}
+                                {% if 4 <= post.rating %}
+                                <span class="star" id="4-star" value="4">★</span>
+                                {% else %}
+                                <span class="star" id="4-star" value="4">&#9734;</span>
+                                {% endif %}
+                                {% if 5 <= post.rating %}
+                                <span class="star" id="5-star" value="5">★</span>
+                                {% else %}
+                                <span class="star" id="5-star" value="5">&#9734;</span>
+                                {% endif %}
+                            </div>
+                        </h2>
+                        <h2 class="infoCondition">해시태그<br>[
+                            {% for hashtag in hashtags %}
+                                {% if not forloop.first %}
+                                ,&nbsp;
+                                {% endif %}
+                                {{hashtag}}
+                            
+                            {% endfor %}
+                            ]</h2>
+                    </div>
+                    <div class="infoBoxLineMiddle"></div>
+                    <div class="infoBox2">
+                        <h2 class="infoCondition">회사명<br>[{{post.search_company}}]</h2>
+                    </div>
+                </div>
+                <div class="infoBoxLineDown"></div>
+            </div>
+            
+            
+
+
+            
+            
+            
+
+            <h2 class="contentText">게시글 내용</h2>
+            <div class="contentBox">
+                <img id = "contentImg" src = "{{post.image.url}}">
+                <div id = "text-wrap">{{post.content}}</div>
+            </div>
+            <div class="contentBoxUp"></div>
+            <div class="contentBoxDown"></div>
+
+            <div id = "button-wrap">
+                <button class="goodButton" type="button" value="Button" onclick="toggleLike()">
+                    <h2 class="goodText">{{post.like_set.count}}👍<br>좋아요</h2>
+                </button>
+        
+                <button class="badButton" type="button" value="Button" onclick="toggleDislike()">
+                    <h2 class="badText">{{post.dislike_set.count}}👎<br>싫어요</h2>
+                </button>
+            </div> 
+
+
+            <h2 class="commentText">댓글</h2>
+
+            <div class="commentBoxUp"></div>
+        <div class="commentBox">
+
+            <div id="comment-list">
+                {% for comment in post.comment_set.all %}
+                <div id="{{comment.id}}" class="comment">
+                    <p>[{{comment.userable.name}}]</p>
+                    <p class="comment_content">{{comment.content}}</p>
+                    <div class="comment-options">
+                        <button class="recomment" onclick="createReplyForm(this)">대댓글 달기</button>
+                        <!--<button onclick = "location.href = '{% url 'job:update_job_post' post.id %}'">수정하기</button>-->
+                        <button class="comment_update" onclick="updateComment(this)">수정하기</button>
+                        <delete-button>삭제하기</delete-button>
+                    </div>
+                    {% for reply in comment.reply_set.all %}
+                    <div id="{{reply.id}}" class="reply">
+                        <p>└ RE: [{{reply.userable.name}}]</p>
+                        <p class="reply_content">{{reply.content}}</p>
+                        <div class="comment-options">
+                            <button class="reply_update" onclick="updateReply(this)">수정하기</button>
+                            <delete-button onclick="deleteReply(this)"> 삭제하기</delete-button>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
                 {% endfor %}
             </div>
-        {% endfor %}
-    </div>
-</div>
+            <div class="comment-input-container">
+                <textarea id="comment-input" placeholder="댓글을 작성하세요"></textarea>
+                <button id="comment-submit">SEND</button>
+            </div>
+        </div>
+        
 
+        
+        <div class="commentBoxDown"></div>
+        </div>
 
-<div class="commentBoxUp"></div>
-<div class="commentBoxDown"></div>
-
-
-<h2 class="nickname">{{post.userable.name}}</h2>
-<h2 class="title">{{post.title}}</h2>
-{% if post.userable == request.user %}
-    <a href="{% url 'job:update_job_post' post.id %}" class="modifyText" >수정하기</a>
-    <a href="{% url 'job:delete_job_post' post.id %}" class="deleteText">삭제하기</a>
-{% else %}
-    <h2 class="reportText">신고하기</h2>
-{% endif %}
-
-<div class="reportMenu2" style="display: none;">
-    <select id="reportReason2">
-        <option value="">사유를 선택하세요</option>
-        <option value="사칭/사기">사칭/사기</option>
-        <option value="욕설/비하">욕설/비하</option>
-        <option value="상업적 광고 및 판매">상업적 광고 및 판매</option>
-        <option value="기타">기타</option>
-    </select>
-    <button id="report-submit2">신고</button>
-</div>
-
-<h2 class="views">조회수 {{post.views}}회</h2>
-<script type = "text/javascript">var post_id = "{{post.id}}"</script>
-<script src="{% static 'js/post/postCheck.js' %}"></script>
-
+        <script type="text/javascript">var post_id = "{{post.id}}"</script>
+        <script src="{% static 'js/post/postCheck.js' %}"></script>
 </body>
+
 </html>
 
 <!--좋아요/싫어요 버튼 클릭 기능 구현 -->
-

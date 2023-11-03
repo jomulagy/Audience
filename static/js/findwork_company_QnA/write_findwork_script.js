@@ -1,7 +1,15 @@
-function openNewWindow() {
-  window.open("/job/company/search/", "새 창", "width=400,height=300");
-}
+$(document).ready(function(){
+  console.log($("#search-company"))
+  $("#search-company").on("keydown", function(e) {
+    e.preventDefault(); // 키보드 입력을 무시
+});
 
+$("#search-company").on("click", function() {
+  $(".search_wrapper").css("display","flex")
+  $(".container").addClass("blurred")
+});
+  
+})
 function receiveValue(value) {
   // 기존 창에서 전달된 값을 처리하는 로직을 작성합니다.
   console.log("기존 창에서 전달된 값:", value);
@@ -148,5 +156,11 @@ function adjustInputWidth(input) {
 }
 
 document.getElementById("tag-input").addEventListener("keydown", handleKeyDown);
-
-
+$(".job_shape").click(function(){
+  var job_shape = $(".job_shape")
+  for(const btn of job_shape){
+    $(btn).removeClass("active")
+  }
+  $(this).addClass("active")
+  $("#employ_shape").val($(this).text())
+})
