@@ -3,7 +3,7 @@ let dislikeClicked = false;
 
 function toggleLike() {
   $.ajax({
-    url: 'http://127.0.0.1:8000/util/like/create/',
+    url: '/util/like/create/',
     type: 'POST',
     dataType: 'json',
     data: JSON.stringify({"post_id" : post_id }),
@@ -20,7 +20,7 @@ function toggleLike() {
 
 function toggleDislike() {
   $.ajax({
-    url: 'http://127.0.0.1:8000/util/dislike/create/',
+    url: '/util/dislike/create/',
     type: 'POST',
     dataType: 'json',
     data: JSON.stringify({"post_id" : post_id }),
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
         //commentContent
       };
 
-      fetch('http://127.0.0.1:8000/comment/create/', {
+      fetch('/comment/create/', {
         method: 'POST',
         headers: {
           contentType: 'application/json'
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function() {
           "content": newContent
         };
 
-        fetch('http://127.0.0.1:8000/comment/update/', {
+        fetch('/comment/update/', {
           method: 'POST',
           headers: {
             contentType: 'application/json'
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function() {
         content: replyContent
       };
 
-      fetch('http://127.0.0.1:8000/comment/comment/delete/', {
+      fetch('/comment/comment/delete/', {
         method: 'POST',
         headers: {
           contentType: 'application/json'
@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function() {
           content: replyContent
         };
 
-        fetch('http://127.0.0.1:8000/comment/reply/create/', {
+        fetch('/comment/reply/create/', {
           method: 'POST',
           headers: {
             contentType: 'application/json'
@@ -305,7 +305,7 @@ document.addEventListener("DOMContentLoaded", function() {
           "content": newContent
         };
 
-        fetch('http://127.0.0.1:8000/comment/reply/update/', {
+        fetch('/comment/reply/update/', {
           method: 'POST',
           headers: {
             contentType: 'application/json'
@@ -331,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "reply_id": reply.id
       };
 
-      fetch('http://127.0.0.1:8000/comment/reply/delete/', {
+      fetch('/comment/reply/delete/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -527,7 +527,7 @@ function createReplyForm(replyButton) {
         content: replyContent
       };
       console.log(requestData)
-      fetch('http://127.0.0.1:8000/comment/reply/create/', {
+      fetch('/comment/reply/create/', {
         method: 'POST',
         headers: {
           contentType: 'application/json'

@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //commentContent
       };
 
-      fetch('http://127.0.0.1:8000/comment/create/', {
+      fetch('/comment/create/', {
         method: 'POST',
         headers: {
           contentType: 'application/json'
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
           content: newContent
         };
 
-        fetch('http://127.0.0.1:8000/comment/update/', {
+        fetch('/comment/update/', {
           method: 'POST',
           headers: {
             contentType: 'application/json'
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
         comment_id: 1
       };
 
-      fetch('http://127.0.0.1:8000/comment/comment/delete/', {
+      fetch('/comment/comment/delete/', {
         method: 'POST',
         headers: {
           contentType: 'application/json'
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
           content: replyContent
         };
 
-        fetch('http://127.0.0.1:8000/comment/reply/update/', {
+        fetch('/comment/reply/update/', {
           method: 'POST',
           headers: {
             contentType: 'application/json'
@@ -295,7 +295,7 @@ document.addEventListener("DOMContentLoaded", function () {
           content: newContent
         };
 
-        fetch('http://127.0.0.1:8000/comment/reply/update/', {
+        fetch('/comment/reply/update/', {
           method: 'POST',
           headers: {
             contentType: 'application/json'
@@ -323,7 +323,7 @@ document.addEventListener("DOMContentLoaded", function () {
         reply_id: 1
       };
 
-      fetch('http://127.0.0.1:8000/comment/reply/delete/', {
+      fetch('/comment/reply/delete/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

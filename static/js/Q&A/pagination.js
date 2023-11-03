@@ -9,7 +9,7 @@ function loadQAList(page_num) {
 
 
   $.ajax({
-    url: 'http://127.0.0.1:8000/employ/question/list/',
+    url: '/employ/question/list/',
     type: 'POST',
     dataType: 'json',
     data: JSON.stringify({
